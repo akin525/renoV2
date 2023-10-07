@@ -1,5 +1,5 @@
 /*
-Template Name: EduAdmin - Responsive Admin Template 
+Template Name: EduAdmin - Responsive Admin Template
 Author: Multipurpose Themes
 File: scss
 */
@@ -76,21 +76,21 @@ Waves
 /*Theme Colors For Dark*/
 /*---reset---*/
 /*Body*/
-@import url(color_theme.css);
-@import url(style_rtl.css);
-@import url(../../assets/icons/font-awesome/css/font-awesome.css);
-@import url(../../assets/icons/Ionicons/css/ionicons.css);
-@import url(../../assets/icons/themify-icons/themify-icons.css);
-@import url(../../assets/icons/linea-icons/linea.css);
-@import url(../../assets/icons/glyphicons/glyphicon.css);
-@import url(../../assets/icons/flag-icon-css/css/flag-icon.css);
-@import url(../../assets/icons/material-design-iconic-font/css/materialdesignicons.css);
-@import url(../../assets/icons/simple-line-icons/css/simple-line-icons.css);
-@import url(../../assets/icons/cryptocoins-master/cryptocoins.css);
-@import url(../../assets/icons/weather-icons/css/weather-icons.min.css);
-@import url(../../assets/icons/iconsmind/style.css);
-@import url(../../assets/icons/icomoon/style.css);
-@import url(../../assets/vendor_components/animate/animate.css);
+@import url(../../ads/css/color_theme.css);
+@import url(../../ads/css/style_rtl.css);
+@import url(../../ads/assets/icons/font-awesome/css/font-awesome.css);
+@import url(../../ads/assets/icons/Ionicons/css/ionicons.css);
+@import url(../../ads/assets/icons/themify-icons/themify-icons.css);
+@import url(../../ads/assets/icons/linea-icons/linea.css);
+@import url(../../ads/assets/icons/glyphicons/glyphicon.css);
+@import url(../../ads/assets/icons/flag-icon-css/css/flag-icon.css);
+@import url(../../ads/assets/icons/material-design-iconic-font/css/materialdesignicons.css);
+@import url(../../ads/assets/icons/simple-line-icons/css/simple-line-icons.css);
+@import url(../../ads/assets/icons/cryptocoins-master/cryptocoins.css);
+@import url(../../ads/assets/icons/weather-icons/css/weather-icons.min.css);
+@import url(../../ads/assets/icons/iconsmind/style.css);
+@import url(../../ads/assets/icons/icomoon/style.css);
+@import url(../../ads/assets/vendor_components/animate/animate.css);
 html {
   height: 100%;
   font-size: 14px; }
@@ -155,7 +155,7 @@ h4, .h4, h5, .h5, h6, .h6 {
 .h3, h3 {
   font-size: 1.7142857142857142rem; }
 
-.h4, h4 {
+.h4, h4 {k
   font-size: 1.2857142857142858rem; }
 
 .h5, h5 {
@@ -1066,7 +1066,7 @@ hr {
   .bg-none-small {
     background: none !important; } }
 /*******************
-Padding property 
+Padding property
 *******************/
 .p-0 {
   padding: 0px !important; }
@@ -3967,7 +3967,7 @@ Padding property
     padding-top: 100px !important;
     padding-bottom: 100px !important; } }
 /*******************
-Margin property 
+Margin property
 *******************/
 .m-0 {
   margin: 0px !important; }
@@ -6868,7 +6868,7 @@ Margin property
     margin-top: 100px !important;
     margin-bottom: 100px !important; } }
 /*******************
-Width property 
+Width property
 *******************/
 .w-0 {
   width: 0px !important; }
@@ -9247,7 +9247,7 @@ Width property
   .max-w-lg-auto {
     max-width: auto; } }
 /*******************
-Height property 
+Height property
 *******************/
 .h-0 {
   height: 0px !important; }
@@ -13280,7 +13280,7 @@ body .main-header .navbar .nav > li.search-box > a:hover, body .main-header .nav
   height: 100vh;
   z-index: 999999;
   overflow: visible;
-  background: #fff url("../../images/preloaders/1.gif") no-repeat center center; }
+  background: #fff url("../../ads/images/preloaders/1.gif") no-repeat center center; }
 
 /*sidebar*/
 .main-sidebar {

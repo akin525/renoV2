@@ -19,6 +19,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AdvertController extends Controller
 {
+    public function myads()
+    {
+
+        return view('ads/myads');
+    }
     public function index()
     {
         $sponsor=Sponsor::where('status', 1)->latest()->limit(12)->get();

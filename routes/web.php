@@ -17,6 +17,7 @@ use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\admin\UserStatementController;
 use App\Http\Controllers\admin\VertualAController;
 use App\Http\Controllers\admin\WithadController;
+use App\Http\Controllers\AdvertController;
 use App\Http\Controllers\AirtimeController;
 use App\Http\Controllers\AlltvController;
 use App\Http\Controllers\AuthController;
@@ -179,6 +180,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('checkusers', [TransactionController::class, 'showPieChart']);
     Route::get('checklock', [TransactionController::class, 'lockPieChart']);
+
+//    advertisement
+    Route::get('advertisement', [AdvertController::class, 'myads'])->name('advertisement');
 
 });
 
