@@ -177,7 +177,7 @@
 
 </div>
 
-@yield('scripts')
+@yield('script')
 <!-- Vendor JS -->
 <script src="{{asset('ads/js/vendors.min.js')}}"></script>
 <script src="{{asset('ads/js/pages/chat-popup.js')}}"></script>

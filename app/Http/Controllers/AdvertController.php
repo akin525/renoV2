@@ -22,7 +22,17 @@ class AdvertController extends Controller
     public function myads()
     {
 
-        return view('ads/myads');
+        $ads=Advert::where('username', Auth::user()->username)->count();
+        $myads=Advert::where('username', Auth::user()->username)
+            ->orderByRaw('updated_at  DESC')
+            ->limit(5)->get();
+        return view('ads/myads', compact('ads', 'myads'));
+    }
+
+    public function Plan()
+    {
+
+        return view('ads/plan');
     }
     public function index()
     {

@@ -18,12 +18,9 @@ public function allrequest()
 }
 public function alladvert()
 {
-    if (Auth::user()->usertype=='ads') {
+
         $advert = Advert::where('username', Auth::user()->username)->get();
         return view('advert', compact('advert'));
-    }else{
-        Alert::info('Message', 'Kindly register as an advertiser');
-        return view('auth.login');
-    }
+
 }
 }

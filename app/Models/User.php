@@ -24,11 +24,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name', 'email', 'password',
+        'phone', 'username', 'google_id','pin', 'dob', 'address', 'gender', 'bvn', 'plan',
     ];
 
+    function parentData()
+    {
+        return $this->belongsTo(wallet::class, 'username','username');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -39,6 +42,9 @@ class User extends Authenticatable
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
+        'apikey',
+        'pin',
+        'bvn',
     ];
 
     /**

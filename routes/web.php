@@ -36,6 +36,7 @@ use App\Http\Controllers\ResellerController;
 use App\Http\Controllers\ResponseController;
 use App\Http\Controllers\SafelockController;
 use App\Http\Controllers\Transaction1Controller;
+use App\Http\Controllers\TransController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\verify;
 use App\Http\Controllers\VertualController;
@@ -183,6 +184,19 @@ Route::middleware(['auth'])->group(function () {
 
 //    advertisement
     Route::get('advertisement', [AdvertController::class, 'myads'])->name('advertisement');
+
+
+    Route::get('plan', [AdvertController::class, 'Plan'])->name('plan');
+
+    Route::group(['middleware' => 'choose.plan'], function () {
+        // Your protected routes go here
+        Route::get('advert', [TransController::class, 'alladvert'])->name('advert');
+        Route::get('upgrade', [AdvertController::class, 'upgrade'])->name('upgrade');
+        Route::get('listupgrade', [AdvertController::class, 'listupgrade'])->name('listupgrade');
+        Route::get('verifyads/{id}', [AdvertController::class, 'verifyads'])->name('verifyads');
+
+
+    });
 
 });
 
