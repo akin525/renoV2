@@ -17,12 +17,16 @@ class ChoosePlanMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->plan==NULL) {
-            // Assuming you have a "choose plan" route named "plan.choose"
-            Alert::success('message','Please choose a plan before continuing.');
-            return redirect()->route('plan');
-        }
-
+//        if (Auth::user()->plan==!NULL) {
+//            // Assuming you have a "choose plan" route named "plan.choose"
+//            return $next($request);
+//
+//
+//        }else{
+//            Alert::success('message','Please choose a plan before continuing.');
+//            return redirect()->route('plan');
+//        }
         return $next($request);
+
     }
 }

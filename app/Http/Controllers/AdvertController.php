@@ -11,6 +11,7 @@ use App\Models\Banner;
 use App\Models\Plan;
 use App\Models\Sponsor;
 use App\Models\User;
+use App\Models\wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -32,7 +33,8 @@ class AdvertController extends Controller
     public function Plan()
     {
 
-        return view('ads/plan');
+        $plan=Plan::all();
+        return view('ads/plan', compact('plan'));
     }
     public function index()
     {
@@ -57,15 +59,15 @@ public function advert(Request $request)
         'category'=>'required',
         'text'=>'required',
         'cover'=>'required',
-        'add'=>'required',
+//        'add'=>'required',
     ]);
 
     $ad=Advert::where('username', Auth::user()->username)->count();
-    $plan=Adsplan::where('id', Auth::user()->ads_status)->first();
+//    $plan=Adsplan::where('id', Auth::user()->ads_status)->first();
 
         $user = User::where('username', Auth::user()->username)->first();
         $cover = Storage::put('cover', $request['cover']);
-        $other = Storage::put('cover', $request['add']);
+//        $other = Storage::put('cover', $request['add']);
         $post = Advert::create([
             'username' => Auth::user()->username,
             'advert_name' => $request->name,
@@ -76,25 +78,13 @@ public function advert(Request $request)
             'duration' => $request->duration,
             'content' => $request->text,
             'cover_image' => $cover,
-            'other' => $other,
+//            'other' => $other,
         ]);
 
-    if ($ad>=$plan->limit){
-//        $msg="Kindly Upgrade your Account Membership Account for instant post";
-//        Alert::info('Pending', $msg);
-//        return redirect('upgrade');
-    }else{
-        $post->status=1;
-        $post->save();
-
-    }
 
     $mg="Advert Successful posted";
     Alert::success('Successful', $mg);
     return back();
-//        $mg = "Request successful submitted Kindly contact our customer service if your items didn’t posted to our page in 15 minutes";
-//        Alert::info('Pending', $mg);
-//        return back();
     }
 
     public function linkuodate(Request $request)
@@ -298,6 +288,39 @@ function listupgrade()
     $plan=Adspay::where('username', Auth::user()->username)->get();
     return view('listupgrade', compact('plan'));
 }
+    function myadsload()
+    {
+        $advert=Advert::where('username', Auth::user()->username)->get();
+        return view('ads.ads', compact('advert'));
+    }
 
+    function planchoose($request)
+    {
+        $choose=Plan::where('code', $request)->first();
+        $wallet=wallet::where('username', Auth::user()->username)->first();
+        $user=User::where('username', Auth::user()->username)->first();
+        if ($request =="0"){
+            $user->plan=$request;
+            $user->save();
+        }
 
+        if ($wallet->balance < $choose->amount) {
+            $mg = "Unable to Choose Membership" . "NGN" . $choose->amount . " from your wallet. Your wallet balance is NGN $wallet->balance. Please Fund Wallet And Retry or Pay Online Using Our Alternative Payment Methods.";
+
+            Alert::error('error', $mg);
+            return back();
+
+        }
+
+        $gt = $wallet->balance - $choose->amount;
+        $wallet->balance = $gt;
+        $wallet->save();
+
+        $user->plan=$request;
+        $user->save();
+
+        $msg="You have successfully select ".$choose->plan." as your membership";
+        Alert::success('Done', $msg);
+        return back();
+    }
 }

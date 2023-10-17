@@ -120,6 +120,13 @@
                 </div>
             </div>
 
+            <video width="320" height="240" controls autoplay loop>
+                <source src="{{asset('ads/ads.mp4')}}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <a href="{{route('advertisement')}}" class="btn btn-success">Advertise here</a>
+
+
             <div class="col-md-7 col-lg-6">
                 <div class="card">
                     <canvas id="transactionChart" width="800" height="500"></canvas>

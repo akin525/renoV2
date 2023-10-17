@@ -55,20 +55,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-//
-//Route::middleware([
-//    'auth:sanctum',
-//    config('jetstream.auth_session'),
-//    'verified',
-//])->group(function () {
-//    Route::get('/dashboard', function () {
-//        return view('dashboard');
-//    })->name('dashboard');
-//});
-
 Route::get('createemail', [AlltvController::class, 'createemail'])->name('createemail');
 Route::post('log', [AuthController::class, 'customLogin'])->name('log');
 Route::get('/', [AuthController::class, 'landing'])->name('home');
@@ -187,7 +173,9 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::get('plan', [AdvertController::class, 'Plan'])->name('plan');
+    Route::get('myads', [AdvertController::class, 'myadsload'])->name('myads');
 
+    Route::get('choosep/{id}', [AdvertController::class, 'planchoose'])->name('choosep');
     Route::group(['middleware' => 'choose.plan'], function () {
         // Your protected routes go here
         Route::get('advert', [TransController::class, 'alladvert'])->name('advert');
@@ -195,6 +183,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('listupgrade', [AdvertController::class, 'listupgrade'])->name('listupgrade');
         Route::get('verifyads/{id}', [AdvertController::class, 'verifyads'])->name('verifyads');
 
+        Route::post('padvert', [AdvertController::class, 'advert'])->name('padvert');
 
     });
 
@@ -298,6 +287,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('admin/cron/{id}', [\App\Http\Controllers\admin\CronjobController::class, 'stopcronjob'])->name('admin/cron');
 
+
 });
 Route::get('admin/api', [HonorApi::class, 'api'])->name('admin/api');
 
@@ -314,4 +304,45 @@ Route::get('/profile/{filename}', function ($filename) {
     $response->header("Content-Type", $type);
     return $response;
 })->name('profile');
+Route::view('policy', 'policy');
+
+Route::get('/cover/{filename}', function ($filename) {
+    $path = storage_path('app/cover/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+})->name('cover');
+Route::get('/banner0/{filename}', function ($filename) {
+    $path = storage_path('app/banner0/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+})->name('banner0');
+Route::get('/app/{filename}', function ($filename) {
+    $path = storage_path('app/myapp/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+})->name('app');
 Route::view('policy', 'policy');

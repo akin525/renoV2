@@ -1,5 +1,5 @@
 @extends('layouts.ads')
-@section('tittle', 'My Ads')
+@section('tittle', 'Select Plan')
 @section('content')
     <div class="content-header">
         <div class="d-flex align-items-center">
@@ -18,93 +18,68 @@
 
         </div>
     </div>
-
+    <br>
+    <br>
+    <hr/>
     <div class="row">
+        <div class="col-12">
+            <div class="box bg-gradient-success-dark overflow-hidden pull-up">
+                <div class="box-body pr-0 pl-lg-50 pl-15 py-0">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-lg-8">
+                            <h1 class="font-size-40 text-white">My-Ads Plan</h1>
+                            @if(Auth::user()->plan ==NULL)
+                            <p class="text-white mb-0 font-size-20">
+                                Please kindly select any plan for ur membership here
+                            </p>
+                                @elseif(Auth::user()->plan =="0")
+                                <p class="text-white mb-0 font-size-20">
+                                   <b>MY Plan:</b> <i>STARTER</i>
+                                    <hr>
+                            <a href="#" class="badge badge-success">Upgrade</a>
+                                </p>
+                            @elseif(Auth::user()->plan =="1")
+                                <p class="text-white mb-0 font-size-20">
+                                    <b>MY Plan:</b> <i>PROFESSIONAL PACKAGE</i>
+                                <hr>
+                                <a href="#" class="badge badge-success">Upgrade</a>
+                                </p>
+                            @elseif(Auth::user()->plan =="2")
+                                <p class="text-white mb-0 font-size-20">
+                                    <b>MY Plan:</b> <i>ENTERPRISE PACKAGE</i>
+                                <hr>
+                                <a href="#" class="badge badge-success">Upgrade</a>
+                                </p>
 
-        <div class="col-lg-3">
+                            @endif
+                        </div>
+                        <div class="col-12 col-lg-4"><img src="https://eduadmin-template.multipurposethemes.com/bs4/images/svg-icon/color-svg/custom-15.svg" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @foreach($plan as $pa)
+        <div class="col-lg-4">
             <div class="box">
                 <div class="box-body text-center">
                     <h3 class="price">
-                        <sup>$</sup>0
+                        <sup>₦</sup>{{$pa['amount']}}
                         <span>&nbsp;</span>
                     </h3>
-                    <h5 class="text-uppercase text-muted">Starter package</h5>
+                    <h5 class="text-uppercase text-muted">{{$pa['plan']}}</h5>
 
                     <hr>
-                    <p><strong>500 MB</strong> Storage</p>
+                    <p><strong>{{$pa['limits']}}</strong> Ads-Post</p>
                     <p><strong>24x7</strong> Support</p>
-                    <p><strong>5</strong> Project</p>
+                    <p><strong>{{$pa['days']}}Days</strong> Duration</p>
                     <p><strong>1</strong> User</p>
 
                     <br><br>
-                    <a class="btn btn-warning" href="#">Select plan</a>
+                    <a class="btn btn-success" href="{{route('choosep', $pa['code'])}}">Select plan</a>
                 </div>
             </div>
         </div>
-
-        <div class="col-lg-3">
-            <div class="box box-shadowed">
-                <div class="box-body text-center">
-                    <h3 class="price">
-                        <sup>$</sup>5<sup>.99</sup>
-                        <span>per month</span>
-                    </h3>
-                    <h5 class="text-uppercase text-muted">Professional package</h5>
-
-                    <hr>
-                    <p><strong>1 GB</strong> Storage</p>
-                    <p><strong>24x7</strong> Support</p>
-                    <p><strong>15</strong> Project</p>
-                    <p><strong>3</strong> User</p>
-
-                    <br><br>
-                    <a class="btn btn-primary" href="#">Select plan</a>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="col-lg-3">
-            <div class="box">
-                <div class="box-body text-center">
-                    <h3 class="price">
-                        <sup>$</sup>15<sup>.99</sup>
-                        <span>per month</span>
-                    </h3>
-                    <h5 class="text-uppercase text-muted">Enterprise package</h5>
-
-                    <hr>
-                    <p><strong>5 GB</strong> Storage</p>
-                    <p><strong>24x7</strong> Support</p>
-                    <p><strong>50</strong> Project</p>
-                    <p><strong>10</strong> User</p>
-
-                    <br><br>
-                    <a class="btn btn-info" href="#">Select plan</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3">
-            <div class="box">
-                <div class="box-body text-center">
-                    <h3 class="price">
-                        <sup>$</sup>25<sup>.99</sup>
-                        <span>per month</span>
-                    </h3>
-                    <h5 class="text-uppercase text-muted">Ultimate package</h5>
-
-                    <hr>
-                    <p><strong>50 GB</strong> Storage</p>
-                    <p><strong>24x7</strong> Support</p>
-                    <p><strong>50</strong> Project</p>
-                    <p><strong>10</strong> User</p>
-
-                    <br><br>
-                    <a class="btn btn-danger" href="#">Select plan</a>
-                </div>
-            </div>
-        </div>
+        @endforeach
 
     </div>
 

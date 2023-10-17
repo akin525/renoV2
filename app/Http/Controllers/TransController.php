@@ -19,8 +19,15 @@ public function allrequest()
 public function alladvert()
 {
 
+    if (Auth::user()->plan ==NULL){
+        $msg="Kindly Subscribe to any Membership plan before any post";
+        Alert::info('Subscribe', $msg);
+
+        return redirect('plan');
+    }
+
         $advert = Advert::where('username', Auth::user()->username)->get();
-        return view('advert', compact('advert'));
+        return view('ads.advert', compact('advert'));
 
 }
 }

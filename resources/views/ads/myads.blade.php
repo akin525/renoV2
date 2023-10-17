@@ -45,9 +45,9 @@
                             </div>
                             <div class="text-right">
                                 @if($ad['status']=='1')
-                                <h5 class="font-weight-600 mb-0 badge badge-pill badge-primary">Running</h5>
+                                <h5 class="font-weight-600 mb-0 badge badge-pill badge-success">Running</h5>
                                 @else
-                                    <h5 class="font-weight-600 mb-0 badge badge-pill badge-primary">Pending</h5>
+                                    <h5 class="font-weight-600 mb-0 badge badge-pill badge-warning">Pending</h5>
                                 @endif
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                     <div class="col-6">
                         <div class="bg-lightest px-30 py-40 rounded20 mb-20">
                             <span class="icon-Equalizer d-block font-size-40"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
-                            <a href="#" class="font-weight-500 font-size-18">
+                            <a href="{{route('myads')}}" class="font-weight-500 font-size-18">
                                 All Ads
                             </a>
                         </div>
@@ -94,7 +94,7 @@
                     <div class="col-6">
                         <div class="bg-lightest px-30 py-40 rounded20 mb-20">
                             <span class="icon-Add-user d-block font-size-40"><span class="path1"></span><span class="path2"></span></span>
-                            <a href="#" class="font-weight-500 font-size-18">
+                            <a href="{{route('advert')}}" class="font-weight-500 font-size-18">
                                 Create Ads
                             </a>
                         </div>
@@ -102,7 +102,7 @@
                     <div class="col-6">
                         <div class="bg-lightest px-30 py-40 rounded20 mb-20">
                             <span class="icon-Cart2 d-block font-size-40"><span class="path1"></span><span class="path2"></span></span>
-                            <a href="#" class="font-weight-500 font-size-18">
+                            <a href="{{route('plan')}}" class="font-weight-500 font-size-18">
                              My Plan
                             </a>
                         </div>
@@ -135,7 +135,7 @@
                     type: "radialBar"
                 },
 
-                series: [{{$myads}}],
+                series: [{{$ads}}],
                 colors: ['#ccaa00'],
                 plotOptions: {
                     radialBar: {

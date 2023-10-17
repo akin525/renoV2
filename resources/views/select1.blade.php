@@ -152,6 +152,19 @@
         </center>
         <br/>
         <br/>
+        <style>
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        </style>
+        <div class="card-body">
+            <a href="{{route('advertisement')}}">
+            <div class="center">
+                <img    src="{{asset('ads/ads.jpg')}}" alt="#" />
+            </div>
+            </a>
+        </div>
         <script>
             const btns = document.querySelectorAll('button');
             btns.forEach((items)=>{

@@ -142,19 +142,33 @@
             </div>
             <div class="col-sm-4 ">
                 <br>
+                <div class="card-body">
+                    <a href="{{route('advertisement')}}">
+                        <div class="center">
+                            <img    src="{{asset('ads/ads1.jpg')}}" alt="#" />
+                        </div>
+                    </a>
+                    <video width="320" height="240" controls autoplay loop>
+                        <source src="{{asset('ads/ads.mp4')}}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
 
-                <p><b>You can use the codes below to check your Airtime Balance!  </b> </p>
+{{--                <a href="{{route('advertisement')}}" class="btn btn-success">Advertise here</a>--}}
 
 
-                <h6>
-                    <ul class="list-group">
-                        <b><li class="list-group-item list-group-item-primary bold"> MTN *556#</li></b>
-                        <b><li class="list-group-item list-group-item-success">MTN [CG] *131*4# or *460*260#</li></b>
-                        <b><li class="list-group-item list-group-item-action">9mobile  *223#</li></b>
-                        <b><li class="list-group-item list-group-item-info">Airtel *123#</li></b>
-                        <b><li class="list-group-item list-group-item-secondary">Glo *124*0#</li></b>
-                    </ul>
-                </h6>
+                {{--                <p><b>You can use the codes below to check your Airtime Balance!  </b> </p>--}}
+
+
+{{--                <h6>--}}
+{{--                    <ul class="list-group">--}}
+{{--                        <b><li class="list-group-item list-group-item-primary bold"> MTN *556#</li></b>--}}
+{{--                        <b><li class="list-group-item list-group-item-success">MTN [CG] *131*4# or *460*260#</li></b>--}}
+{{--                        <b><li class="list-group-item list-group-item-action">9mobile  *223#</li></b>--}}
+{{--                        <b><li class="list-group-item list-group-item-info">Airtel *123#</li></b>--}}
+{{--                        <b><li class="list-group-item list-group-item-secondary">Glo *124*0#</li></b>--}}
+{{--                    </ul>--}}
+{{--                </h6>--}}
                 <br>
                 <style>
                     img {
@@ -164,7 +178,7 @@
                 </style>
                 <div class="card-body">
                     <div class="center">
-                        <img    src="{{asset('images/tp.jpeg')}}" alt="#" />
+{{--                        <img    src="{{asset('images/tp.jpeg')}}" alt="#" />--}}
                     </div>
                 </div>
 

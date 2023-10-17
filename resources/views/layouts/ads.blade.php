@@ -26,6 +26,9 @@
 <div class="wrapper">
     <div id="loader"></div>
 
+    @include('sweetalert::alert')
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+
     <header class="main-header">
         <div class="d-flex align-items-center logo-box justify-content-start">
             <a href="#" class="waves-effect waves-light nav-link d-none d-md-inline-block mx-10 push-btn bg-transparent" data-toggle="push-menu" role="button">
@@ -127,13 +130,34 @@
                     <!-- sidebar menu-->
                     <ul class="sidebar-menu" data-widget="tree">
                         <li class="header">Dashboard & Apps</li>
-                        <li class="treeview">
-                            <a href="#">
+                        <li >
+                            <a href="{{route('dashboard')}}">
+                                <i class="icon-Layout-4-blocks"><span class="path1"></span><span class="path2"></span></i>
+                                <span>Main-Page</span>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="{{route('advertisement')}}">
                                 <i class="icon-Layout-4-blocks"><span class="path1"></span><span class="path2"></span></i>
                                 <span>Dashboard</span>
-                                <span class="pull-right-container">
-{{--					  <i class="fa fa-angle-right pull-right"></i>--}}
-					</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('plan')}}">
+                                <i class="icon-Bookmark"><span class="path1"></span><span class="path2"></span></i>
+                                <span>My-Plan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('advert')}}">
+                                <i class="iconsmind-File-Bookmark"><span class="path1"></span><span class="path2"></span></i>
+                                <span>Create Advert</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('myads')}}">
+                                <i class="iconsmind-File-Bookmark"><span class="path1"></span><span class="path2"></span></i>
+                                <span>My Ads</span>
                             </a>
                         </li>
                     </ul>
@@ -200,7 +224,13 @@
 
 <!-- EduAdmin App -->
 <script src="{{asset('ads/js/pages/dashboard2.js')}}"></script>
+<script src="{{asset('ads/assets/vendor_plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js')}}"></script>
 
+
+<script src="{{asset('ads/js/pages/editor.js')}}"></script>
+<script src="{{asset('ads/assets/vendor_components/ckeditor/ckeditor.js')}}"></script>
+<script src="{{asset('ads/js/pages/data-table.js')}}"></script>
+<script src="{{asset('ads/assets/vendor_components/datatable/datatables.min.js')}}"></script>
 </body>
 </html>
 
