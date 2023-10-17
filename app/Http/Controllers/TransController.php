@@ -19,7 +19,7 @@ public function allrequest()
 public function alladvert()
 {
 
-    if (Auth::user()->plan ==NULL){
+    if (Auth::user()->plan ==null){
         $msg="Kindly Subscribe to any Membership plan before any post";
         Alert::info('Subscribe', $msg);
 

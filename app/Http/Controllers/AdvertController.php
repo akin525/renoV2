@@ -300,7 +300,7 @@ function listupgrade()
         $wallet=wallet::where('username', Auth::user()->username)->first();
         $user=User::where('username', Auth::user()->username)->first();
         if ($request =="0"){
-            $user->plan=$request;
+            $user->plan=0;
             $user->save();
         }
 
