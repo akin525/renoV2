@@ -20,7 +20,7 @@
 
 
     <!-- Main content -->
-    <section class="content">
+    <div class="card card-body">
 
         <div class="row">
             <div class="col-12">
@@ -30,7 +30,7 @@
                             <div class="col-12 col-lg-8">
                                 <h1 class="font-size-40 text-white">Create Advert</h1>
                                     <p class="text-white mb-0 font-size-20">
-                                        <i> Please kindly select any plan for ur membership to allow posing automatically</i>
+                                        <i> Please kindly select any plan for your membership </i>
                                     </p>
                             </div>
                             <div class="col-12 col-lg-4"><img src="https://eduadmin-template.multipurposethemes.com/bs4/images/svg-icon/color-svg/custom-15.svg" alt=""></div>
@@ -136,6 +136,6 @@
             </div>
         </div>
 
-    </section>
+    </div>
     <!-- /.content -->
 @endsection

@@ -18,7 +18,7 @@
         </div>
     </div>
     <!-- Main content -->
-    <section class="content">
+    <div class="card card-body">
 
         <div class="row">
             <div class="col-12">
@@ -85,5 +85,5 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 @endsection
