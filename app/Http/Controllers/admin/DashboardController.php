@@ -40,7 +40,7 @@ public function dashboard(Request $request)
 
         $bil2 = bill_payment::get();
         $bill=bill_payment::sum('amount');
-        $lock=bill_payment::sum('discountamoun');
+        $lock=bill_payment::sum('discountamount');
         $tran = 0;
         $pa = 0;
 
