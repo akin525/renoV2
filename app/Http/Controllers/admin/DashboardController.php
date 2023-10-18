@@ -27,47 +27,20 @@ public function dashboard(Request $request)
     if (Auth()->user()->role=="admin") {
         $user = User::where('username', Auth::user()->username)->where('role', 'admin')->first();
         $me = Messages::where('status', 1)->first();
-        $refer = refer::get();
-        $totalrefer = 0;
-        foreach ($refer as $de) {
-            $totalrefer += $de->amount;
-
-        }
+        $totalrefer = refer::sum('amount');
         $count = refer::count();
         $alluser = User::count();
-        $profit = profit::get();
         $profit1 = profit1::sum('amount');
-        $totalprofit = 0;
-        foreach ($profit as $pro) {
-            $totalprofit += $pro->amount;
-        }
+        $totalprofit = profit::sum('amount');
         $wallet = wallet::get();
-        $totalwallet=0;
-        foreach ($wallet as $wall) {
-            $totalwallet += (int)$wall->balance;
-
-        }
+        $totalwallet=wallet::sum('balance');
         $deposite = deposit::get();
-        $totaldeposite = 0;
-        foreach ($deposite as $depo) {
-            $totaldeposite += (int)$depo->amount;
+        $totaldeposite =deposit::sum('amount');
+        $totalcharge= charge::sum('amount');
 
-        }
-    $charge=charge::get();
-    $totalcharge= 0;
-        foreach ($charge as $ch) {
-            $totalcharge += (int)$ch->amount;
-
-        }
         $bil2 = bill_payment::get();
-        $bill = 0;
-        $lock=0;
-        foreach ($bil2 as $bill1) {
-            $bill += (int)$bill1->amount;
-            $lock += (int)$bill1->discountamoun;
-
-        }
-
+        $bill=bill_payment::sum('amount');
+        $lock=bill_payment::sum('discountamoun');
         $tran = 0;
         $pa = 0;
 
@@ -84,7 +57,7 @@ $mo=safe_lock::where('status', '1')->sum('balance');
 
         return view('admin/dashboard', compact('user', 'wallet',
              'mo', 'profit1', 'data', 'lock', 'totalcharge',  'tran', 'alluser',
-            'totaldeposite', 'totalwallet', 'deposite', 'me', 'bil2', 'bill', 'totalrefer',
+            'totaldeposite', 'totalwallet', 'deposite', 'me',  'bill', 'totalrefer',
             'totalprofit',  'count'));
 
     }
