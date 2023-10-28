@@ -66,7 +66,7 @@
                                         @if($ads['status']=='1')
                                             <span class="badge badge-pill badge-success">Running</span>
                                         @else
-                                            <span class="badge badge-pill badge-success">Pending</span>
+                                            <span class="badge badge-pill badge-warning">Pending</span>
                                             @endif
                                     </td>
                                     <td><a href="javascript:void(0)" class="text-info mr-10" data-toggle="tooltip" data-original-title="Edit">

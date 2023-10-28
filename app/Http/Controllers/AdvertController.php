@@ -62,6 +62,12 @@ public function advert(Request $request)
 //        'add'=>'required',
     ]);
 
+    if (Auth::user()->plan == null)
+    {
+        $msg="Kindly choose your membership plan before posting any advert";
+        Alert::warning('Ooops..', $msg);
+        return back();
+    }
     $ad=Advert::where('username', Auth::user()->username)->count();
 //    $plan=Adsplan::where('id', Auth::user()->ads_status)->first();
 
@@ -79,10 +85,11 @@ public function advert(Request $request)
             'content' => $request->text,
             'cover_image' => $cover,
 //            'other' => $other,
+                'status'=>0,
         ]);
 
 
-    $mg="Advert Successful posted";
+    $mg="Advert Successful posted, waiting for admin approval";
     Alert::success('Successful', $mg);
     return back();
     }
@@ -131,18 +138,17 @@ function adsdetails1($request)
     $ad=Sponsor::where('id', $request)->first();
     $all=Advert::where('status',1)->latest()->limit(3)->get();
     $user=User::where('username', $ad->username)->first();
-    return view('ads/ads-detail', compact('ad', 'all', 'user', 'banner'));
+    return view('ads/adsdetail', compact('ad', 'all', 'user', 'banner'));
 }
 
 
 function adsdetails($request)
 {
-    $banner=Banner::where('page', 1)->first();
-    $ad=Advert::where('id', $request)->first();
+    $adS=Advert::where('id', $request)->first();
     $all=Advert::where('status',1)->latest()->limit(3)->get();
-    $user=User::where('username', $ad->username)->first();
+    $user=User::where('username', $adS->username)->first();
 //    return $user;
-    return view('ads/ads-detail', compact('ad', 'all', 'user', 'banner'));
+    return view('ads/adsdetailS', compact('adS', 'all', 'user'));
 }
 
 
@@ -300,7 +306,7 @@ function listupgrade()
         $wallet=wallet::where('username', Auth::user()->username)->first();
         $user=User::where('username', Auth::user()->username)->first();
         if ($request =="0"){
-            $user->plan=0;
+            $user->plan=$choose->plan;
             $user->save();
         }
 
@@ -316,7 +322,7 @@ function listupgrade()
         $wallet->balance = $gt;
         $wallet->save();
 
-        $user->plan=$request;
+        $user->plan=$choose->plan;
         $user->save();
 
         $msg="You have successfully select ".$choose->plan." as your membership";

@@ -32,25 +32,12 @@
                             <p class="text-white mb-0 font-size-20">
                                 Please kindly select any plan for ur membership here
                             </p>
-                                @elseif(Auth::user()->plan =="0")
+                            @else
                                 <p class="text-white mb-0 font-size-20">
-                                   <b>MY Plan:</b> <i>STARTER</i>
-                                    <hr>
-                            <a href="#" class="badge badge-success">Upgrade</a>
-                                </p>
-                            @elseif(Auth::user()->plan =="1")
-                                <p class="text-white mb-0 font-size-20">
-                                    <b>MY Plan:</b> <i>PROFESSIONAL PACKAGE</i>
+                                    <b>MY Plan:</b> <i>{{Auth::user()->plan}}</i>
                                 <hr>
                                 <a href="#" class="badge badge-success">Upgrade</a>
                                 </p>
-                            @elseif(Auth::user()->plan =="2")
-                                <p class="text-white mb-0 font-size-20">
-                                    <b>MY Plan:</b> <i>ENTERPRISE PACKAGE</i>
-                                <hr>
-                                <a href="#" class="badge badge-success">Upgrade</a>
-                                </p>
-
                             @endif
                         </div>
                         <div class="col-12 col-lg-4"><img src="https://eduadmin-template.multipurposethemes.com/bs4/images/svg-icon/color-svg/custom-15.svg" alt=""></div>

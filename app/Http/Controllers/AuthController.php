@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Charts\UserChart;
 use App\Console\encription;
 use App\Mail\login;
+use App\Models\Advert;
 use App\Models\airtimecon;
 use App\Models\big;
 use App\Models\bill_payment;
@@ -40,11 +41,12 @@ class AuthController
         $glo=data::where('network', 'glo-data')->limit(7)->get();
         $eti=data::where('network', 'etisalat-data')->limit(7)->get();
         $airtel=data::where('network', 'airtel-data')->limit(7)->get();
+        $ads=Advert::where('status', 1)->latest()->limit(3)->get();
         $me = Messages::where('status', 1)->first();
 //        Alert::image('Latest News', $me->message,'https://renomobilemoney.com/images/bn.jpeg','200','200', 'Image Alt');
 
 //Alert::info('Renomobilemoney', 'Data Refill | Airtime | Cable TV | Electricity Subscription');
-        return view("home", compact("mtn", "glo", "eti", "airtel"));
+        return view("home", compact("mtn", "glo", "eti", "airtel", "ads"));
     }
   public function pass(Request $request)
 {
@@ -202,10 +204,13 @@ Alert::success('Success', 'New Password has been sent to your email');
 
         $all=$cdeposite+$cbill+$cgive;
 
-            return  view('dashboard', compact('username',
+        $ads=Advert::where('status', 1)->inRandomOrder()->orderBy('id', 'desc')->first();
+
+
+        return  view('dashboard', compact('username',
                 'give', 'all', 'cbill', 'cgive', "user", 'greet',
                 'pam1', 'wallet','wallet1', 'totaldeposite', 'me', 'cdeposite',
-                'bil2', 'bill', 'totalrefer',  'pam', 'count', 'lock'))
+                'bil2', 'bill', 'ads', 'totalrefer',  'pam', 'count', 'lock'))
                 ->with('success', 'Welcome back '.encription::decryptdata($user->name));
 
     }
@@ -215,6 +220,7 @@ Alert::success('Success', 'New Password has been sent to your email');
             $user = User::find($request->user()->id);
             $username=encription::decryptdata($user->username);
             $refer = refer::where('username', $user->username)->first();
+        $ads=Advert::where('status', 1)->inRandomOrder()->orderBy('id', 'desc')->first();
 
             $refers = refer::where('username', $user->username)->get();
             $totalrefer = 0;
@@ -224,7 +230,7 @@ Alert::success('Success', 'New Password has been sent to your email');
             }
 //            return $username;
 
-            return  view('referal', compact('username', 'refers', 'refer', 'totalrefer'));
+            return  view('referal', compact('username', 'ads', 'refers', 'refer', 'totalrefer'));
 
     }
     public function select(Request  $request)
@@ -238,8 +244,9 @@ Alert::success('Success', 'New Password has been sent to your email');
         if (isset($serve)) {
             $user = User::find($request->user()->id);
 
+            $ads=Advert::where('status', 1)->inRandomOrder()->orderBy('id', 'desc')->first();
 
-            return view('select', compact('user', 'serve'));
+            return view('select', compact('user', 'serve', 'ads'));
         } else {
             Alert::info('Server', 'Out of service, come back later');
             return redirect('dashboard');
@@ -255,9 +262,10 @@ Alert::success('Success', 'New Password has been sent to your email');
 //        }
         if (isset($serve)) {
             $user = User::find($request->user()->id);
+            $ads=Advert::where('status', 1)->inRandomOrder()->orderBy('id', 'desc')->first();
 
 
-            return view('select1', compact('user', 'serve'));
+            return view('select1', compact('user', 'serve', 'ads'));
         }else {
             Alert::info('Server', 'Out of service, come back later');
             return redirect('dashboard');
@@ -344,8 +352,9 @@ Alert::success('Success', 'New Password has been sent to your email');
             $user = User::find($request->user()->id);
             $data = data::where('plan_id', "airtime")->get();
 //            $wallet = wallet::where('username', $user->username)->first();
+            $ads=Advert::where('status', 1)->inRandomOrder()->orderBy('id', 'desc')->first();
 
-            return view('airtime', compact('user', 'data'));
+            return view('airtime', compact('user', 'data', 'ads'));
         } elseif ($se == 'Honor'){
             return view('airtime1');
 

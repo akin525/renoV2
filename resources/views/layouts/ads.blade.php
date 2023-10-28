@@ -217,8 +217,6 @@
 <script src="{{asset('ads/js/pages/dashboard.js')}}"></script>
 <script src="{{asset('ads/js/pages/calendar.js')}}"></script>
 
-<script src="{{asset('ads/js/pages/chat-popup.js')}}"></script>
-<script src="{{asset('ads/assets/icons/feather-icons/feather.min.js')}}"></script>
 
 <script src="{{asset('ads/assets/vendor_components/apexcharts-bundle/dist/apexcharts.js')}}"></script>
 

@@ -174,6 +174,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('plan', [AdvertController::class, 'Plan'])->name('plan');
     Route::get('myads', [AdvertController::class, 'myadsload'])->name('myads');
+    Route::get('details/{id}', [AdvertController::class, 'adsdetails'])->name('setails');
 
     Route::get('choosep/{id}', [AdvertController::class, 'planchoose'])->name('choosep');
     Route::group(['middleware' => 'choose.plan'], function () {
