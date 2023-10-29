@@ -20,7 +20,7 @@
                         <div class="card">
                             <div class="card-body">
                                 {{--                                <h4 class="card-title">Basic Info</h4>--}}
-                                <x-jet-validation-errors class="mb-4 alert-danger alert-dismissible alert"/>
+                                <x-validation-errors class="mb-4 alert-danger alert-dismissible alert"/>
 
                                 <script src=
                                         "https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js">
