@@ -29,7 +29,7 @@ use App\Http\Controllers\GiveawaController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\listdata;
 use App\Http\Controllers\McdController;
-use App\Http\Controllers\admin\McdController;
+use App\Http\Controllers\admin\McdController1;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\RefersController;
 use App\Http\Controllers\ReportController;
