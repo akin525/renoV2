@@ -5,7 +5,7 @@ namespace app\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class McdController
+class McdController1
 {
     public function index()
     {
