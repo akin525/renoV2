@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Http\Controllers\admin;
+namespace App\Http\Controllers\admin;
 
 use App\Models\admin;
 use App\Models\bill_payment;
@@ -16,7 +16,6 @@ use App\Models\safe_lock;
 use App\Models\User;
 use App\Models\wallet;
 use App\Models\webook;
-use Asantibanez\LivewireCharts\Models\ColumnChartModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -38,9 +37,9 @@ public function dashboard(Request $request)
         $totaldeposite =deposit::sum('amount');
         $totalcharge= charge::sum('amount');
 
-        $bil2 = bill_payment::get();
         $bill=bill_payment::sum('amount');
         $lock=bill_payment::sum('discountamount');
+
         $resellerURL = 'https://integration.mcd.5starcompany.com.ng/api/reseller/';
 
         $curl = curl_init();
@@ -65,11 +64,8 @@ public function dashboard(Request $request)
         $response = curl_exec($curl);
 
         curl_close($curl);
-//                                                        return $response;
         $data = json_decode($response, true);
-        $success = $data["success"];
         $tran = $data["data"]["wallet"];
-        $pa = $data["data"]["commission"];
 
         $today = Carbon::now()->format('Y-m-d');
 
@@ -80,7 +76,7 @@ public function dashboard(Request $request)
         $data['nou'] = wallet::where([['updated_at', 'LIKE', $today . '%']])->count();
         $data['sum_deposits'] = deposit::where([['date', 'LIKE', '%' . $today . '%']])->sum('amount');
         $data['sum_bill'] = bill_payment::where([['timestamp', 'LIKE', '%' . $today . '%']])->sum('amount');
-$mo=safe_lock::where('status', '1')->sum('balance');
+        $mo=safe_lock::where('status', '1')->sum('balance');
 
         return view('admin/dashboard', compact('user', 'wallet',
              'mo', 'profit1', 'data', 'lock', 'totalcharge',  'tran', 'alluser',

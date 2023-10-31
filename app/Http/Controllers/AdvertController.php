@@ -144,11 +144,11 @@ function adsdetails1($request)
 
 function adsdetails($request)
 {
-    $adS=Advert::where('id', $request)->first();
+    $ads=Advert::where('id', $request)->first();
     $all=Advert::where('status',1)->latest()->limit(3)->get();
-    $user=User::where('username', $adS->username)->first();
+    $user=User::where('username', $ads->username)->first();
 //    return $user;
-    return view('ads/adsdetailS', compact('adS', 'all', 'user'));
+    return view('ads/adsdetailS', compact('ads', 'all', 'user'));
 }
 
 

@@ -116,8 +116,6 @@ public function edit(Request $request)
         'status'=>'success',
         'message'=>'Product update successfully',
     ]);
-
-
 }
     public function edit1(Request $request)
     {

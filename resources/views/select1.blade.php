@@ -73,6 +73,37 @@
                     Select Network</h3></center>
         </div>
         <center>
+            <div class="card bg-primary">
+                <center>
+
+                    <div class="">
+                        <h4 class="heading mb-0 text-white text-center">Advertisement 😎</h4>
+                    </div>
+                    <div class="card card-body shadow-hover">
+                        <style>
+                            .bo {
+                                max-width: 100%;
+                                height: auto;
+                            }
+                        </style>
+                        @if($ads=="")
+                            <center>
+                                <video width="320" height="240" controls autoplay loop>
+                                    <source src="{{asset('ads/ads.mp4')}}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </center>
+                            <a href="{{route('advertisement')}}" class="btn btn-success">Advertise here</a>
+                        @else
+                            <a href="{{route('details', $ads->id)}}">
+                                <img  class="bo" src="{{url('/', $ads->cover_image)}}" alt="ads" />
+                                <h3 class="text-primary" ><b>{{$ads->advert_name}}</b></h3>
+                            </a>
+
+
+                    @endif
+                </center>
+            </div>
             <div class="subscribe btn-controls">
                 <form id="dataForm">
                     @csrf
