@@ -61,8 +61,14 @@
                     <p><strong>{{$pa['days']}}Days</strong> Duration</p>
                     <p><strong>1</strong> User</p>
 
-                    <br><br>
+                    <br/>
+                    <br/>
+
+                    @if($pa['plan'] == Auth::user()->plan)
+                    <a class="badge badge-success" href="#">Current Plan</a>
+                    @else
                     <a class="btn btn-success" href="{{route('choosep', $pa['code'])}}">Select plan</a>
+                    @endif
                 </div>
             </div>
         </div>
