@@ -302,11 +302,11 @@ function listupgrade()
 
     function planchoose($request)
     {
-        $choose=Plan::where('code', $request)->first();
-        $wallet=wallet::where('username', Auth::user()->username)->first();
-        $user=User::where('username', Auth::user()->username)->first();
-        if ($request =="0"){
-            $user->plan=$choose->plan;
+        $choose = Plan::where('code', $request)->first();
+        $wallet = wallet::where('username', Auth::user()->username)->first();
+        $user = User::where('username', Auth::user()->username)->first();
+        if ($request == "0") {
+            $user->plan = $choose->plan;
             $user->save();
         }
 
@@ -322,10 +322,10 @@ function listupgrade()
         $wallet->balance = $gt;
         $wallet->save();
 
-        $user->plan=$choose->plan;
+        $user->plan = $choose->plan;
         $user->save();
 
-        $msg="You have successfully select ".$choose->plan." as your membership";
+        $msg = "You have successfully select " . $choose->plan . " as your membership";
         Alert::success('Done', $msg);
         return back();
     }

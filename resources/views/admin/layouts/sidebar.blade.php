@@ -171,6 +171,15 @@
                     </li>
 
                     <li>
+                        <a href="#app7" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-gift"></i> <span>Advertisement</span></a>
+                        <ul class="collapse list-unstyled" id="app7">
+                            <li class="nav-item">
+                                <a  class="nav-link" href="{{ route('admin/adsapprove') }}"  ><i class="fa fa-book red_color"></i> <span>All Ads</span></a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li>
                         <a href="#app7" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-gift"></i> <span>Giveaway</span></a>
                         <ul class="collapse list-unstyled" id="app7">
                             <li class="nav-item">

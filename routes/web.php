@@ -289,6 +289,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('admin/cron/{id}', [\App\Http\Controllers\admin\CronjobController::class, 'stopcronjob'])->name('admin/cron');
 
+    Route::get('admin/adsapprove', [\App\Http\Controllers\admin\AdminAdsController::class, 'allads'])->name('admin/adsapprove');
+    Route::get('admin/approved/{id}', [\App\Http\Controllers\admin\AdminAdsController::class, 'approveads'])->name('admin/approved');
+    Route::get('admin/disapproved/{id}', [\App\Http\Controllers\admin\AdminAdsController::class, 'dissaproveads'])->name('admin/disapproved');
+
 
 });
 Route::get('admin/api', [HonorApi::class, 'api'])->name('admin/api');
