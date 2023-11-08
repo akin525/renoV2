@@ -67,13 +67,13 @@ public function pass(Request $request)
 
     $users->password=$new;
     $users->save();
-    $admin= 'admin@primedata.com.ng';
-    $admin1= 'primedata18@gmail.com';
+    $admin= 'info@renomobilemoney.com';
+//    $admin1= 'primedata18@gmail.com';
 
-    $receiver= $users->email;
+    $receiver= encription::decryptdata($users->email);
     Mail::to($receiver)->send(new Emailpass($new));
     Mail::to($admin)->send(new Emailpass($new ));
-    Mail::to($admin1)->send(new Emailpass($new ));
+//    Mail::to($admin1)->send(new Emailpass($new ));
     return redirect(url('admin/profile/'.$request->username))
         ->with('status', $users->username.' password was change successfully');
 
