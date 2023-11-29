@@ -26,6 +26,7 @@ class data extends Authenticatable
         'amount',
         'tamount',
         'ramount',
+        'api_amount',
         'status',
         'cat_id',
     ];

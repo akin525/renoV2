@@ -35,9 +35,10 @@ class BillController
         }
         $apikey = $request->header('apikey');
         $user = User::where('apikey',$apikey)->first();
-        if ($user) {
-            $wallet = wallet::where('username', $user->username)->first();
 
+        if ($user) {
+
+            $wallet = wallet::where('username', $user->username)->first();
             if ($wallet->balance < $request->amount) {
                 $mg = "You Cant Make Purchase Above " . "NGN" . $request->amount . " from your wallet. Your wallet balance is NGN $wallet->balance. Please Fund Wallet And Retry or Pay Online Using Our Alternative Payment Methods.";
 
@@ -76,7 +77,7 @@ class BillController
                         'success' => 0
                     ], 200);
                 }
-                $gt = $wallet->balance - $request->amount;
+                $gt = $wallet->balance - $bt->api_amount;
 
 
                 $wallet->balance = $gt;
@@ -84,7 +85,7 @@ class BillController
                 $bo = bill_payment::create([
                     'username' => $user->username,
                     'product' => $bt->network . '|' . $bt->plan,
-                    'amount' => $request->amount,
+                    'amount' => $bt->api_amount,
                     'server_response' => 'ur fault',
                     'status' => 0,
                     'number' => $request->number,

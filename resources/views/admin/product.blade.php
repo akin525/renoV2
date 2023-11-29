@@ -30,6 +30,7 @@
                             <th>Actual Amount</th>
                             <th>Selling Amount</th>
                             <th>Reseller Amount</th>
+                            <th>Api Amount</th>
                             <th>Status</th>
                             <th>Switch</th>
                             <th>Edit</th>
@@ -46,6 +47,7 @@
                                 <td> {{$seller->amount}}</td>
                                 <td> {{$seller->tamount}}</td>
                                 <td> {{$seller->ramount}}</td>
+                                <td> {{$seller->api_amount}}</td>
                                 {{--                                <td><a href="{{route('editpayment', $pay->id)}}"--}}
                                 {{--                                       {{$pay->value}}class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>--}}
                                 {{--                                </td>--}}
@@ -126,6 +128,14 @@
                                                 </label>
                                                 <div class="">
                                                     <input type="number" id="amount" name="ramount"  class="text-success form-control" required>
+                                                </div>
+                                            </div>
+                                            <div id="div_id_network" >
+                                                <label for="network" class=" requiredField">
+                                                    Enter Api Amount<span class="asteriskField">*</span>
+                                                </label>
+                                                <div class="">
+                                                    <input type="number" id="amount" name="pamount"  class="text-success form-control" required>
                                                 </div>
                                             </div>
                                             <br/>
