@@ -102,6 +102,7 @@
                 <a class="w3-btn w3-green w3-border w3-round-large" href="{{route('admin/regen',$user->id)}}">Regenerate Virtual1</a>
                 <a class="w3-btn w3-green w3-border w3-round-large" href="{{route('admin/regen1',$user->id)}}">Regenerate Virtual2</a>
                 <a class="w3-btn w3-green w3-border w3-round-large" href="{{route('admin/charge')}}">Charge User</a>
+                <a class="w3-btn w3-green w3-border w3-round-large" href="{{route('admin/upgrade',$user->username)}}">Upgrade User</a>
 
                 <!--                            <a class="w3-btn w3-green w3-border w3-round-large" href="method.php">All Payment Method</a>-->
             </center>

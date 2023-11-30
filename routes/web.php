@@ -220,6 +220,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('admin/ch', [CandCController::class, 'charge'])->name('admin/ch');
     Route::post('admin/refund', [CandCController::class, 'creditFund'])->name('admin/refund');
     Route::post('admin/finduser', [UsersController::class, 'finduser'])->name('admin/finduser');
+    Route::get('admin/upgrade/{id}', [UsersController::class, 'upgradeuseradmin'])->name('admin/upgrade');
     Route::get('admin/finds', [UsersController::class, 'fin'])->name('admin/finds');
     Route::get('admin/server', [UsersController::class, 'server'])->name('admin/server');
     Route::get('admin/noti', [UsersController::class, 'mes'])->name('admin/noti');

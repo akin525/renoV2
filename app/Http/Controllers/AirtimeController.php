@@ -240,7 +240,6 @@ class AirtimeController
 
                 return response()->json($mg, Response::HTTP_BAD_REQUEST);
 
-
             }
             if ($request->amount < 0) {
 
@@ -248,13 +247,11 @@ class AirtimeController
                 return response()->json($mg, Response::HTTP_BAD_REQUEST);
 
 
-
             }
             $bo = bill_payment::where('transactionid', $request->refid)->first();
             if (isset($bo)) {
                 $mg = "duplicate transaction kindly reload this page";
                 return response()->json( $mg, Response::HTTP_CONFLICT);
-
 
             } else {
 
