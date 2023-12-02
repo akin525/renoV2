@@ -262,7 +262,7 @@ class AirtimeController
 
 
             }
-            if ($request->amount != "100" || $request->amount != "200" || $request->amount != "300" || $request->amount != "400" || $request->amount != "500" ){
+            if ($request->amount != 100 || $request->amount != 200 || $request->amount != 300 || $request->amount != 400 || $request->amount != 500 ){
                 $mg = "Please enter a standard figure eg: 100, 200, 300, 400, 500";
                 return response()->json($mg, Response::HTTP_BAD_REQUEST);
             }
