@@ -262,10 +262,12 @@ class AirtimeController
 
 
             }
-            if ($request->amount != 100 || $request->amount != 200 || $request->amount != 300 || $request->amount != 400 || $request->amount != 500 ){
-                $mg = "Please enter a standard figure eg: 100, 200, 300, 400, 500";
-                return response()->json($mg, Response::HTTP_BAD_REQUEST);
-            }
+        $validAmounts = [100, 200, 300, 400, 500];
+
+        if (!in_array($request->amount, $validAmounts)) {
+            $mg = "Please enter a standard figure e.g., 100, 200, 300, 400, 500";
+            return response()->json($mg, Response::HTTP_BAD_REQUEST);
+        }
             $bo = bill_payment::where('transactionid', $request->refid)->first();
             if (isset($bo)) {
                 $mg = "duplicate transaction kindly reload this page";
