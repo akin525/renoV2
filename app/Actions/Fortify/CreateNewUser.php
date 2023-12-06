@@ -6,11 +6,13 @@ use App\Console\encription;
 use App\Mail\Emailotp;
 use App\Models\User;
 use App\Models\wallet;
+use http\Exception\BadConversionException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -24,7 +26,7 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input): User
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:50'],
+            'name' => ['required', 'string', 'max:500', 'unique:users'],
             'username' => ['required', 'string',  'min:6', 'unique:users'],
             'phone' => ['required', 'numeric',  'min:11'],
             'address' => ['required', 'string',  'min:11'],
@@ -34,6 +36,8 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
+
+        $getall=User::where('username', $input['username'])->first();
 
         $username=$input['username'].rand(111, 999);
 

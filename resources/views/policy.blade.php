@@ -6,7 +6,7 @@
             </div>
 
             <div class="w-full sm:max-w-2xl mt-6 p-6 bg-white shadow-md overflow-hidden sm:rounded-lg prose">
-
+7
                 <h1>Privacy Policy for Renomobilemoney</h1>
 
                 <p>At Renomobilemoney, accessible from https://renomobilemoney.com/, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Renomobilemoney and how we use it.</p>
