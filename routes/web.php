@@ -220,6 +220,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('admin/ch', [CandCController::class, 'charge'])->name('admin/ch');
     Route::post('admin/refund', [CandCController::class, 'creditFund'])->name('admin/refund');
     Route::post('admin/finduser', [UsersController::class, 'finduser'])->name('admin/finduser');
+    Route::get('admin/upgrade/{id}', [UsersController::class, 'upgradeuseradmin'])->name('admin/upgrade');
     Route::get('admin/finds', [UsersController::class, 'fin'])->name('admin/finds');
     Route::get('admin/server', [UsersController::class, 'server'])->name('admin/server');
     Route::get('admin/noti', [UsersController::class, 'mes'])->name('admin/noti');
@@ -251,7 +252,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/user', [UsersController::class, 'index'])->name('admin/user');
     Route::get('admin/deposits', [TransactionController::class, 'in'])->name('admin/deposits');
     Route::get('admin/request', [WithadController::class, 'index'])->name('admin/request');
-    Route::get('admin/approved/{id}', [WithadController::class, 'approve'])->name('admin/approved');
+    Route::get('admin/approved1/{id}', [WithadController::class, 'approve'])->name('admin/approved1');
     Route::get('admin/disapproved/{id}', [WithadController::class, 'disapprove'])->name('admin/disapproved');
     Route::get('admin/done/{id}', [\App\Http\Controllers\Marktransaction::class, 'accepttransaction'])->name('admin/done');
     Route::get('admin/rdone/{id}', [\App\Http\Controllers\Marktransaction::class, 'reversetransaction'])->name('admin/rdone');

@@ -240,6 +240,12 @@ class AirtimeController
 
                 return response()->json($mg, Response::HTTP_BAD_REQUEST);
 
+            }
+            if ($request->amount < 100) {
+
+                $mg = "enter a valid amount";
+                return response()->json($mg, Response::HTTP_BAD_REQUEST);
+
 
             }
             if ($request->amount < 0) {
@@ -248,13 +254,24 @@ class AirtimeController
                 return response()->json($mg, Response::HTTP_BAD_REQUEST);
 
 
+            }
+            if ($request->amount > 500) {
+
+                $mg = "You can purchase above 500 airtime once";
+                return response()->json($mg, Response::HTTP_BAD_REQUEST);
+
 
             }
+        $validAmounts = [100, 200, 300, 400, 500];
+
+        if (!in_array($request->amount, $validAmounts)) {
+            $mg = "Please enter a standard figure e.g., 100, 200, 300, 400, 500";
+            return response()->json($mg, Response::HTTP_BAD_REQUEST);
+        }
             $bo = bill_payment::where('transactionid', $request->refid)->first();
             if (isset($bo)) {
                 $mg = "duplicate transaction kindly reload this page";
                 return response()->json( $mg, Response::HTTP_CONFLICT);
-
 
             } else {
 
@@ -318,9 +335,6 @@ class AirtimeController
                         $success = $data["success"];
                         $tran1 = $data["discountAmount"];
                         if ($success == 1) {
-//                    $bo->server_response=$response;
-//                    $bo->status=1;
-//                    $bo->save();
                             $update=bill_payment::where('id', $bo->id)->update([
                                 'server_response'=>$response,
                                 'status'=>1,
@@ -353,11 +367,7 @@ class AirtimeController
 //                            'data' => $responseData // If you want to include additional data
                             ]);
                         } elseif ($success == 0) {
-//                            $zo = $wallet->balance + $request->amount;
-//                            $wallet->balance = $zo;
-//                            $wallet->save();
-
-//                    $name = $bt->plan;
+//
                             $am = "NGN $request->amount Was Refunded To Your Wallet";
                             $ph = ", Transaction fail";
 

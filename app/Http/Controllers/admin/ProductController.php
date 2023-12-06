@@ -105,12 +105,15 @@ public function edit(Request $request)
         'id' => 'required',
         'tamount' => 'required',
         'ramount' => 'required',
+        'pamount' => 'required',
         'name' => 'required',
     ]);
     $pro=data::where('id', $request->id)->first();
     $pro->plan=$request->name;
     $pro->tamount=$request->tamount;
     $pro->ramount=$request->ramount;
+    $pro->api_amount=$request->pamount;
+
     $pro->save();
     return response()->json([
         'status'=>'success',
@@ -123,12 +126,14 @@ public function edit(Request $request)
             'id' => 'required',
             'tamount' => 'required',
             'ramount' => 'required',
+            'pamount' => 'required',
             'name' => 'required',
         ]);
         $pro=big::where('id', $request->id)->first();
         $pro->plan=$request->name;
         $pro->tamount=$request->tamount;
         $pro->ramount=$request->ramount;
+        $pro->api_amount=$request->pamount;
         $pro->save();
         return response()->json([
             'status'=>'success',
@@ -143,12 +148,14 @@ public function edit(Request $request)
             'id' => 'required',
             'tamount' => 'required',
             'ramount' => 'required',
+            'pamount' => 'required',
             'name' => 'required',
         ]);
         $pro=easy::where('id', $request->id)->first();
         $pro->plan=$request->name;
         $pro->tamount=$request->tamount;
         $pro->ramount=$request->ramount;
+        $pro->api_amount=$request->pamount;
         $pro->save();
         return response()->json([
             'status'=>'success',

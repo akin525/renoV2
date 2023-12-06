@@ -60,7 +60,7 @@
                                                 @elseif($dat->status=="2")
                                                     <span class="badge badge-danger">Disapproved</span>
                                                 @elseif($dat->status=="0")
-                                                <button type="button" onclick="window.location='{{route('admin/approved', $dat->id)}}'" class="badge badge-info">Click to Approved</button>
+                                                <button type="button" onclick="window.location='{{route('admin/approved1', $dat->id)}}'" class="badge badge-info">Click to Approved</button>
                                                 <button type="button" onclick="window.location='{{route('admin/disapproved', $dat->id)}}'" class="badge badge-info">Click to Disapproved</button>
                                             @endif
 

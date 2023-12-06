@@ -118,6 +118,21 @@ $wallet=wallet::where('username', $username)->first();
 
         return view('admin/noti', compact('message'));
     }
+    function upgradeuseradmin($request)
+    {
+        $user=User::where('username', $request)->first();
+
+
+
+        $token = uniqid('RENO',true);
+
+        $user->apikey = $token;
+        $user->save();
+        Alert::success('Success', 'You have successful upgrade this account! Thanks');
+
+
+        return back();
+    }
 
     public function me(Request $request)
     {
