@@ -97,7 +97,7 @@
                                 <link rel="stylesheet" href="{{asset('demo.css')}}"/>
                                 <td> {{$seller->plan}}</td>
                                 <td> {{$seller->amount}}</td>
-                                <td> {{$seller->limis}}</td>
+                                <td> {{$seller->limits}}</td>
                                 <td> {{$seller->days}}</td>
                                 {{--                                <td><a href="{{route('editpayment', $pay->id)}}"--}}
                                 {{--                                       {{$pay->value}}class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>--}}
