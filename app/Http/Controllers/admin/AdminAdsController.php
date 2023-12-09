@@ -84,4 +84,19 @@ class AdminAdsController
             'message'=>$mg,
         ]);
     }
+
+    function onoffplan($request)
+    {
+        $plan=Plan::where('id', $request)->first();
+        if ($plan->status == "1") {
+            $give = "0";
+        } else {
+            $give = "1";
+        }
+        $plan->status = $give;
+        $plan->save();
+        Alert::success('Admin', 'Plan update successfully');
+
+        return redirect('admin/plan');
+    }
 }
