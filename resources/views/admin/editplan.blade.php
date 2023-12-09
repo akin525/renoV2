@@ -185,7 +185,7 @@
                                                     Numbers Of Days<span class="asteriskField">*</span>
                                                 </label>
                                                 <div class="">
-                                                    <input type="number" id="amount" name="pamount"  class="text-success form-control" required>
+                                                    <input type="number" id="days" name="days"  class="text-success form-control" required>
                                                 </div>
                                             </div>
                                             <br/>
