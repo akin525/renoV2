@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\Advert;
+use App\Models\Plan;
+use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminAdsController
@@ -53,5 +55,33 @@ class AdminAdsController
 
         Alert::warning('Disapproved', 'Advert Disapproved');
         return back();
+    }
+    function ediitadsplan()
+    {
+        $plan=Plan::get();
+        return view('admin/editplan', compact('plan'));
+    }
+    function editplan(Request $request)
+    {
+        $request->validate([
+            'id'=>'required',
+            'amount'=>'required',
+            'limits'=>'required',
+            'days'=>'required',
+        ]);
+
+        $plan=Plan::where('id', $request->id)->first();
+
+        $plan->amount=$request->amount;
+        $plan->limits=$request->limits;
+        $plan->days=$request->days;
+        $plan->save();
+
+        $mg="Plan Update successfully";
+
+        return response()->json([
+            'status'=>'success',
+            'message'=>$mg,
+        ]);
     }
 }

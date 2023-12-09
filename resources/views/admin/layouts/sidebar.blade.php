@@ -176,6 +176,9 @@
                             <li class="nav-item">
                                 <a  class="nav-link" href="{{ route('admin/adsapprove') }}"  ><i class="fa fa-book red_color"></i> <span>All Ads</span></a>
                             </li>
+                            <li class="nav-item">
+                                <a  class="nav-link" href="{{ route('admin/plan') }}"  ><i class="fa fa-bookmark "></i> <span>Ads Plan</span></a>
+                            </li>
 
                         </ul>
                     </li>
