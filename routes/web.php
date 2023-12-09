@@ -195,6 +195,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('admin/doplan', [\App\Http\Controllers\admin\AdminAdsController::class, 'editplan'])->name('admin/doplan');
     Route::get('admin/plan', [\App\Http\Controllers\admin\AdminAdsController::class, 'ediitadsplan'])->name('admin/plan');
+    Route::get('admin/planss/{id}', [\App\Http\Controllers\admin\AdminAdsController::class, 'onoffplan'])->name('admin/planss');
 
     Route::get('admin/statement1', [UserStatementController::class, 'loadindex1'])->name('admin/statement1');
     Route::get('admin/statement', [UserStatementController::class, 'loadindex'])->name('admin/statement');
