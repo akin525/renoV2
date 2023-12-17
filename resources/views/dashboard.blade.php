@@ -370,58 +370,58 @@
 
         </div>
 
-        <div class="row">
-            @foreach($wallet as $wallet1)
-                @if ($wallet1->account_number1!=1 && $wallet1->account_name1!=1)
-                <div class="col-xl-6">
-                <div class="card overflow-hidden">
-                    <div class="card-body bg-secondary">
-                        <div class="any-card">
-                            <div class="c-con">
-                                <h4 class="heading mb-0 text-white">Virtual <strong>Account 1</strong><img  src="#" alt=""></h4>
-                                        <div class="card-body">
-                                            <ul style="list-style-type:square">
-                                                <li class='text-white'><h5 class="text-white"><b>{{$wallet1->account_name1}}</b></h5></li>
-                                                <li class='text-white'><h5 class="text-white"><b>Account No:{{$wallet1->account_number1}}</b></h5></li>
-                                                <li class='text-white'><h5 class="text-white"><b>{{$wallet1->bank}}</b></h5></li>
-                                            </ul>
-                                        </div>
-                            </div>
-                            <img  src="{{asset("images/bn.jpeg")}}" class="harry-img" alt="">
-                        </div>
-                    </div>
-                </div>
-                </div>
-                                @endif
+{{--        <div class="row">--}}
+{{--            @foreach($wallet as $wallet1)--}}
+{{--                @if ($wallet1->account_number1!=1 && $wallet1->account_name1!=1)--}}
+{{--                <div class="col-xl-6">--}}
+{{--                <div class="card overflow-hidden">--}}
+{{--                    <div class="card-body bg-secondary">--}}
+{{--                        <div class="any-card">--}}
+{{--                            <div class="c-con">--}}
+{{--                                <h4 class="heading mb-0 text-white">Virtual <strong>Account 1</strong><img  src="#" alt=""></h4>--}}
+{{--                                        <div class="card-body">--}}
+{{--                                            <ul style="list-style-type:square">--}}
+{{--                                                <li class='text-white'><h5 class="text-white"><b>{{$wallet1->account_name1}}</b></h5></li>--}}
+{{--                                                <li class='text-white'><h5 class="text-white"><b>Account No:{{$wallet1->account_number1}}</b></h5></li>--}}
+{{--                                                <li class='text-white'><h5 class="text-white"><b>{{$wallet1->bank}}</b></h5></li>--}}
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
+{{--                            </div>--}}
+{{--                            <img  src="{{asset("images/bn.jpeg")}}" class="harry-img" alt="">--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                </div>--}}
+{{--                                @endif--}}
 
-                                @if ($wallet1->account_number!=1 && $wallet1->account_name!=1)
-                                    <div class="col-xl-6">
-                                        <div class="card overflow-hidden">
-                                            <div class="card-body bg-secondary">
-                                                <div class="any-card">
-                                                    <div class="c-con">
-                                                        <h6 class="heading mb-0 text-white">Virtual <strong>Account 2</strong><img  src="#" alt=""></h6>
-                                    <div class="card-body">
-                                        <ul style="list-style-type:square">
-                                            <li class='text-white'><h5 class='text-white'><b>{{$wallet1->account_name}}</b></h5></li>
-                                            <li class='text-white'><h5 class='text-white'><b>Account No:{{$wallet1->account_number}}</b></h5></li>
-                                            <li class='text-white'><h5 class='text-white' ><b>WEMA-BANK</b></h5></li>
-                                      </ul>
-                                    </div>
-                            </div>
-                            <img  src="{{asset("images/bn.jpeg")}}" class="harry-img" alt="">
+{{--                                @if ($wallet1->account_number!=1 && $wallet1->account_name!=1)--}}
+{{--                                    <div class="col-xl-6">--}}
+{{--                                        <div class="card overflow-hidden">--}}
+{{--                                            <div class="card-body bg-secondary">--}}
+{{--                                                <div class="any-card">--}}
+{{--                                                    <div class="c-con">--}}
+{{--                                                        <h6 class="heading mb-0 text-white">Virtual <strong>Account 2</strong><img  src="#" alt=""></h6>--}}
+{{--                                    <div class="card-body">--}}
+{{--                                        <ul style="list-style-type:square">--}}
+{{--                                            <li class='text-white'><h5 class='text-white'><b>{{$wallet1->account_name}}</b></h5></li>--}}
+{{--                                            <li class='text-white'><h5 class='text-white'><b>Account No:{{$wallet1->account_number}}</b></h5></li>--}}
+{{--                                            <li class='text-white'><h5 class='text-white' ><b>WEMA-BANK</b></h5></li>--}}
+{{--                                      </ul>--}}
+{{--                                    </div>--}}
+{{--                            </div>--}}
+{{--                            <img  src="{{asset("images/bn.jpeg")}}" class="harry-img" alt="">--}}
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-                    @else
-                        <a href="{{route('vertual')}}" class="btn btn-primary btn-sm">Generate account</a>
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--                    @else--}}
+{{--                        <a href="{{route('vertual')}}" class="btn btn-primary btn-sm">Generate account</a>--}}
 
-                    @endif
-            @endforeach
+{{--                    @endif--}}
+{{--            @endforeach--}}
 
-        </div>
+{{--        </div>--}}
 
 
 
