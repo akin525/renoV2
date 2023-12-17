@@ -255,14 +255,14 @@ class AirtimeController
 
 
             }
-            if ($request->amount > 500) {
+            if ($request->amount > 2000) {
 
                 $mg = "You can purchase above 500 airtime once";
                 return response()->json($mg, Response::HTTP_BAD_REQUEST);
 
 
             }
-        $validAmounts = [100, 200, 300, 400, 500];
+        $validAmounts = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1500, 2000];
 
         if (!in_array($request->amount, $validAmounts)) {
             $mg = "Please enter a standard figure e.g., 100, 200, 300, 400, 500";
