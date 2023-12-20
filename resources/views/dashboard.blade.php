@@ -50,6 +50,210 @@
 {{--        </div>--}}
 
         <div class="row">
+            <div class="col-xl-12">
+                <div class="card bg-secondary analytics-card">
+                    <div class="card-body mt-4 pb-1">
+                        <div class="row align-items-center">
+                            <div class="col-xl-2">
+                                <h3 class="mb-3 text-white">Solution</h3>
+                                <p class="mb-0  pb-4 text-white">Validate all  <br>pending transaction</p>
+                            </div>
+                            <div class="col-xl-10">
+                                <div class="row">
+                                    <div class="col-xl-2 col-sm-4 col-6">
+                                        <div class="card ov-card">
+                                            <div class="card-body">
+                                                <a href="{{route('invoice')}}"> <div class="ana-box">
+                                                        <div class="ic-n-bx">
+                                                            <div class="icon-box bg-primary ">
+                                                                <i class="fa fa-book text-white"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="anta-data">
+                                                            <h5>Invoice</h5>
+                                                            <span>Check Bills</span>
+                                                            {{--                                                        <h3>+23%</h3>--}}
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-sm-4 col-6">
+                                        <div class="card ov-card">
+                                            <div class="card-body">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#newspends"> <div class="ana-box">
+                                                        <div class="ic-n-bx">
+                                                            <div class="icon-box bg-primary">
+                                                                <i class="fa fa-brands fa-money text-white"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="anta-data">
+                                                            <h5>Fund</h5>
+                                                            <span>wallet</span>
+                                                            {{--                                                        <h3>-33%</h3>--}}
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" id="newspends">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Your Wallet</h5>
+                                                    <button type="button" class="close" data-bs-dismiss="modal"><span>&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @foreach($wallet as $wallet1)
+                                                        @if ($wallet1->account_number1!=1 && $wallet1->account_name1!=1)
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <div class="profile-interest">
+                                                                <h5 class="text-primary d-inline">Account Details</h5>
+                                                                <div class="basic-list-group">
+                                                                    <div class="list-group"><a href="javascript:void(0);" class="list-group-item list-group-item-action active">Account
+                                                                            Number </a><a href="javascript:void(0);" class="list-group-item list-group-item-action">
+                                                                            {{$wallet1->account_number1}}</a>
+                                                                        <a href="javascript:void(0);" class="list-group-item list-group-item-action disabled">
+                                                                            Account Name
+                                                                        </a> <a href="javascript:void(0);" class="list-group-item list-group-item-action">{{$wallet1->account_name1}}</a>
+                                                                        <a href="javascript:void(0);" class="list-group-item list-group-item-action active">
+                                                                            Bank
+                                                                        </a>
+                                                                        <a href="javascript:void(0);" class="list-group-item list-group-item-action">{{$wallet1->bank}}</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                        @endif
+
+                                                        @if ($wallet1->account_number!=1 && $wallet1->account_name!=1)
+
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <div class="profile-interest">
+                                                                            <h5 class="text-primary d-inline">Account Details</h5>
+                                                                            <div class="basic-list-group">
+                                                                                <div class="list-group"><a href="javascript:void(0);" class="list-group-item list-group-item-action active">Account
+                                                                                        Number </a><a href="javascript:void(0);" class="list-group-item list-group-item-action">
+                                                                                        {{$wallet1->account_number}}</a>
+                                                                                    <a href="javascript:void(0);" class="list-group-item list-group-item-action disabled">
+                                                                                        Account Name
+                                                                                    </a> <a href="javascript:void(0);" class="list-group-item list-group-item-action">{{$wallet1->account_name}}</a>
+                                                                                    <a href="javascript:void(0);" class="list-group-item list-group-item-action active">
+                                                                                        Bank
+                                                                                    </a>
+                                                                                    <a href="javascript:void(0);" class="list-group-item list-group-item-action">WEMA</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            @else
+                                                            <a href="{{route('vertual')}}" class="btn btn-primary btn-sm">Generate account</a>
+
+                                                        @endif
+                                                    @endforeach
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-2 col-sm-4 col-6">
+                                        <div class="card ov-card">
+                                            <div class="card-body">
+                                                <a href="{{route('giveaway')}}"> <div class="ana-box">
+                                                        <div class="ic-n-bx">
+                                                            <div class="icon-box bg-primary">
+                                                                <i class="fa fa-brands fa-amazon text-white"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="anta-data">
+                                                            <h5>Giveaway</h5>
+                                                            <span>Bonus</span>
+                                                            {{--                                                        <h3>-23%</h3>--}}
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-sm-4 col-6">
+                                        <div class="card ov-card">
+                                            <div class="card-body">
+                                                <a href="{{url('verifybill')}}"> <div class="ana-box">
+                                                        <div class="ic-n-bx">
+                                                            <div class="icon-box bg-primary">
+                                                                <i class=" fa fa-brands fa-bookmark text-white"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="anta-data">
+                                                            <h5>Validate</h5>
+                                                            <span>Bills</span>
+                                                            {{--                                                        <h3>+25%</h3>--}}
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-sm-4 col-6">
+                                        <div class="card ov-card">
+                                            <div class="card-body">
+                                                <a href="{{url('verifydeposit')}}"> <div class="ana-box">
+                                                        <div class="ic-n-bx">
+                                                            <div class="icon-box bg-primary ">
+                                                                <i class="fa fa-brands fa-money text-white"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="anta-data">
+                                                            <h5>Validate</h5>
+                                                            <span>Deposit</span>
+                                                            {{--                                                        <h3>+30%</h3>--}}
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-sm-4 col-6">
+                                        <div class="card ov-card">
+                                            <div class="card-body">
+                                                <a href="{{route('airtime')}}"> <div class="ana-box">
+                                                        <div class="ic-n-bx">
+                                                            <div class="icon-box bg-primary ">
+                                                                <i class="fa fa-brands fa-mobile-phone text-white"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="anta-data">
+                                                            <h5>Airtime</h5>
+                                                            <span>Purchase</span>
+                                                            {{--                                                        <h3>-32%</h3>--}}
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-xl-6">
                 <div class="card overflow-hidden">
                     <div class="card-body">
@@ -120,37 +324,37 @@
                 </div>
             </div>
 
-            <div class="card bg-primary">
-                <center>
+{{--            <div class="card bg-primary">--}}
+{{--                <center>--}}
 
-                    <div class="">
-                        <h4 class="heading mb-0 text-white text-center">Advertisement 😎</h4>
-                    </div>
-                    <div class="card card-body shadow-hover">
-                        <style>
-                            .bo {
-                                max-width: 100%;
-                                height: auto;
-                            }
-                        </style>
-                        @if($ads=="")
-                            <center>
-                                <video width="320" height="240" controls autoplay loop>
-                                    <source src="{{asset('ads/ads.mp4')}}" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </center>
-                            <a href="{{route('advertisement')}}" class="btn btn-success">Advertise here</a>
-                        @else
-                            <a href="{{route('details', $ads->id)}}">
-                                <img  class="bo" src="{{url('/', $ads->cover_image)}}" alt="ads" />
-                                <h3 class="text-primary" ><b>{{$ads->advert_name}}</b></h3>
-                            </a>
+{{--                    <div class="">--}}
+{{--                        <h4 class="heading mb-0 text-white text-center">Advertisement 😎</h4>--}}
+{{--                    </div>--}}
+{{--                    <div class="card card-body shadow-hover">--}}
+{{--                        <style>--}}
+{{--                            .bo {--}}
+{{--                                max-width: 100%;--}}
+{{--                                height: auto;--}}
+{{--                            }--}}
+{{--                        </style>--}}
+{{--                        @if($ads=="")--}}
+{{--                            <center>--}}
+{{--                                <video width="320" height="240" controls autoplay loop>--}}
+{{--                                    <source src="{{asset('ads/ads.mp4')}}" type="video/mp4">--}}
+{{--                                    Your browser does not support the video tag.--}}
+{{--                                </video>--}}
+{{--                            </center>--}}
+{{--                            <a href="{{route('advertisement')}}" class="btn btn-success">Advertise here</a>--}}
+{{--                        @else--}}
+{{--                            <a href="{{route('details', $ads->id)}}">--}}
+{{--                                <img  class="bo" src="{{url('/', $ads->cover_image)}}" alt="ads" />--}}
+{{--                                <h3 class="text-primary" ><b>{{$ads->advert_name}}</b></h3>--}}
+{{--                            </a>--}}
 
 
-                    @endif
-                </center>
-            </div>
+{{--                    @endif--}}
+{{--                </center>--}}
+{{--            </div>--}}
             <div class="col-md-7 col-lg-6">
                 <div class="card">
                     <canvas id="transactionChart" width="800" height="500"></canvas>
@@ -163,191 +367,61 @@
             </div>
         </div>
 
-            <div class="col-xl-12">
-                <div class="card bg-secondary analytics-card">
-                    <div class="card-body mt-4 pb-1">
-                        <div class="row align-items-center">
-                            <div class="col-xl-2">
-                                <h3 class="mb-3 text-white">Solution</h3>
-                                <p class="mb-0  pb-4 text-white">Validate all  <br>pending transaction</p>
-                            </div>
-                            <div class="col-xl-10">
-                                <div class="row">
-                                    <div class="col-xl-2 col-sm-4 col-6">
-                                        <div class="card ov-card">
-                                            <div class="card-body">
-                                               <a href="{{route('invoice')}}"> <div class="ana-box">
-                                                    <div class="ic-n-bx">
-                                                        <div class="icon-box bg-primary ">
-                                                            <i class="fa fa-book text-white"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="anta-data">
-                                                        <h5>Invoice</h5>
-                                                        <span>Check Bills</span>
-{{--                                                        <h3>+23%</h3>--}}
-                                                    </div>
-                                                </div>
-                                               </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-sm-4 col-6">
-                                        <div class="card ov-card">
-                                            <div class="card-body">
-                                                <a href="{{route('withdraw')}}"> <div class="ana-box">
-                                                    <div class="ic-n-bx">
-                                                        <div class="icon-box bg-primary">
-                                                            <i class="fa fa-brands fa-money text-white"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="anta-data">
-                                                        <h5>Withdraw</h5>
-                                                        <span>from wallet</span>
-{{--                                                        <h3>-33%</h3>--}}
-                                                    </div>
-                                                </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-sm-4 col-6">
-                                        <div class="card ov-card">
-                                            <div class="card-body">
-                                                <a href="{{route('giveaway')}}"> <div class="ana-box">
-                                                    <div class="ic-n-bx">
-                                                        <div class="icon-box bg-primary">
-                                                            <i class="fa fa-brands fa-amazon text-white"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="anta-data">
-                                                        <h5>Giveaway</h5>
-                                                        <span>Bonus</span>
-{{--                                                        <h3>-23%</h3>--}}
-                                                    </div>
-                                                </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-sm-4 col-6">
-                                        <div class="card ov-card">
-                                            <div class="card-body">
-                                                <a href="{{url('verifybill')}}"> <div class="ana-box">
-                                                    <div class="ic-n-bx">
-                                                        <div class="icon-box bg-primary">
-                                                            <i class=" fa fa-brands fa-bookmark text-white"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="anta-data">
-                                                        <h5>Validate</h5>
-                                                        <span>Bills</span>
-{{--                                                        <h3>+25%</h3>--}}
-                                                    </div>
-                                                </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-sm-4 col-6">
-                                        <div class="card ov-card">
-                                            <div class="card-body">
-                                                <a href="{{url('verifydeposit')}}"> <div class="ana-box">
-                                                    <div class="ic-n-bx">
-                                                        <div class="icon-box bg-primary ">
-                                                            <i class="fa fa-brands fa-money text-white"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="anta-data">
-                                                        <h5>Validate</h5>
-                                                        <span>Deposit</span>
-{{--                                                        <h3>+30%</h3>--}}
-                                                    </div>
-                                                </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-sm-4 col-6">
-                                        <div class="card ov-card">
-                                            <div class="card-body">
-                                                <a href="{{route('airtime')}}"> <div class="ana-box">
-                                                    <div class="ic-n-bx">
-                                                        <div class="icon-box bg-primary ">
-                                                            <i class="fa fa-brands fa-mobile-phone text-white"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="anta-data">
-                                                        <h5>Airtime</h5>
-                                                        <span>Purchase</span>
-{{--                                                        <h3>-32%</h3>--}}
-                                                    </div>
-                                                </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
 
-        <div class="row">
-            @foreach($wallet as $wallet1)
-                @if ($wallet1->account_number1!=1 && $wallet1->account_name1!=1)
-                <div class="col-xl-6">
-                <div class="card overflow-hidden">
-                    <div class="card-body bg-secondary">
-                        <div class="any-card">
-                            <div class="c-con">
-                                <h4 class="heading mb-0 text-white">Virtual <strong>Account 1</strong><img  src="#" alt=""></h4>
-                                        <div class="card-body">
-                                            <ul style="list-style-type:square">
-                                                <li class='text-white'><h5 class="text-white"><b>{{$wallet1->account_name1}}</b></h5></li>
-                                                <li class='text-white'><h5 class="text-white"><b>Account No:{{$wallet1->account_number1}}</b></h5></li>
-                                                <li class='text-white'><h5 class="text-white"><b>{{$wallet1->bank}}</b></h5></li>
-                                            </ul>
-                                        </div>
-                            </div>
-                            <img  src="{{asset("images/bn.jpeg")}}" class="harry-img" alt="">
-                        </div>
-                    </div>
-                </div>
-                </div>
-                                @endif
+{{--        <div class="row">--}}
+{{--            @foreach($wallet as $wallet1)--}}
+{{--                @if ($wallet1->account_number1!=1 && $wallet1->account_name1!=1)--}}
+{{--                <div class="col-xl-6">--}}
+{{--                <div class="card overflow-hidden">--}}
+{{--                    <div class="card-body bg-secondary">--}}
+{{--                        <div class="any-card">--}}
+{{--                            <div class="c-con">--}}
+{{--                                <h4 class="heading mb-0 text-white">Virtual <strong>Account 1</strong><img  src="#" alt=""></h4>--}}
+{{--                                        <div class="card-body">--}}
+{{--                                            <ul style="list-style-type:square">--}}
+{{--                                                <li class='text-white'><h5 class="text-white"><b>{{$wallet1->account_name1}}</b></h5></li>--}}
+{{--                                                <li class='text-white'><h5 class="text-white"><b>Account No:{{$wallet1->account_number1}}</b></h5></li>--}}
+{{--                                                <li class='text-white'><h5 class="text-white"><b>{{$wallet1->bank}}</b></h5></li>--}}
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
+{{--                            </div>--}}
+{{--                            <img  src="{{asset("images/bn.jpeg")}}" class="harry-img" alt="">--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                </div>--}}
+{{--                                @endif--}}
 
-                                @if ($wallet1->account_number!=1 && $wallet1->account_name!=1)
-                                    <div class="col-xl-6">
-                                        <div class="card overflow-hidden">
-                                            <div class="card-body bg-secondary">
-                                                <div class="any-card">
-                                                    <div class="c-con">
-                                                        <h6 class="heading mb-0 text-white">Virtual <strong>Account 2</strong><img  src="#" alt=""></h6>
-                                    <div class="card-body">
-                                        <ul style="list-style-type:square">
-                                            <li class='text-white'><h5 class='text-white'><b>{{$wallet1->account_name}}</b></h5></li>
-                                            <li class='text-white'><h5 class='text-white'><b>Account No:{{$wallet1->account_number}}</b></h5></li>
-                                            <li class='text-white'><h5 class='text-white' ><b>WEMA-BANK</b></h5></li>
-                                      </ul>
-                                    </div>
-                            </div>
-                            <img  src="{{asset("images/bn.jpeg")}}" class="harry-img" alt="">
+{{--                                @if ($wallet1->account_number!=1 && $wallet1->account_name!=1)--}}
+{{--                                    <div class="col-xl-6">--}}
+{{--                                        <div class="card overflow-hidden">--}}
+{{--                                            <div class="card-body bg-secondary">--}}
+{{--                                                <div class="any-card">--}}
+{{--                                                    <div class="c-con">--}}
+{{--                                                        <h6 class="heading mb-0 text-white">Virtual <strong>Account 2</strong><img  src="#" alt=""></h6>--}}
+{{--                                    <div class="card-body">--}}
+{{--                                        <ul style="list-style-type:square">--}}
+{{--                                            <li class='text-white'><h5 class='text-white'><b>{{$wallet1->account_name}}</b></h5></li>--}}
+{{--                                            <li class='text-white'><h5 class='text-white'><b>Account No:{{$wallet1->account_number}}</b></h5></li>--}}
+{{--                                            <li class='text-white'><h5 class='text-white' ><b>WEMA-BANK</b></h5></li>--}}
+{{--                                      </ul>--}}
+{{--                                    </div>--}}
+{{--                            </div>--}}
+{{--                            <img  src="{{asset("images/bn.jpeg")}}" class="harry-img" alt="">--}}
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-                    @else
-                        <a href="{{route('vertual')}}" class="btn btn-primary btn-sm">Generate account</a>
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--                    @else--}}
+{{--                        <a href="{{route('vertual')}}" class="btn btn-primary btn-sm">Generate account</a>--}}
 
-                    @endif
-            @endforeach
+{{--                    @endif--}}
+{{--            @endforeach--}}
 
-        </div>
+{{--        </div>--}}
 
 
 
