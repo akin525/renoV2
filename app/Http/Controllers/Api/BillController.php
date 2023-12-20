@@ -106,66 +106,63 @@ class BillController
                             $response = $daterserver->honourwordbill($object);
                         }else if ($mcd->name == "mcd") {
                             $response = $daterserver->mcdbill($object);
-                        }
-                        // echo $response;
 
+                            $data = json_decode($response, true);
+                            $success =  $data["success"];
+                            if ($success==1) {
+                                $update=bill_payment::where('id', $bo->id)->update([
+                                    'server_response'=>$response,
+                                    'status'=>1,
+                                ]);
+                                $bo['name']=encription::decryptdata($user->name);
+                                $bo['email']=encription::decryptdata($user->email);
+                                $name = $bt->plan;
+                                $am = "$bt->plan  was successful delivered to";
+                                $ph = $request->number;
 
-                        $data = json_decode($response, true);
-                        if (isset($data['result'])){
-                            $success=$data['result'];
-                        }else{
-                            $success=$data["success"];
-                        }
-                        if ($success==1) {
-                            $update=bill_payment::where('id', $bo->id)->update([
-                                'server_response'=>$response,
-                                'status'=>1,
-                            ]);
-                            $bo['name']=encription::decryptdata($user->name);
-                            $bo['email']=encription::decryptdata($user->email);
-                            $name = $bt->plan;
-                            $am = "$bt->plan  was successful delivered to";
-                            $ph = $request->number;
-
-                            $receiver =encription::decryptdata($user->email);
-                            $admin = 'info@renomobilemoney.com';
+                                $receiver =encription::decryptdata($user->email);
+                                $admin = 'info@renomobilemoney.com';
 //                            $admin2 = 'primedata18@gmail.com';
 
-                        Mail::to($receiver)->send(new Emailtrans($bo));
-                        Mail::to($admin)->send(new Emailtrans($bo));
+                                Mail::to($receiver)->send(new Emailtrans($bo));
+                                Mail::to($admin)->send(new Emailtrans($bo));
 //                        Mail::to($admin2)->send(new Emailtrans($bo));
 
-                            $username=encription::decryptdata($user->username);
-                            $body=$username.' purchase '.$name;
-                            $this->Vertualfi($username, "Api DataPurchase", $body);
-                            $this->Vertualfi1($username, "Api DataPurchase", $body);
+                                $username=encription::decryptdata($user->username);
+                                $body=$username.' purchase '.$name;
+                                $this->Vertualfi($username, "Api DataPurchase", $body);
+                                $this->Vertualfi1($username, "Api DataPurchase", $body);
 
 
 
-                            return response()->json([
-                                'message' => $am, 'name' => $name, 'ph' => $ph, 'success' => $success,
-                                'user' => $user
-                            ], 200);
+                                return response()->json([
+                                    'message' => $am, 'name' => $name, 'ph' => $ph, 'success' => $success,
+                                    'user' => $user
+                                ], 200);
 
-                        }elseif ($success==0){
-                            $zo=$wallet->balance+$request->amount;
-                            $wallet->balance = $zo;
-                            $wallet->save();
+                            }elseif ($success==0){
+                                $zo=$wallet->balance+$request->amount;
+                                $wallet->balance = $zo;
+                                $wallet->save();
 
-                            $update=bill_payment::where('id', $bo->id)->update([
-                                'server_response'=>$response,
-                                'status'=>0,
-                            ]);
-                            $name= $bt->plan;
-                            $am= "NGN $request->amount Was Refunded To Your Wallet";
-                            $ph=", Transaction fail";
-                            return response()->json([
-                                'message' => $am, 'name' => $name, 'ph'=>$ph, 'success'=>$success,
-                                'user' => $user
-                            ], 200);
+                                $update=bill_payment::where('id', $bo->id)->update([
+                                    'server_response'=>$response,
+                                    'status'=>0,
+                                ]);
+                                $name= $bt->plan;
+                                $am= "NGN $request->amount Was Refunded To Your Wallet";
+                                $ph=", Transaction fail";
+                                return response()->json([
+                                    'message' => $am, 'name' => $name, 'ph'=>$ph, 'success'=>$success,
+                                    'user' => $user
+                                ], 200);
 
 
+                            }
                         }
+
+
+
 
             }
         }else {
