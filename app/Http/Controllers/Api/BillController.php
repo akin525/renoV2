@@ -98,6 +98,7 @@ class BillController
                 $in=$request['selling_amount']-$bt->api_amount;
                 $comi=DataComs::create([
                     'product'=>$bt->network . '|' . $bt->plan,
+                    'username'=>$user->username,
                     'amount'=>$in,
                 ]);
 
