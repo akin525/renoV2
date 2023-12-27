@@ -1,4 +1,6 @@
 @include('admin.layouts.sidebar')
+<script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+
 <div class="midde_cont">
     <div class="container-fluid">
         <div class="row column_title">
@@ -51,7 +53,7 @@
                                         <div class="col-md-12">
                                             <div class="input-group mt-2">
                                                 <input type="hidden" name="id" value="{{$message->id}}" />
-                                                <textarea name="message" id="editor">{{$message->message}}</textarea>
+                                                <label for="editor"></label><textarea name="message" id="editor">{{$message->message}}</textarea>
                                             </div>
                                             <hr>
                                             <div class="input-group mt-2">
@@ -132,6 +134,12 @@
 
         </script>
 
-
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
     </div>
 @include('layouts.footer')
