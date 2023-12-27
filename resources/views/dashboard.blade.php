@@ -25,6 +25,20 @@
         });
     </script>
 @endforeach
+<script>
+    window.onload = function() {
+        setTimeout(function() {
+            var username = @json(\App\Console\encription::decryptdata(Auth::user()->username));
+            var message = @json($me->message);
+
+            Swal.fire({
+                title: 'Hi ' + username,
+                text: message,
+                icon: 'info'
+            });
+        }, 1000);
+    };
+</script>
 <div class="midde_cont">
     <div class="container-fluid">
         <div class="row column_title">
@@ -34,11 +48,11 @@
                 </div>
             </div>
         </div>
-        <div class="alert alert-info alert-dismissible alert-alt fade show">
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">
-            </button>
-            <strong>Alert!</strong> {{$me->message}}.
-        </div>
+{{--        <div class="alert alert-info alert-dismissible alert-alt fade show">--}}
+{{--            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="btn-close">--}}
+{{--            </button>--}}
+{{--            <strong>Alert!</strong> {{$me->message}}.--}}
+{{--        </div>--}}
 {{--        <div class="card">--}}
 {{--            <div class="card-body">--}}
 {{--                <div class="alert alert-success">--}}
