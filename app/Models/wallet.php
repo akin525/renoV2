@@ -20,6 +20,7 @@ class wallet extends Authenticatable
     protected $fillable = [
         'username',
         'balance',
+        'profit',
         'account_number',
         'account_number1',
         'account_name',

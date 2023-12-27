@@ -299,6 +299,12 @@
                                 <span>Total Deposit</span>
                             </div>
                         </div>
+                        <hr>
+                        <div class="sales-bx">
+                            <i class="fa fa-money blue1_color" style="font-size: 30px"></i>
+                            <h4>₦{{number_format(intval($wallet1->profit *1))}}</h4>
+                            <span>Api Profit</span>
+                        </div>
                     </div>
                 </div>
             </div>

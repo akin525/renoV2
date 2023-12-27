@@ -7,6 +7,7 @@ use App\Mail\Emailtrans;
 use App\Models\bill_payment;
 use App\Models\bo;
 use App\Models\data;
+use App\Models\DataComs;
 use App\Models\interest;
 use App\Models\server;
 use App\Models\wallet;
@@ -24,7 +25,7 @@ class BillController
     {
         $validator = Validator::make($request->all(), [
             'code' => 'required',
-            'amount' => 'required',
+            'selling_amount' => 'required',
             'number' => 'required',
             'refid' => 'required',
         ]);
@@ -39,8 +40,8 @@ class BillController
         if ($user) {
 
             $wallet = wallet::where('username', $user->username)->first();
-            if ($wallet->balance < $request->amount) {
-                $mg = "You Cant Make Purchase Above " . "NGN" . $request->amount . " from your wallet. Your wallet balance is NGN $wallet->balance. Please Fund Wallet And Retry or Pay Online Using Our Alternative Payment Methods.";
+            if ($wallet->balance < $request->selling_amount) {
+                $mg = "You Cant Make Purchase Above " . "NGN" . $request->selling_amount . " from your wallet. Your wallet balance is NGN $wallet->balance. Please Fund Wallet And Retry or Pay Online Using Our Alternative Payment Methods.";
 
                 return response()->json([
                     'message' => $mg,
@@ -49,7 +50,7 @@ class BillController
                 ], 200);
 
             }
-            if ($request->amount < 0) {
+            if ($request->selling_amount < 0) {
 
                 $mg = "error transaction";
                 return response()->json([
@@ -77,7 +78,7 @@ class BillController
                         'success' => 0
                     ], 200);
                 }
-                $gt = $wallet->balance - $bt->api_amount;
+                $gt = $wallet->balance - $request->selling_amount;
 
 
                 $wallet->balance = $gt;
@@ -94,7 +95,15 @@ class BillController
                     'paymentmethod' => 'wallet',
                     'balance' => $gt,
                 ]);
+                $in=$request['selling_amount']-$bt->api_amount;
+                $comi=DataComs::create([
+                    'product'=>$bt->network . '|' . $bt->plan,
+                    'amount'=>$in,
+                ]);
 
+                $pro=$wallet->profit+$in;
+                $wallet->profit=$pro;
+                $wallet->save();
                     $daterserver = new DataserverController();
 
                         $object = json_decode($bt);
