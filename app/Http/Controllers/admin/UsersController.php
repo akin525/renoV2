@@ -148,8 +148,10 @@ $wallet=wallet::where('username', $username)->first();
         $body=$request->message;
         $this->notificationpush($username, "Renomobilemoney Notification!!", $body);
 
-        Alert::success('Admin', 'Notification Change Successful');
-        return redirect(url('admin/noti'));
+        return response()->json([
+            'status'=>1,
+            'message' => 'Notification Updated',
+        ]);
     }
     public  function notificationpush($username, $title, $body)
     {

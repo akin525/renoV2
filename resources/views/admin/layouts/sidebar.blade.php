@@ -11,6 +11,8 @@
     <meta name="keywords" content="Buy data in a few clicks to keep surfing the internet. You can buy whatever size of data plan for whichever network you desire. All plans are topped-up to your specified number in seconds.">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+
     <!-- site icon -->
     <link rel="icon" href="{{asset("images/bn.jpeg")}}" type="image/jpeg" />
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -385,4 +387,10 @@
 
 
 
-
+            <script>
+                ClassicEditor
+                    .create( document.querySelector( '#editor' ) )
+                    .catch( error => {
+                        console.error( error );
+                    } );
+            </script>
