@@ -342,8 +342,8 @@
                             </div>
                         </div>
                         <hr>
-                        <a href="#" class="badge badge-success">Withdraw to wallet</a>
-                        <a href="#" class="badge badge-danger">Withdraw to bank</a>
+                        <a href="#" class="badge badge-success">Withdraw profit to wallet</a>
+                        <a href="#" class="badge badge-danger">Withdraw profit to bank</a>
                     </div>
                 </div>
             </div>
