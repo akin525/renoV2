@@ -28,14 +28,14 @@
                 <div class="card">
                     <div class="row">
                         <!-- col-md-6 -->
-                        <div class="col-md-12 col-12">
+                        <div class="">
 
                             <div class="form-group">
                                 <div class="contact-thumb card-body">
                                     <h1><i class="fa i-cl-4 fa-mobile"></i></h1>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="">
                                 <form id="postm">
                                     @csrf
 
