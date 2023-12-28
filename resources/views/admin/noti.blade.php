@@ -24,11 +24,11 @@
         <!-- Title & Breadcrumbs-->
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="card">
                 <div class="card">
                     <div class="row">
                         <!-- col-md-6 -->
-                        <div class="">
+                        <div >
 
                             <div class="form-group">
                                 <div class="contact-thumb card-body">
@@ -53,13 +53,16 @@
                                         <div class="card card-body">
                                             <div class="input-group mt-2">
                                                 <input type="hidden" name="id" value="{{$message->id}}" />
-                                                <label for="editor"></label><textarea name="message" id="editor">{{$message->message}}</textarea>
+                                                <label for="editor"></label>
+                                                <textarea name="message" id="editor">{{$message->message}}</textarea>
                                             </div>
                                             <hr>
                                             <div class="input-group mt-2">
                                                 <button class="btn btn-primary waves-effect waves-light" type="submit" style="align-self: center; align-content: center"><i class="fa fa-paper-plane"></i> Send Message</button>
                                             </div>
                                     </div>
+                                    </div>
+                                </form>
                             </div>
 
                         </div>
