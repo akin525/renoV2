@@ -11,30 +11,10 @@
             </div>
         </div>
 
-        <div class="row column1">
-            <div class="full counter_section margin_bottom_30">
-                <div class="couter_icon">
-                    <div>
-                        <i class="fa fa-bell yellow_color"></i>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <!-- Title & Breadcrumbs-->
-
         <div class="row">
             <div class="card">
-                <div class="card">
-                    <div class="row">
-                        <!-- col-md-6 -->
-                        <div >
-
-                            <div class="form-group">
-                                <div class="contact-thumb card-body">
-                                    <h1><i class="fa i-cl-4 fa-mobile"></i></h1>
-                                </div>
-                            </div>
+                <div >
+                    <div >
                             <div class="">
                                 <form id="postm">
                                     @csrf
@@ -50,7 +30,7 @@
                                         </div>
                                     @endif
 {{--                                    <div class="row">--}}
-                                        <div class="card card-body">
+                                        <div class="card ">
                                             <div class="input-group">
                                                 <input type="hidden" name="id" value="{{$message->id}}" />
                                                 <label for="editor"></label>
