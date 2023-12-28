@@ -50,7 +50,7 @@
                                         </div>
                                     @endif
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="card card-body">
                                             <div class="input-group mt-2">
                                                 <input type="hidden" name="id" value="{{$message->id}}" />
                                                 <label for="editor"></label><textarea name="message" id="editor">{{$message->message}}</textarea>
