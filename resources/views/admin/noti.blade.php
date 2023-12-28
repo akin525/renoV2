@@ -49,9 +49,9 @@
                                             {{ session('error') }}
                                         </div>
                                     @endif
-                                    <div class="row">
+{{--                                    <div class="row">--}}
                                         <div class="card card-body">
-                                            <div class="input-group mt-2">
+                                            <div class="input-group">
                                                 <input type="hidden" name="id" value="{{$message->id}}" />
                                                 <label for="editor"></label>
                                                 <textarea name="message" id="editor">{{$message->message}}</textarea>
@@ -60,7 +60,6 @@
                                             <div class="input-group mt-2">
                                                 <button class="btn btn-primary waves-effect waves-light" type="submit" style="align-self: center; align-content: center"><i class="fa fa-paper-plane"></i> Send Message</button>
                                             </div>
-                                    </div>
                                     </div>
                                 </form>
                             </div>
