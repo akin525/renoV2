@@ -144,4 +144,3 @@
                 } );
         </script>
     </div>
-@include('layouts.footer')
