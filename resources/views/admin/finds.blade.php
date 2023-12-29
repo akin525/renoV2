@@ -108,7 +108,7 @@
                                             @if($user->profile_photo_path)
                                                 <img width="50" src="{{url('/', $user->profile_photo_path)}}" alt="" class="rounded-circle thumb-sm mr-1"> {{\App\Console\encription::decryptdata($user->username)}}
                                             @else
-                                                <img width="50" src="{{asset("images/bn.jpeg")}}" alt="" class="rounded-circle thumb-sm mr-1"> {{\App\Console\encription::decryptdata($user->username)}}
+                                                <img width="50" src="{{asset("renon.png")}}" alt="" class="rounded-circle thumb-sm mr-1"> {{\App\Console\encription::decryptdata($user->username)}}
                                             @endif
                                         </td>
                                         <td>{{\App\Console\encription::decryptdata($user->email) }}</td>

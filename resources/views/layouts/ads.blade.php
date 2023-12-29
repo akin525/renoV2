@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="icon" href="https://renomobilemoney.com/images/bn.jpeg"  />
+    <link rel="icon" href="https://renomobilemoney.com/renon.png"  />
 
     <title>@yield('tittle')</title>
 
@@ -38,8 +38,8 @@
             <a href="index.html" class="logo">
                 <!-- logo-->
                 <div class="logo-lg">
-                    <span class="light-logo"><img width="50" src="{{asset("images/bn.jpeg")}}" alt="logo"></span>
-                    <span class="dark-logo"><img src="{{asset("images/bn.jpeg")}}" alt="logo"></span>
+                    <span class="light-logo"><img width="50" src="{{asset("renon.png")}}" alt="logo"></span>
+                    <span class="dark-logo"><img src="{{asset("renon.png")}}" alt="logo"></span>
                 </div>
             </a>
         </div>

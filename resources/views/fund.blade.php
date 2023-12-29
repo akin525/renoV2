@@ -129,7 +129,7 @@
                                     <div>
                                         <center>
                                             <a href="#">
-                                                <img width="200" src="{{asset("images/bn.jpeg")}}"  alt="">
+                                                <img width="200" src="{{asset("renon.png")}}"  alt="">
                                             </a>
                                         </center>
                                     </div>

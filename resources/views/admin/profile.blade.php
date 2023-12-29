@@ -27,7 +27,7 @@
                                     @if($user->profile_photo_path!=null)
                                         <img src="{{url('/', $user->profile_photo_path)}}" alt="img" class="img img-thumbnail">
                                     @else
-                                        <img alt="image" class="img img-thumbnail" width="100" src="{{asset("images/bn.jpeg")}}">
+                                        <img alt="image" class="img img-thumbnail" width="100" src="{{asset("renon.png")}}">
                                     @endif
                                     <span class="fro-profile_main-pic-change"><i class="fa fa-camera"></i></span></div>
                                 <div class="met-profile_user-detail">
@@ -224,7 +224,7 @@
                             @foreach($referrals as $referral)
                                 @if($referral->photo!=null)
                                     <a href="{{$referral->username}}" class="btn btn-pink btn-circle ml-2">
-                                        <img alt="image" class="card-img img" width="50" src="{{asset("images/bn.jpeg")}}">
+                                        <img alt="image" class="card-img img" width="50" src="{{asset("renon.png")}}">
                                         {{$referral->username}}
                                     </a>
                                 @else

@@ -5,7 +5,7 @@
             <div class="login_section">
                 <div class="logo_login">
                     <div class="center">
-                        <img width="110" src="{{asset("images/bn.jpeg")}}" alt="#" />
+                        <img width="110" src="{{asset("renon.png")}}" alt="#" />
                     </div>
                 </div>
 

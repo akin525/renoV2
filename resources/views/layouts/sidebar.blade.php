@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="icon" href="https://renomobilemoney.com/images/bn.jpeg"  />
+    <link rel="icon" href="https://renomobilemoney.com/renon.png"  />
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -101,7 +101,7 @@
             <div class="sidebar_blog_1">
                 <div class="sidebar-header">
                     <div class="logo_section">
-                        <a href="{{route('dashboard')}}"><img class="logo_icon img-responsive" src="{{asset("images/bn.jpeg")}}" alt="#" /></a>
+                        <a href="{{route('dashboard')}}"><img class="logo_icon img-responsive" src="{{asset("renon.png")}}" alt="#" /></a>
                     </div>
                 </div>
                 <div class="sidebar_user_info">
@@ -288,7 +288,7 @@
                     <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
                         <div class="logo_section m-1">
-                            <a href="{{ route('dashboard') }}"><img class="img-responsive" src="{{asset("images/bn.jpeg")}}" alt="#" /></a>
+                            <a href="{{ route('dashboard') }}"><img class="img-responsive" src="{{asset("renon.png")}}" alt="#" /></a>
                         </div>
                         <br>
 {{--                        @if(Auth::user()->pin =="0")--}}

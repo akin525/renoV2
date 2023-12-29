@@ -88,7 +88,7 @@
                                     <td>{{ $user->id }}</td>
                                     <td>
                                         @if($user->profile_photo_path == NULL)
-                                            <img width="50" src="{{ asset("images/bn.jpeg") }}" alt="" class="rounded-circle thumb-sm mr-1">
+                                            <img width="50" src="{{ asset("renon.png") }}" alt="" class="rounded-circle thumb-sm mr-1">
                                         @else
                                             <img width="50" src="{{ url('/', $user->profile_photo_path) }}" alt="" class="rounded-circle thumb-sm mr-1">
                                         @endif

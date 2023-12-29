@@ -43,7 +43,7 @@ class AuthController
         $airtel=data::where('network', 'airtel-data')->limit(7)->get();
         $ads=Advert::where('status', 1)->latest()->limit(3)->get();
         $me = Messages::where('status', 1)->first();
-//        Alert::image('Latest News', $me->message,'https://renomobilemoney.com/images/bn.jpeg','200','200', 'Image Alt');
+//        Alert::image('Latest News', $me->message,'https://renomobilemoney.com/renon.png','200','200', 'Image Alt');
 
 //Alert::info('Renomobilemoney', 'Data Refill | Airtime | Cable TV | Electricity Subscription');
         return view("home", compact("mtn", "glo", "eti", "airtel", "ads"));
@@ -196,7 +196,7 @@ Alert::success('Success', 'New Password has been sent to your email');
             Alert::image('Giveaway Time!!','Check Our Giveaway Page','https://renomobilemoney.com/give.jpg','200','200', 'Image Alt');
 
         }else{
-//            Alert::image('Latest News!!',$me->message,'https://renomobilemoney.com/images/bn.jpeg','200','200', 'Image Alt');
+//            Alert::image('Latest News!!',$me->message,'https://renomobilemoney.com/renon.png','200','200', 'Image Alt');
         }
         $cdeposite=deposit::where('username', Auth::user()->username)->count();
         $cbill=bill_payment::where('username', Auth::user()->username)->count();

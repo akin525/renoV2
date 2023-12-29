@@ -5,7 +5,7 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{{asset("images/bn.jpeg")}}" type="image/png" />
+    <link rel="icon" href="{{asset("renon.png")}}" type="image/png" />
 
 
     <!-- bootstrap css -->
@@ -100,7 +100,7 @@
 
                                     <!-- logo -->
                                     <div class="company_logo">
-                                        <img alt="avatar" src="{{asset("images/bn.jpeg")}}">
+                                        <img alt="avatar" src="{{asset("renon.png")}}">
                                     </div>
 
                                     <!-- Name -->
@@ -201,7 +201,7 @@
                                         <div class="carousel-caption">
 
                                             <!-- sidebar 1st slide image -->
-                                            <img alt="slider" src="{{asset("images/bn.jpeg")}}">
+                                            <img alt="slider" src="{{asset("renon.png")}}">
 
                                             <!-- after image text -->
                                             <span>
@@ -220,7 +220,7 @@
                                         <div class="carousel-caption">
 
                                             <!-- sidebar 2nd slide image -->
-                                            <img alt="slider" src="{{asset("images/bn.jpeg")}}">
+                                            <img alt="slider" src="{{asset("renon.png")}}">
 
                                             <!-- after image text -->
                                             <span>
@@ -239,7 +239,7 @@
                                         <div class="carousel-caption">
 
                                             <!-- sidebar 3rd slide image -->
-                                            <img alt="slider" src="{{asset("images/bn.jpeg")}}">
+                                            <img alt="slider" src="{{asset("renon.png")}}">
 
                                             <!-- after image text -->
                                             <span>
@@ -270,7 +270,7 @@
                                 </div>
                             </div>
                             <div class="bg-shape">
-                                <img alt="slider" src="{{asset("images/bn.jpeg")}}">
+                                <img alt="slider" src="{{asset("renon.png")}}">
                             </div>
                         </div>
                     </div>

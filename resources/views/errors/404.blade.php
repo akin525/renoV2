@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- site icon -->
-    <link rel="icon" href="{{asset('images/bn.jpeg')}}"  />
+    <link rel="icon" href="{{asset('renon.png')}}"  />
     <!-- bootstrap css -->
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
     <!-- site css -->

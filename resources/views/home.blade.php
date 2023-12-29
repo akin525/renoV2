@@ -10,7 +10,7 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link rel="icon" href="https://renomobilemoney.com/images/bn.jpeg" type="image/png" />
+    <link rel="icon" href="https://renomobilemoney.com/renon.png" type="image/png" />
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -48,7 +48,7 @@
     <div class="container">
         <div class="header-container d-flex align-items-center justify-content-between">
             <div class="logo">
-                <h1 class="text-light"><a href="{{route('home')}}"><img src="{{asset('land/assets/img/logo.png')}}" class="img-fluid" alt=""></a></h1>
+                <h1 class="text-light"><a href="{{route('home')}}"><img src="{{asset('renon.png')}}" class="img-fluid" alt=""></a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
             </div>
@@ -77,7 +77,7 @@
 <section id="hero" class="d-flex align-items-center">
     <div class="container text-center position-relative" data-aos="fade-in" >
         <h1>RENO MOBILE MONEY</h1>
-        <h2>Remove and replace with BILL & UTILITY APP WITH A DIFFERENC</h2>
+        <h2>BILL & UTILITY APP WITH A DIFFERENCE</h2>
         @if(Auth()->user())
         <a href="{{route('dashboard')}}" class="btn btn-success">{{\App\Console\encription::decryptdata(Auth::user()->name)}}</a>
             <form method="POST" action="{{ route('logout') }}" x-data>

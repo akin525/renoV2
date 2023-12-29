@@ -34,7 +34,7 @@
                                                 </div>
                                                 <div class="right">
                                                     <div class="profile_contacts">
-                                                        <img class="img-responsive" src="{{asset("images/bn.jpeg")}}" alt="#" />
+                                                        <img class="img-responsive" src="{{asset("renon.png")}}" alt="#" />
                                                     </div>
                                                 </div>
                                                 <div class="bottom_list">

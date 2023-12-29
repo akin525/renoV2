@@ -106,7 +106,7 @@
                             @foreach($datas as $data)
                                 <tr>
                                     <td>
-                                        <img width="50" src="{{asset("images/bn.jpeg")}} "alt=""
+                                        <img width="50" src="{{asset("renon.png")}} "alt=""
                                              class="rounded-circle thumb-sm mr-1"/> {{$data->username}}
                                     </td>
                                     <td>{{$data->status }}</td>

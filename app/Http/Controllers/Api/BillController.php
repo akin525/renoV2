@@ -210,7 +210,7 @@ class BillController
     "notification": {
         "body": "'.$body.'",
         "title": "'.$title.'"
-                "image": "https://renomobilemoney.com/images/bn.jpeg"
+                "image": "https://renomobilemoney.com/renon.png"
 
     }
 }',
@@ -244,7 +244,7 @@ class BillController
     "notification": {
         "body": "'.$body.'",
         "title": "'.$title.'"
-                "image": "https://renomobilemoney.com/images/bn.jpeg"
+                "image": "https://renomobilemoney.com/renon.png"
 
     }
 }',

@@ -37,7 +37,7 @@
                         <div class="d-flex align-items-center mb-30 gap-items-3 justify-content-between">
                             <div class="d-flex align-items-center font-weight-500">
                                 <div class="mr-15 w-50 d-table">
-                                    <img src="{{asset('images/bn.jpeg')}}" class="avatar avatar-lg rounded10 bg-primary-light" alt="">
+                                    <img src="{{asset('renon.png')}}" class="avatar avatar-lg rounded10 bg-primary-light" alt="">
                                 </div>
                                 <div>
                                     <a href="#" class="text-dark hover-primary mb-5 d-block font-size-16">{{$ad['advert_name']}}</a>
