@@ -243,7 +243,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#app5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-money"></i> <span>Savings</span></a>
+                            <a href="#app5" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-money"></i> <span>Save Commission</span></a>
                             <ul class="collapse list-unstyled" id="app5">
                                 <li>
                                     <a href="{{url('safelock')}}"><i class="fa fa-lock"></i> <span>Create Safelock</span></a>

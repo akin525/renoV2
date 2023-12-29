@@ -77,8 +77,7 @@
 <section id="hero" class="d-flex align-items-center">
     <div class="container text-center position-relative" data-aos="fade-in" >
         <h1>RENO MOBILE MONEY</h1>
-        <h2>We Provide
-            The Best Tools To Save</h2>
+        <h2>Remove and replace with BILL & UTILITY APP WITH A DIFFERENC</h2>
         @if(Auth()->user())
         <a href="{{route('dashboard')}}" class="btn btn-success">{{\App\Console\encription::decryptdata(Auth::user()->name)}}</a>
             <form method="POST" action="{{ route('logout') }}" x-data>
@@ -136,8 +135,8 @@
 
             <div class="row content">
                 <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-                    <h2>SAVE SMART, SAVE SECURELY, SAVE REGULARLY!</h2>
-                    <h3>We help you save money with our our secure safe lock plans. Save and earn 5-10% per annum</h3>
+{{--                    <h2>SAVE SMART, SAVE SECURELY, SAVE REGULARLY!</h2>--}}
+{{--                    <h3>We help you save money with our our secure safe lock plans. Save and earn 5-10% per annum</h3>--}}
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left" data-aos-delay="200">
                     <p>
@@ -207,20 +206,20 @@
                 <div class="col-lg-8 d-flex align-items-stretch">
                     <div class="icon-boxes d-flex flex-column justify-content-center">
                         <div class="row">
-                            <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                                <div class="icon-box mt-4 mt-xl-0">
-                                    <i class="bx bx-receipt"></i>
-                                    <h4>Save Smart</h4>
-                                    <p>Save smart, earn smart interest on every penny saved! Join the team of smart savers and smart earners. Automate your savings with a click</p>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
-                                <div class="icon-box mt-4 mt-xl-0">
-                                    <i class="bx bx-cube-alt"></i>
-                                    <h4>Opening Of Account</h4>
-                                    <p>Open a savings account entirely online with no need for paper work & signature.t</p>
-                                </div>
-                            </div>
+{{--                            <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">--}}
+{{--                                <div class="icon-box mt-4 mt-xl-0">--}}
+{{--                                    <i class="bx bx-receipt"></i>--}}
+{{--                                    <h4>Save Smart</h4>--}}
+{{--                                    <p>Save smart, earn smart interest on every penny saved! Join the team of smart savers and smart earners. Automate your savings with a click</p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">--}}
+{{--                                <div class="icon-box mt-4 mt-xl-0">--}}
+{{--                                    <i class="bx bx-cube-alt"></i>--}}
+{{--                                    <h4>Opening Of Account</h4>--}}
+{{--                                    <p>Open a savings account entirely online with no need for paper work & signature.t</p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="bx bx-images"></i>
@@ -257,7 +256,7 @@
                 <div class="col-lg-4">
                     <div class="section-title" data-aos="fade-right">
                         <h2>Services</h2>
-                        <p>We help you Save and Keep your Funds Securely</p>
+{{--                        <p>We help you Save and Keep your Funds Securely</p>--}}
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -270,13 +269,13 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-                            <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
-                                <div class="icon"><i class="bx bx-file"></i></div>
-                                <h4><a href="">Instant Withdraw</a></h4>
-                                <p>Withdrawal Speed: Up to 4 hours .General rules for depositing and withdrawing funds . If a deposit or withdrawal is not subject to instant execution</p>
-                            </div>
-                        </div>
+{{--                        <div class="col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">--}}
+{{--                            <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">--}}
+{{--                                <div class="icon"><i class="bx bx-file"></i></div>--}}
+{{--                                <h4><a href="">Instant Withdraw</a></h4>--}}
+{{--                                <p>Withdrawal Speed: Up to 4 hours .General rules for depositing and withdrawing funds . If a deposit or withdrawal is not subject to instant execution</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         <div class="col-md-6 d-flex align-items-stretch mt-4">
                             <div class="icon-box" data-aos="zoom-in" data-aos-delay="300">
@@ -549,14 +548,14 @@
 
         <div class="me-md-auto text-center text-md-start">
             <div class="copyright">
-                &copy; Copyright <strong><span>Efemobilemoney</span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span>Renomobilemoney</span></strong>. All Rights Reserved
             </div>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/ -->
-                Designed by <a href="#">Efemobilemoney</a>
+                Designed by <a href="#">Renomobilemoney</a>
             </div>
         </div>
         <div class="social-links text-center text-md-right pt-3 pt-md-0">

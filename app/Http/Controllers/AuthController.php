@@ -206,8 +206,9 @@ Alert::success('Success', 'New Password has been sent to your email');
 
         $ads=Advert::where('status', 1)->inRandomOrder()->orderBy('id', 'desc')->first();
 
+        $price=data::where('plan', 'MTN 1gb - SME-30 days')->first();
 
-        return  view('dashboard', compact('username',
+        return  view('dashboard', compact('username', 'price',
                 'give', 'all', 'cbill', 'cgive', "user", 'greet',
                 'pam1', 'wallet','wallet1', 'totaldeposite', 'me', 'cdeposite',
                 'bil2', 'bill', 'ads', 'totalrefer',  'pam', 'count', 'lock'))
