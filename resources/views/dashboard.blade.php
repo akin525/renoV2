@@ -86,7 +86,8 @@
         </div>
 
 
-        <div class="row">
+        <div class="card-body bg-secondary">
+        <div class="row ">
 
             <div class="col-4 col-sm-3 col-lg-3">
                 <a href="{{route('select1')}}">
@@ -121,7 +122,7 @@
                              <span style="font-size: 30px;">
                                  <img width="50" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw-WmPyjVF6CMyYO61o15KbQdyMRR5b9X18w&usqp=CAU">
                              </span>
-                            <div class="h6 m-2 text-dark">Tv</div>
+                            <h6>Tv</h6>
                         </div>
                     </div>
                 </a>
@@ -190,6 +191,8 @@
             </div>
 
         </div>
+        </div>
+        <br>
         <div class="row">
 {{--            <div class="col-xl-12">--}}
 {{--                <div class="card bg-secondary analytics-card">--}}
