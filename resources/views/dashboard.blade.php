@@ -40,7 +40,7 @@
         }, 1000);
     };
 </script>
-<div class="midde_cont">
+<div class="midde_cont bg-secondary">
     <div class="container-fluid">
         <div class="row column_title">
             <div class="col-md-12">
@@ -86,7 +86,7 @@
         </div>
 
 
-        <div class="card-body bg-secondary">
+        <div class="card-body ">
         <div class="row ">
 
             <div class="col-4 col-sm-3 col-lg-3">
