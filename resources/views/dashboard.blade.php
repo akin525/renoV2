@@ -40,7 +40,7 @@
         }, 1000);
     };
 </script>
-<div class="midde_cont bg-secondary">
+<div class="midde_cont ">
     <div class="container-fluid">
         <div class="row column_title">
             <div class="col-md-12">
