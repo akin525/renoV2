@@ -206,20 +206,20 @@
                 <div class="col-lg-8 d-flex align-items-stretch">
                     <div class="icon-boxes d-flex flex-column justify-content-center">
                         <div class="row">
-{{--                            <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">--}}
-{{--                                <div class="icon-box mt-4 mt-xl-0">--}}
-{{--                                    <i class="bx bx-receipt"></i>--}}
+                            <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                                <div class="icon-box mt-4 mt-xl-0">
+                                    <i class="bx bx-receipt"></i>
 {{--                                    <h4>Save Smart</h4>--}}
 {{--                                    <p>Save smart, earn smart interest on every penny saved! Join the team of smart savers and smart earners. Automate your savings with a click</p>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">--}}
-{{--                                <div class="icon-box mt-4 mt-xl-0">--}}
-{{--                                    <i class="bx bx-cube-alt"></i>--}}
+                                </div>
+                            </div>
+                            <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
+                                <div class="icon-box mt-4 mt-xl-0">
+                                    <i class="bx bx-cube-alt"></i>
 {{--                                    <h4>Opening Of Account</h4>--}}
 {{--                                    <p>Open a savings account entirely online with no need for paper work & signature.t</p>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                                </div>
+                            </div>
                             <div class="col-xl-4 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
                                 <div class="icon-box mt-4 mt-xl-0">
                                     <i class="bx bx-images"></i>
