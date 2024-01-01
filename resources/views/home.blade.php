@@ -450,7 +450,7 @@
                             <div class="info">
                                 <i class="bi bi-envelope"></i>
                                 <h4>Email:</h4>
-                                <p>info@efemobilemoney.com</p>
+                                <p>info@renomobilemoney.com</p>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -506,7 +506,7 @@
                         Lagos<br>
                         Nigeria <br><br>
                         <strong>Phone:</strong> 08066215840 or 08166939205<br>
-                        <strong>Email:</strong> info@efemobilemoney.com<br>
+                        <strong>Email:</strong> info@renomobilemoney.com<br>
                     </p>
                 </div>
 
@@ -549,14 +549,14 @@
 
         <div class="me-md-auto text-center text-md-start">
             <div class="copyright">
-                &copy; Copyright <strong><span>Efemobilemoney</span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span>renomobilemoney</span></strong>. All Rights Reserved
             </div>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/ -->
-                Designed by <a href="#">Efemobilemoney</a>
+                Designed by <a href="#">renomobilemoney</a>
             </div>
         </div>
         <div class="social-links text-center text-md-right pt-3 pt-md-0">
