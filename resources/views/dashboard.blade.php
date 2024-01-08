@@ -21,6 +21,13 @@
     });
 
 </script>
+<script>
+    $(document).ready(function() {
+        toastr.options.timeOut = 60000;
+        toastr.info('Test message');
+    });
+</script>
+
 @foreach($give as $away)
     <script>
         $(document).ready(function() {
