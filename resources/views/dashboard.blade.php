@@ -22,7 +22,14 @@
     <script>
         $(document).ready(function() {
             toastr.options.timeOut = 60000;
-            toastr.info('{{\App\Console\encription::decryptdata( $away->username) }} just create giveaway👊  of {{$away->product}} claim it now <button type="button" class="btn btn-success" onclick="toastr.clear()">Claim Now</button>');
+            toastr.options.extendedTimeOut = 10000; // Extend the timeout for the extended content
+            toastr.info('{{\App\Console\encription::decryptdata( $away->username) }} just created a giveaway of {{$away->product}}. Claim it now <button type="button" class="btn btn-success claim-btn">Claim Now</button>');
+
+            // Add a click event for the claim button
+            $('.claim-btn').click(function() {
+                // Add logic for claiming the giveaway here
+                toastr.clear(); // Clear the toastr notification after claiming
+            });
         });
     </script>
 @endforeach
