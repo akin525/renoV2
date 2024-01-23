@@ -147,7 +147,7 @@
                            </label>
                            <div class="">
                                <input type="number" id="anyme" name="number" minlength="11" class="text-success form-control" required>
-                               <i class="fa fa-circle-user" onclick="web2app.selectContact(contactCallback);"></i>
+                               <i class="fa fa-users" onclick="web2app.selectContact(contactCallback);"></i>
                            </div>
                        </div>
                        <input type="hidden" name="refid" value="<?php echo rand(10000000, 999999999); ?>">
