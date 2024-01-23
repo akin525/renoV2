@@ -314,18 +314,19 @@
     window.onload = function () {
         try {
             function myCall(data) {
-                // alert(JSON.stringify(data));
+                alert(JSON.stringify(data));
             }
-            window.web2app.biometric.check(myCall)
+
+            window.web2app.biometric.check(myCall);
+
             function myCallback(data) {
-                const con=JSON.stringify(data.success);
-                // alert(JSON.stringify(data));
-                if(con === true){
+                const isSuccess = data.success;
+
+                if (isSuccess) {
                     document.getElementById('loginWithFingerprintBtn').style.display = 'block';
-
                 }
-
             }
+
             window.deviceInfo(myCallback);
             // window.biometric.check(myCall);
         } catch (e) {
