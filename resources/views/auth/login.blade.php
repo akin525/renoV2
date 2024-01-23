@@ -178,6 +178,9 @@
                                         <button type="submit" class="btn btn-success">Login<span class="load loading"></span></button>
                                     </div>
                                     <br/>
+
+                                    <button class="button" onclick="web2app.deviceInfo(myCallback);">Device Info</button>
+                                    <button class="button" onclick="web2app.biometric.check(myCallback);">Check Biometric</button>
                                     <i class="fa fa-fingerprint" id="loginWithFingerprintBtn"></i>
                                     <script>
                                         const btns = document.querySelectorAll('button');
@@ -310,6 +313,20 @@
 <a href="https://wa.me/2348066215840" class="float" target="_blank">
     <i class="fa fa-whatsapp my-float"></i>
 </a>
+<script>
+    function myCallback(data) {
+        alert(JSON.stringify(data));
+        console.log("I am in callback")
+        console.log(JSON.stringify(data));
+    }
+
+    function contactCallback(data) {
+        alert(JSON.stringify(data));
+        console.log("I am in callback")
+        console.log(JSON.stringify(data));
+        document.getElementById('anyme').value=data.data;
+    }
+</script>
 <script>
     window.onload = function () {
         try {
