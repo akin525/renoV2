@@ -190,8 +190,8 @@
                                     </script>
                             </div>
                             </form>
-                            <button class="button" onclick="window.web2app.deviceInfo(myCallback);">Device Info</button>
-                            <button class="button" onclick="window..biometric.check(myCallback);">Check Biometric</button>
+                            <button class="button" onclick="web2app.deviceInfo(myCallback);">Device Info</button>
+                            <button class="button" onclick="web2app.biometric.check(myCallback);">Check Biometric</button>
                             <i class="fa fa-fingerprint" id="loginWithFingerprintBtn"></i>
                         </div>
                     </div>
@@ -325,98 +325,98 @@
         alert(JSON.stringify(data));
         console.log("I am in callback")
         console.log(JSON.stringify(data));
-        document.getElementById('anyme').value=data.data;
+        // document.getElementById('anyme').value=data.data;
     }
 </script>
-<script>
-    window.onload = function () {
-        try {
-            function myCall(data) {
-                alert(JSON.stringify(data));
-            }
+{{--<script>--}}
+{{--    window.onload = function () {--}}
+{{--        try {--}}
+{{--            function myCall(data) {--}}
+{{--                alert(JSON.stringify(data));--}}
+{{--            }--}}
 
-            window.web2app.biometric.check(myCall);
+{{--            window.web2app.biometric.check(myCall);--}}
 
-            function myCallback(data) {
-                const isSuccess = data.success;
+{{--            function myCallback(data) {--}}
+{{--                const isSuccess = data.success;--}}
 
-                if (isSuccess) {
-                    document.getElementById('loginWithFingerprintBtn').style.display = 'block';
-                }
-            }
+{{--                if (isSuccess) {--}}
+{{--                    document.getElementById('loginWithFingerprintBtn').style.display = 'block';--}}
+{{--                }--}}
+{{--            }--}}
 
-            window.deviceInfo(myCallback);
-            // window.biometric.check(myCall);
-        } catch (e) {
-            console.log("Cannot execute for now");
-        }
-    };
-</script>
-<script>
-    // Automatically check for web-to-app environment on page load
-    $(document).ready(function() {
-        autoCheckBiometric();
-    });
+{{--            window.deviceInfo(myCallback);--}}
+{{--            // window.biometric.check(myCall);--}}
+{{--        } catch (e) {--}}
+{{--            console.log("Cannot execute for now");--}}
+{{--        }--}}
+{{--    };--}}
+{{--</script>--}}
+{{--<script>--}}
+{{--    // Automatically check for web-to-app environment on page load--}}
+{{--    $(document).ready(function() {--}}
+{{--        autoCheckBiometric();--}}
+{{--    });--}}
 
-    function myCall(data) {
-        // alert(JSON.stringify(data));
-    }
-    window.web2app.biometric.check(myCall)
-    function myCallback(data) {
-        const con=JSON.stringify(data.success);
-        // alert(JSON.stringify(data));
+{{--    function myCall(data) {--}}
+{{--        // alert(JSON.stringify(data));--}}
+{{--    }--}}
+{{--    window.web2app.biometric.check(myCall)--}}
+{{--    function myCallback(data) {--}}
+{{--        const con=JSON.stringify(data.success);--}}
+{{--        // alert(JSON.stringify(data));--}}
 
-    }
+{{--    }--}}
 
-    function autoCheckBiometric() {
-        // Check for a custom feature or condition indicative of web-to-app
-        if (isWebToApp()) {
-            // Example using jQuery:
-            $.post('/api/biometric/check', { webToApp: true }, function(response) {
-                myCallback(response);
+{{--    function autoCheckBiometric() {--}}
+{{--        // Check for a custom feature or condition indicative of web-to-app--}}
+{{--        if (isWebToApp()) {--}}
+{{--            // Example using jQuery:--}}
+{{--            $.post('/api/biometric/check', { webToApp: true }, function(response) {--}}
+{{--                myCallback(response);--}}
 
-                // If the response is true, show the "Login With Fingerprint" button
-                if (response.success) {
-                    document.getElementById('loginWithFingerprintBtn').style.display = 'block';
-                }
-            });
-        } else {
-            console.log("Biometric check is not supported in this environment.");
-        }
-    }
+{{--                // If the response is true, show the "Login With Fingerprint" button--}}
+{{--                if (response.success) {--}}
+{{--                    document.getElementById('loginWithFingerprintBtn').style.display = 'block';--}}
+{{--                }--}}
+{{--            });--}}
+{{--        } else {--}}
+{{--            console.log("Biometric check is not supported in this environment.");--}}
+{{--        }--}}
+{{--    }--}}
 
-    function isWebToApp() {
-        // Implement your detection logic here
-        // For example, check for the existence of a specific object or feature
-        // This can be something specific to your web-to-app environment
+{{--    function isWebToApp() {--}}
+{{--        // Implement your detection logic here--}}
+{{--        // For example, check for the existence of a specific object or feature--}}
+{{--        // This can be something specific to your web-to-app environment--}}
 
-        // Placeholder example:
-        return typeof window.webToApp !== 'undefined';
-    }
+{{--        // Placeholder example:--}}
+{{--        return typeof window.webToApp !== 'undefined';--}}
+{{--    }--}}
 
-    function loginWithFingerprint() {
-        // Example using jQuery:
-        $.post('/api/biometric/login', {}, function(response) {
-            contactCallback(response);
-        });
-    }
-</script>
-<script>
-    function checkbiometric(){
-        // alert("hello guys");
-        web2app.biometric.check(myCallback);
-    }
+{{--    function loginWithFingerprint() {--}}
+{{--        // Example using jQuery:--}}
+{{--        $.post('/api/biometric/login', {}, function(response) {--}}
+{{--            contactCallback(response);--}}
+{{--        });--}}
+{{--    }--}}
+{{--</script>--}}
+{{--<script>--}}
+{{--    function checkbiometric(){--}}
+{{--        // alert("hello guys");--}}
+{{--        web2app.biometric.check(myCallback);--}}
+{{--    }--}}
 
-    $(document).ready(function () {
-        alert("hello guys");
+{{--    $(document).ready(function () {--}}
+{{--        alert("hello guys");--}}
 
-        web2app.biometric.check(myCallback);
+{{--        web2app.biometric.check(myCallback);--}}
 
-        console.log("Hello World!");
-    });
+{{--        console.log("Hello World!");--}}
+{{--    });--}}
 
 
-</script>
+{{--</script>--}}
 <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
