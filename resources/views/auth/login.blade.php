@@ -192,7 +192,7 @@
                             </form>
                             <button class="button" onclick="web2app.deviceInfo(myCallback);">Device Info</button>
                             <button class="button" onclick="web2app.biometric.check(myCallback);">Check Biometric</button>
-                            <i class="fa fa-fingerprint" id="loginWithFingerprintBtn"></i>
+                            <i class="fa fa-fingerprint" id="btn"></i>
                         </div>
                     </div>
 
@@ -287,7 +287,32 @@
 </section>
 
 
+<script>
+    function myCallback(data) {
+        console.log("I am in callback")
+        console.log(JSON.stringify(data));
+        alert(JSON.stringify(data));
+        const btn = document.getElementById('btn');
+        var text = JSON.stringify(obj, function (key, value){
+            if (key == "success"){
+                btn.style.display = 'block';
+            }else {
+                btn.style.display = 'none';
 
+            }
+        });
+        text.success=new su(text.success);
+        alert(JSON.stringify(data));
+    }
+    function contactCallback(data) {
+        console.log("I am in callback")
+        console.log(JSON.stringify(data));
+        // document.getElementById('anyme').value=data.data;
+        alert(JSON.stringify(data));
+    }
+
+
+</script>
 
 
 <style>
@@ -314,20 +339,20 @@
 <a href="https://wa.me/2348066215840" class="float" target="_blank">
     <i class="fa fa-whatsapp my-float"></i>
 </a>
-<script>
-    function myCallback(data) {
-        alert(JSON.stringify(data));
-        console.log("I am in callback")
-        console.log(JSON.stringify(data));
-    }
+{{--<script>--}}
+{{--    function myCallback(data) {--}}
+{{--        alert(JSON.stringify(data));--}}
+{{--        console.log("I am in callback")--}}
+{{--        console.log(JSON.stringify(data));--}}
+{{--    }--}}
 
-    function contactCallback(data) {
-        alert(JSON.stringify(data));
-        console.log("I am in callback")
-        console.log(JSON.stringify(data));
-        // document.getElementById('anyme').value=data.data;
-    }
-</script>
+{{--    function contactCallback(data) {--}}
+{{--        alert(JSON.stringify(data));--}}
+{{--        console.log("I am in callback")--}}
+{{--        console.log(JSON.stringify(data));--}}
+{{--        // document.getElementById('anyme').value=data.data;--}}
+{{--    }--}}
+{{--</script>--}}
 {{--<script>--}}
 {{--    window.onload = function () {--}}
 {{--        try {--}}
