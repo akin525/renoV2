@@ -190,8 +190,8 @@
                                     </script>
                             </div>
                             </form>
-                            <button class="button" onclick="web2app.deviceInfo(myCallback);">Device Info</button>
-                            <button class="button" onclick="web2app.biometric.check(myCallback);">Check Biometric</button>
+                            <button class="button" onclick="window.web2app.deviceInfo(myCallback);">Device Info</button>
+                            <button class="button" onclick="window..biometric.check(myCallback);">Check Biometric</button>
                             <i class="fa fa-fingerprint" id="loginWithFingerprintBtn"></i>
                         </div>
                     </div>
