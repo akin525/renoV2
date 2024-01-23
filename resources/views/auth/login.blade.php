@@ -177,6 +177,8 @@
                                     <div class="next-btn">
                                         <button type="submit" class="btn btn-success">Login<span class="load loading"></span></button>
                                     </div>
+                                    <br/>
+                                    <i class="fa fa-fingerprint" id="loginWithFingerprintBtn"></i>
                                     <script>
                                         const btns = document.querySelectorAll('button');
                                         btns.forEach((items)=>{
@@ -308,7 +310,94 @@
 <a href="https://wa.me/2348066215840" class="float" target="_blank">
     <i class="fa fa-whatsapp my-float"></i>
 </a>
+<script>
+    window.onload = function () {
+        try {
+            function myCall(data) {
+                // alert(JSON.stringify(data));
+            }
+            window.web2app.biometric.check(myCall)
+            function myCallback(data) {
+                const con=JSON.stringify(data.success);
+                // alert(JSON.stringify(data));
+                if(con === true){
+                    document.getElementById('loginWithFingerprintBtn').style.display = 'block';
 
+                }
+
+            }
+            window.deviceInfo(myCallback);
+            // window.biometric.check(myCall);
+        } catch (e) {
+            console.log("Cannot execute for now");
+        }
+    };
+</script>
+<script>
+    // Automatically check for web-to-app environment on page load
+    $(document).ready(function() {
+        autoCheckBiometric();
+    });
+
+    function myCall(data) {
+        // alert(JSON.stringify(data));
+    }
+    window.web2app.biometric.check(myCall)
+    function myCallback(data) {
+        const con=JSON.stringify(data.success);
+        // alert(JSON.stringify(data));
+
+    }
+
+    function autoCheckBiometric() {
+        // Check for a custom feature or condition indicative of web-to-app
+        if (isWebToApp()) {
+            // Example using jQuery:
+            $.post('/api/biometric/check', { webToApp: true }, function(response) {
+                myCallback(response);
+
+                // If the response is true, show the "Login With Fingerprint" button
+                if (response.success) {
+                    document.getElementById('loginWithFingerprintBtn').style.display = 'block';
+                }
+            });
+        } else {
+            console.log("Biometric check is not supported in this environment.");
+        }
+    }
+
+    function isWebToApp() {
+        // Implement your detection logic here
+        // For example, check for the existence of a specific object or feature
+        // This can be something specific to your web-to-app environment
+
+        // Placeholder example:
+        return typeof window.webToApp !== 'undefined';
+    }
+
+    function loginWithFingerprint() {
+        // Example using jQuery:
+        $.post('/api/biometric/login', {}, function(response) {
+            contactCallback(response);
+        });
+    }
+</script>
+<script>
+    function checkbiometric(){
+        // alert("hello guys");
+        web2app.biometric.check(myCallback);
+    }
+
+    $(document).ready(function () {
+        alert("hello guys");
+
+        web2app.biometric.check(myCallback);
+
+        console.log("Hello World!");
+    });
+
+
+</script>
 <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
