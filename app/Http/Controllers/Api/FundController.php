@@ -35,7 +35,7 @@ class FundController
         $apikey = $request->header('apikey');
         $user = User::where('apikey',$apikey)->first();
         if ($user) {
-            $bo = deposit::where('payment_ref', "YellowTech".$request->refid)->first();;
+            $bo = deposit::where('payment_ref', $request->refid)->first();;
             if (isset($bo)) {
                 $mg = "duplicate transaction";
                 return response()->json([
@@ -48,7 +48,7 @@ class FundController
                 $wallet = wallet::where('username', $user->username)->first();
                 $pt = $wallet['balance'];
                 $char = setting::first();
-                $amount1 = $request->amount - 50;
+                $amount1 = $request->amount - $char->rcharges;
 
 
                 $gt = $amount1 + $pt;
@@ -64,7 +64,7 @@ class FundController
 
                 $charp = charge::create([
                     'username' => $wallet->username,
-                    'payment_ref' => "YellowTech" . $reference,
+                    'payment_ref' =>  $reference,
                     'amount' => 50,
                     'iwallet' => $pt,
                     'fwallet' => $gt,
