@@ -10,6 +10,7 @@ use App\Models\charp;
 use App\Models\deposit;
 use App\Models\Messages;
 use App\Models\refer;
+use App\Models\safe_lock;
 use App\Models\server;
 use App\Models\User;
 use App\Models\wallet;
@@ -73,6 +74,7 @@ $reseller=DB::table('users')->where("apikey", "!=", "")->count();
             return redirect('admin/finds');
         }
 $wallet=wallet::where('username', $username)->first();
+$lock=safe_lock::where('username', $username)->first();
         $user =User::where('username', $username)->first();
         $sumtt = deposit::where('username', $ap->username)->sum('amount');
         $tt = deposit::where('username', $ap->username)->count();
@@ -87,7 +89,7 @@ $wallet=wallet::where('username', $username)->first();
         $cphone=encription::decryptdata($user->phone);
         $cmail=encription::decryptdata($user->email);
 //return $user;
-        return view('admin/profile', ['user' => $ap, 'sumtt'=>$sumtt, 'charge'=>$charge,  'sumch'=>$sumch, 'sumbo'=>$sumbo, 'tt' => $tt, 'wallet'=>$wallet, 'td' => $td, 'cphone'=>$cphone, 'cname'=>$cname, 'cmail'=>$cmail,  'referrals' => $referrals, 'version' => $v,  'tat' =>$tat]);
+        return view('admin/profile', ['user' => $ap,'lock'=>$lock, 'sumtt'=>$sumtt, 'charge'=>$charge,  'sumch'=>$sumch, 'sumbo'=>$sumbo, 'tt' => $tt, 'wallet'=>$wallet, 'td' => $td, 'cphone'=>$cphone, 'cname'=>$cname, 'cmail'=>$cmail,  'referrals' => $referrals, 'version' => $v,  'tat' =>$tat]);
     }
     public function server()
     {
