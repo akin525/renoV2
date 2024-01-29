@@ -14,7 +14,7 @@ class SafelocksController extends Controller
           'id'=>'required',
           'amount'=>'required',
       ]);
-      $lock=safe_lock::where('id', $request)->first();
+      $lock=safe_lock::where('id', $request->id)->first();
 
       $lock->balance=$request->amount;
       $lock->save();
