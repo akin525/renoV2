@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\QueryController;
 use App\Http\Controllers\admin\RateController;
+use App\Http\Controllers\admin\SafelocksController;
 use App\Http\Controllers\admin\SetController;
 use App\Http\Controllers\admin\TransactionController;
 use App\Http\Controllers\admin\UsersController;
@@ -193,6 +194,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
 
+    Route::post('admin/changelock', [SafelocksController::class, 'editsafelock'])->name('admin/changelock');
     Route::post('admin/doplan', [\App\Http\Controllers\admin\AdminAdsController::class, 'editplan'])->name('admin/doplan');
     Route::get('admin/plan', [\App\Http\Controllers\admin\AdminAdsController::class, 'ediitadsplan'])->name('admin/plan');
     Route::get('admin/planss/{id}', [\App\Http\Controllers\admin\AdminAdsController::class, 'onoffplan'])->name('admin/planss');
@@ -214,7 +216,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/setmin', [SetController::class, 'index1'])->name('admin/setmin');
     Route::post('admin/min', [SetController::class, 'min'])->name('admin/min');
     Route::get('admin/setcharge', [SetController::class, 'index'])->name('admin/setcharge');
+    Route::get('admin/setapicharge', [SetController::class, 'index2'])->name('admin/setapicharge');
     Route::post('admin/setc', [SetController::class, 'charge'])->name('admin/setc');
+    Route::post('admin/setr', [SetController::class, 'charger'])->name('admin/setr');
     Route::get('admin/webbook', [DashboardController::class, 'webbook'])->name('admin/webbook');
     Route::get('admin/vertual', [VertualAController::class, 'list'])->name('admin/vertual');
     Route::post('admin/update', [VertualAController::class, 'updateuser'])->name('admin/update');

@@ -255,6 +255,9 @@
                             <li class="nav-item">
                                 <a  class="nav-link" href="{{ route('admin/setcharge') }}"  ><i class="fa fa-bell red_color"></i> <span>Set Charges</span></a>
                             </li>
+                            <li class="nav-item">
+                                <a  class="nav-link" href="{{ route('admin/setapicharge') }}"  ><i class="fa fa-bell red_color"></i> <span>Set Api-Charges</span></a>
+                            </li>
                             <li class="active">
                                 <a href="{{ route('admin/server') }}"  ><i class="fa fa-bars red_color"></i> <span>Control Server</span></a>
                             </li>

@@ -19,6 +19,12 @@ class SetController
 
         return view("admin/setcharge", compact("charge"));
     }
+    public function index2()
+    {
+        $charge=setting::first();
+
+        return view("admin/rsetcharge", compact("charge"));
+    }
 
     public function charge(Request $request)
     {
@@ -33,6 +39,23 @@ class SetController
 
         Alert::success('Admin','Charges Updated');
         return redirect('admin/setcharge');
+
+    }
+    public function charger(Request $request)
+    {
+        $request->validate([
+           'body'=>'required',
+        ]);
+
+        $charge=setting::first();
+
+        $charge->rcharges=$request->body;
+        $charge->save();
+
+        return response()->json([
+            'status'=>1,
+            'message'=>'Charges Updated',
+        ]);
 
     }
     public function index1()

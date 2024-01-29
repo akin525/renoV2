@@ -79,6 +79,7 @@
                 <ul class="nav nav-pills mb-0" id="pills-tab" role="tablist">
                     <li class="nav-item"><a class="nav-link active" id="general_detail_tab" data-toggle="pill" href="#general_detail">General</a></li>
                     <li class="nav-item"><a class="nav-link" id="activity_detail_tab" data-toggle="pill" href="#activity_detail">Transactions</a></li>
+                    <li class="nav-item"><a class="nav-link" id="safelock_detail_tab" data-toggle="pill" href="#activity_detail">Safe-lock</a></li>
                     <li class="nav-item"><a class="nav-link" id="portfolio_detail_tab" data-toggle="pill" href="#portfolio_detail">Bills</a></li>
                     <li class="nav-item"><a class="nav-link" id="settings_detail_tab" data-toggle="pill" href="#settings_detail">Charges</a></li>
                     <li class="nav-item"><a class="nav-link" id="sms_tab" data-toggle="pill" href="#sms_detail">Update User</a></li>
@@ -296,6 +297,148 @@
                 </div>
                 <!--end row-->
             </div>
+            <div class="tab-pane fade" id="safelock_detail">
+                <div class="row">
+                    <div class="col-lg-12">
+
+
+                        @foreach($lock as $re)
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 profile_details margin_bottom_30">
+                                <div class="contact_blog">
+                                    <h2 class="badge badge-success"><b>SAFE-LOCK</b></h2>
+                                    <div class="contact_inner">
+                                        <div class="left">
+                                            <h3>{{$re->tittle}}</h3>
+                                            <p><b>Username: </b>{{\App\Console\encription::decryptdata($re->username)}}</p>
+                                            <p><b>Starting-Date</b>: {{$re->Start_date}}</p>
+                                            <ul class="list-unstyled">
+                                                <li><i class="fa fa-money"></i>: ₦{{ number_format(intval($re->balance *1),2)}}</li>
+                                                <li><i class="fa fa-calendar">Withdraw-Date</i> : {{$re->date}}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="right">
+                                            <div class="profile_contacts">
+                                                <img class="img-responsive" src="{{asset("renon.png")}}" alt="#" />
+                                            </div>
+                                        </div>
+                                        <div class="bottom_list">
+                                            <div class="left_rating">
+                                                <p class="ratings">
+                                                    <a href="#"><span class="fa fa-star"></span></a>
+                                                    <a href="#"><span class="fa fa-star"></span></a>
+                                                    <a href="#"><span class="fa fa-star"></span></a>
+                                                    <a href="#"><span class="fa fa-star"></span></a>
+                                                    <a href="#"><span class="fa fa-star-o"></span></a>
+                                                </p>
+                                            </div>
+                                            <div class="right_button">
+                                                <button type="button" onclick="{{route('profile.show')}}" class="btn btn-success btn-xs"> <i class="fa fa-user">
+                                                    </i> <i class="fa fa-comments-o"></i>
+                                                </button>
+                                                @if($re->status=="1")
+                                                    <button type="button" class="btn btn-info btn-xs">
+                                                        Running
+                                                    </button>
+                                                    <a onclick="openModal(this)" data-user-id="{{$re->id}}" data-user-name="{{$re->tittle}}" class="btn btn-danger">Change-Amount</a>
+                                                @elseif($re->status=="0")
+                                                    <button type="button" class="btn btn-primary btn-xs">
+                                                        Completed
+                                                    </button>
+                                                    <a onclick="openModal(this)" data-user-id="{{$re->id}}" data-user-name="{{$re->tittle}}" class="btn btn-danger">Change-Amount</a>
+                                                @endif
+                                                @if($re->status=="1")
+                                                    <a href="{{route('admin/cron', $re->id)}}" class="btn btn-danger">Terminate</a>
+                                                @endif
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!--end row-->
+            </div>
+            <style>
+                /* Add your CSS styles here */
+                .modal {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.5);
+                }
+                .modal-content {
+                    background-color: white;
+                    width: 60%;
+                    max-width: 400px;
+                    margin: 100px auto;
+                    padding: 20px;
+                    border-radius: 5px;
+                }
+            </style>
+            <div class="modal" id="editModal">
+                <div class="modal-content">
+                    <form id="dataForm" >
+                        @csrf
+                        <div class="card card-body">
+                            <p>Change Amount</p>
+                            {{--                       <input placeholder="Your e-mail" class="subscribe-input" name="email" type="email">--}}
+                            <br/>
+                            <div class="form-group">
+                                <label>Safe-lock Tittle</label>
+                                <input type="text" class="form-control" id="plan"  name="name" value="" readonly />
+                                <input type="hidden" class="form-control" id="id" name="id" value="" required />
+                            </div>
+                            <br/>
+                            <div id="div_id_network" >
+                                <label for="network" class=" requiredField">
+                                    Enter selling Amount<span class="asteriskField">*</span>
+                                </label>
+                                <div class="">
+                                    <input type="number" id="amount" name="tamount"  class="text-success form-control" required>
+                                </div>
+                            </div>
+                            <br/>
+                            <button type="submit" class="btn btn-outline-success">Change</button>
+                        </div>
+                    </form>
+                    <button class="btn btn-outline-danger" onclick="closeModal()">Cancel</button>
+                </div>
+            </div>
+            <script>
+                function openModal(element) {
+                    const modal = document.getElementById('editModal');
+                    const newNameInput = document.getElementById('id');
+                    const net = document.getElementById('plan');
+                    const userId =element.getAttribute('data-user-id');
+                    const userName = element.getAttribute('data-user-name');
+
+
+
+                    newNameInput.value = userId;
+                    net.value = userName;
+
+                    console.log(newNameInput);
+                    console.log(net);
+                    modal.style.display = 'block';
+                    // You can fetch user data using the userId and populate the input fields in the modal if needed
+                }
+
+                function closeModal() {
+                    const modal = document.getElementById('editModal');
+                    modal.style.display = 'none';
+                }
+
+                function saveChanges() {
+                    // Add code here to save the changes and update the table
+                    closeModal();
+                }
+            </script>
 
             <div class="tab-pane fade" id="portfolio_detail">
                 <div class="row">
@@ -499,4 +642,72 @@
     <!--end col-->
 </div>
 <!--end row-->
+
+
+<script>
+    $(document).ready(function() {
+        $('#dataForm').submit(function(e) {
+            e.preventDefault(); // Prevent the form from submitting traditionally
+            // Get the form data
+            var formData = $(this).serialize();
+                    Swal.fire({
+                        title: 'Processing',
+                        text: 'Please wait...',
+                        icon: 'info',
+                        allowOutsideClick: false,
+                        showConfirmButton: false
+                    });
+                    // The user clicked "Yes", proceed with the action
+                    // Add your jQuery code here
+                    // For example, perform an AJAX request or update the page content
+                    $('#loadingSpinner').show();
+                    $.ajax({
+                        url: "{{ route('admin/changelock') }}",
+                        type: 'POST',
+                        data: formData,
+                        success: function(response) {
+                            // Handle the success response here
+                            $('#loadingSpinner').hide();
+
+                            console.log(response);
+                            // Update the page or perform any other actions based on the response
+
+                            if (response.status == 1) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success',
+                                    text: response.message
+                                }).then(() => {
+                                    location.reload(); // Reload the page
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'info',
+                                    title: 'Pending',
+                                    text: response.message
+                                });
+                                // Handle any other response status
+                            }
+
+                        },
+                        error: function(xhr) {
+                            $('#loadingSpinner').hide();
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'fail',
+                                text: xhr.responseText
+                            });
+                            // Handle any errors
+                            console.log(xhr.responseText);
+
+                        }
+                    });
+
+
+            // Send the AJAX request
+        });
+    });
+
+</script>
+
 @include('layouts.footer')
