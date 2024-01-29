@@ -79,7 +79,7 @@
                 <ul class="nav nav-pills mb-0" id="pills-tab" role="tablist">
                     <li class="nav-item"><a class="nav-link active" id="general_detail_tab" data-toggle="pill" href="#general_detail">General</a></li>
                     <li class="nav-item"><a class="nav-link" id="activity_detail_tab" data-toggle="pill" href="#activity_detail">Transactions</a></li>
-                    <li class="nav-item"><a class="nav-link" id="safelock_detail_tab" data-toggle="pill" href="#activity_detail">Safe-lock</a></li>
+                    <li class="nav-item"><a class="nav-link" id="safelock_detail_tab" data-toggle="pill" href="#safelock_detail">Safe-lock</a></li>
                     <li class="nav-item"><a class="nav-link" id="portfolio_detail_tab" data-toggle="pill" href="#portfolio_detail">Bills</a></li>
                     <li class="nav-item"><a class="nav-link" id="settings_detail_tab" data-toggle="pill" href="#settings_detail">Charges</a></li>
                     <li class="nav-item"><a class="nav-link" id="sms_tab" data-toggle="pill" href="#sms_detail">Update User</a></li>
