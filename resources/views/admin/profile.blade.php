@@ -339,12 +339,12 @@
                                                     <button type="button" class="btn btn-info btn-xs">
                                                         Running
                                                     </button>
-                                                    <a onclick="openModal(this)" data-user-id="{{$re->id}}" data-user-name="{{$re->tittle}}" class="btn btn-danger">Change-Amount</a>
+                                                    <a onclick="openModal(this)" data-user-id="{{$re->id}}" data-user-name="{{$re->tittle}}" class="btn btn-danger text-white">Change-Amount</a>
                                                 @elseif($re->status=="0")
                                                     <button type="button" class="btn btn-primary btn-xs">
                                                         Completed
                                                     </button>
-                                                    <a onclick="openModal(this)" data-user-id="{{$re->id}}" data-user-name="{{$re->tittle}}" class="btn btn-danger">Change-Amount</a>
+                                                    <a onclick="openModal(this)" data-user-id="{{$re->id}}" data-user-name="{{$re->tittle}}" class="btn btn-danger text-white">Change-Amount</a>
                                                 @endif
                                                 @if($re->status=="1")
                                                     <a href="{{route('admin/cron', $re->id)}}" class="btn btn-danger">Terminate</a>
@@ -400,7 +400,7 @@
                                     Enter selling Amount<span class="asteriskField">*</span>
                                 </label>
                                 <div class="">
-                                    <input type="number" id="amount" name="tamount"  class="text-success form-control" required>
+                                    <input type="number" id="amount" name="amount"  class="text-success form-control" required>
                                 </div>
                             </div>
                             <br/>
