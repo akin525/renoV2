@@ -74,7 +74,7 @@ $reseller=DB::table('users')->where("apikey", "!=", "")->count();
             return redirect('admin/finds');
         }
 $wallet=wallet::where('username', $username)->first();
-$lock=safe_lock::where('username', $username)->first();
+$lock=safe_lock::where('username', $username)->get();
         $user =User::where('username', $username)->first();
         $sumtt = deposit::where('username', $ap->username)->sum('amount');
         $tt = deposit::where('username', $ap->username)->count();
