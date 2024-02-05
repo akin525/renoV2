@@ -276,7 +276,7 @@
                                 </div>
                             </div>
                             <div class="bg-shape">
-                                <img alt="slider" src="{{asset("renon.png")}}">
+{{--                                <img alt="slider" src="{{asset("renon.png")}}">--}}
                             </div>
                         </div>
                     </div>
@@ -289,24 +289,24 @@
 
 <script>
     function myCallback(data) {
-        console.log("I am in callback")
-        console.log(JSON.stringify(data));
+        // console.log("I am in callback")
+        // console.log(JSON.stringify(data));
         alert(JSON.stringify(data));
-        const btn = document.getElementById('btn');
-        var text = JSON.stringify(obj, function (key, value){
-            if (key == "success"){
-                btn.style.display = 'block';
-            }else {
-                btn.style.display = 'none';
-
-            }
-        });
-        text.success=new su(text.success);
+        // const btn = document.getElementById('btn');
+        // var text = JSON.stringify(obj, function (key, value){
+        //     if (key == "success"){
+        //         btn.style.display = 'block';
+        //     }else {
+        //         btn.style.display = 'none';
+        //
+        //     }
+        // });
+        // text.success=new su(text.success);
         alert(JSON.stringify(data));
     }
     function contactCallback(data) {
-        console.log("I am in callback")
-        console.log(JSON.stringify(data));
+        // console.log("I am in callback")
+        // console.log(JSON.stringify(data));
         // document.getElementById('anyme').value=data.data;
         alert(JSON.stringify(data));
     }
