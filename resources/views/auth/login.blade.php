@@ -289,25 +289,11 @@
 
 <script>
     function myCallback(data) {
-        // console.log("I am in callback")
-        // console.log(JSON.stringify(data));
+        // setcon(JSON.stringify(data.success));
         alert(JSON.stringify(data));
-        // const btn = document.getElementById('btn');
-        // var text = JSON.stringify(obj, function (key, value){
-        //     if (key == "success"){
-        //         btn.style.display = 'block';
-        //     }else {
-        //         btn.style.display = 'none';
-        //
-        //     }
-        // });
-        // text.success=new su(text.success);
-        alert(JSON.stringify(data));
+
     }
-    function contactCallback(data) {
-        // console.log("I am in callback")
-        // console.log(JSON.stringify(data));
-        // document.getElementById('anyme').value=data.data;
+    function myCall(data) {
         alert(JSON.stringify(data));
     }
 
