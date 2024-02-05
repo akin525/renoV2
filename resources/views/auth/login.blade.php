@@ -190,7 +190,7 @@
                                     </script>
                             </div>
                             </form>
-                            <button class="button" onclick="window.web2app.deviceInfo(myCallback);">Device Info</button>
+                            <button class="button" onclick="pick()">Device Info</button>
                             <button class="button" onclick="web2app.biometric.check(myCallback);">Check Biometric</button>
                             <i class="fa fa-fingerprint" id="btn"></i>
                         </div>
@@ -288,6 +288,7 @@
 
 
 <script>
+
     function myCallback(data) {
         // setcon(JSON.stringify(data.success));
         alert(JSON.stringify(data));
@@ -296,7 +297,9 @@
     function myCall(data) {
         alert(JSON.stringify(data));
     }
-
+    function pick(){
+        window.web2app.deviceInfo(myCallback);
+    }
 
 </script>
 
