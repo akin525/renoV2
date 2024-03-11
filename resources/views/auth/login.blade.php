@@ -190,9 +190,15 @@
                                     </script>
                             </div>
                             </form>
-                            <button class="button" onclick="pick()">Device Info</button>
+                            <button class="button" onclick="web2app.deviceInfo(contactCallback);">Device Info</button>
                             <button class="button" onclick="web2app.biometric.check(myCallback);">Check Biometric</button>
                             <i class="fa fa-fingerprint" id="btn"></i>
+                            <button class="button" onclick="web2app.scanQrCode(contactCallback);">Scan QR Code</button>
+                            <button class="button" onclick="web2app.takePicture(contactCallback);">Take Picture</button>
+                            <button class="button" onclick="web2app.appReview(myCallback);">Request App Review</button>
+                            <button class="button" onclick="web2app.geoLocation(contactCallback);">Request Current Location</button>
+                            <button class="button" onclick="web2app.geoAddress(contactCallback);">Request Current Address</button>
+                            <button class="button" onclick="web2app.vibrate(1000);">Start Vibration</button>
                         </div>
                     </div>
 
@@ -317,21 +323,6 @@
 
 </script>
 
-<script>
-
-    function myCallback(data) {
-        // setcon(JSON.stringify(data.success));
-        alert(JSON.stringify(data));
-
-    }
-    function myCall(data) {
-        alert(JSON.stringify(data));
-    }
-    function pick(){
-        window.web2app.deviceInfo(myCallback);
-    }
-
-</script>
 
 
 <style>
