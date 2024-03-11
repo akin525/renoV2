@@ -285,7 +285,37 @@
         </div>
     </div>
 </section>
+<script>
 
+    function dynamicLinkEvent(type, data) {
+        alert(JSON.stringify(data));
+
+        console.log("dLink Event");
+        console.log(type);
+        console.log(JSON.stringify(data));
+        document.getElementById('anyme').value=data.data;
+    }
+
+    function web2appInit(data) {
+        alert(JSON.stringify(data));
+        console.log("web2app is ready")
+        console.log(JSON.stringify(data));
+    }
+
+    function myCallback(data) {
+        alert(JSON.stringify(data));
+        console.log("I am in callback")
+        console.log(JSON.stringify(data));
+    }
+
+    function contactCallback(data) {
+        alert(JSON.stringify(data));
+        console.log("I am in callback")
+        console.log(JSON.stringify(data));
+        document.getElementById('anyme').value=data.data;
+    }
+
+</script>
 
 <script>
 
