@@ -333,8 +333,20 @@
 
 {{--            </iframe>--}}
 {{--            </center>--}}
+<script>
+    function myCallback(data) {
+        // alert(JSON.stringify(data));
+        // console.log("I am in callback")
+        // console.log(JSON.stringify(data));
+    }
+</script>
+            <script>
+                window.addEventListener('load', function() {
+                    window.web2app.confirmlogin.islogin(myCallback);
+                    window.web2app.advert.showinterstitial(myCallback)
 
-
+                });
+            </script>
             <style>
                 .float{
                     position:fixed;
