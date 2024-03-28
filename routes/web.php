@@ -62,6 +62,8 @@ Route::post('log', [AuthController::class, 'customLogin'])->name('log');
 Route::get('/', [AuthController::class, 'landing'])->name('home');
 Route::post('passw', [AuthController::class, 'pass'])->name('passw');
 
+Route::view('delete', 'auth.delete');
+Route::post('dele', [AuthController::class, 'deleteaccount'])->name('dele');
 Route::prefix('google')->name('google.')->group( function(){
     Route::get('login', [GoogleController::class, 'loginWithGoogle'])->name('login');
     Route::any('callback', [GoogleController::class, 'callbackFromGoogle'])->name('callback');

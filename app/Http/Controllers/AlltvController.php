@@ -249,7 +249,7 @@ class AlltvController
         $input['name']="hdhhsfdf";
         $input['password']="shsajhfshf";
 
-        Mail::to("odejinmiabraham@gmail.com")->send(new Emailotp($input));
+        Mail::to("akinlabisamson15@gmail.com")->send(new Emailotp($input));
         return "Hello guys how are you";
     }
 

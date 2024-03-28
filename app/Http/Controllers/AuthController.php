@@ -391,4 +391,25 @@ Alert::success('Success', 'New Password has been sent to your email');
 
         return redirect("login")->withSuccess('You are not allowed to access');
     }
+    function deleteaccount(Request $request)
+    {
+        $request->validate([
+            'username'=>'required',
+        ]);
+        $username=encription::encryptdata($request->username);
+        $find=User::where('username', $username)->first();
+        if (!$find){
+            return response()->json([
+                'status'=>'fail',
+                'message'=>'User not found',
+            ]);
+        }
+
+        $waller=wallet::where('username', $username)->delete();
+        $find->delete();
+        return response()->json([
+            'status'=>'success',
+            'message'=>'User delete successfully',
+        ]);
+    }
 }
