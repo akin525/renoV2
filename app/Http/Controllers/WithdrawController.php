@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\wallet;
 use App\Models\withdraw;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -153,6 +154,83 @@ public function sub(Request $request)
     Alert::success('Succcess', $mg);
     return redirect('withdraw');
 }
+
+    function withdrawapi()
+    {
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.paystack.co/bank",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: Bearer sk_test_280c68e08f76233b476038f04d92896b4749eec3",
+                "Cache-Control: no-cache",
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+//return $response;
+        }
+        $data = json_decode($response, true);
+        $with=withdraw::where('username', Auth::user()->username)->get();
+
+        return view('api.withdrawapi', compact('data', 'with'));
+
+    }
+    function confirmto(Request $request)
+    {
+        $request->validate([
+            'amount' => ['required', 'numeric', 'min:4'],
+        ]);
+        $user = User::find($request->user()->id);
+        $wallet = wallet::where('username', $user->username)->first();
+
+        if ($wallet->profit < $request->amount) {
+            $mg = "Insufficient Balance in your bonus";
+
+            return response()->json($mg, Response::HTTP_BAD_REQUEST);
+
+
+        }
+        if ($request->amount < 0) {
+
+            $mg = "error transaction";
+            return response()->json($mg, Response::HTTP_BAD_REQUEST);
+
+
+
+        }
+
+
+        $bonus=$wallet->profit;
+        $wallet=$wallet->balance;
+
+        $ubonus=$bonus-$request->amount;
+        $to=$bonus+$wallet;
+
+        $wallet->balance=$to;
+        $wallet->profit=$ubonus;
+        $wallet->save();
+        return response()->json([
+            'status' => 'success',
+            'message' => "Your Bonus has been added to your wallet successfully",
+        ]);
+
+    }
+
     public  function reproduct($username, $title, $body)
     {
         $curl = curl_init();

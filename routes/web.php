@@ -192,6 +192,9 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
+    Route::get('withdrawapi', [WithdrawController::class, 'withdrawapi'])->name('withdrawapi');
+    Route::post('rbonus', [WithdrawController::class, 'confirmto'])->name('rbonus');
+
 });
 
 Route::middleware(['auth'])->group(function () {
