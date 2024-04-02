@@ -196,7 +196,7 @@ public function sub(Request $request)
             'amount' => ['required', 'numeric', 'min:4'],
         ]);
         $user = User::find($request->user()->id);
-        $wallet = wallet::where('username', $user->username)->first();
+        $wallet = wallet::where('username', Auth::user()->username)->first();
 
         if ($wallet->profit < $request->amount) {
             $mg = "Insufficient Balance in your bonus";
