@@ -195,40 +195,34 @@ public function sub(Request $request)
         $request->validate([
             'amount' => ['required', 'numeric', 'min:4'],
         ]);
+
         $user = User::find($request->user()->id);
-        $wallet = wallet::where('username', Auth::user()->username)->first();
+        $wallet = Wallet::where('username', Auth::user()->username)->first();
 
         if ($wallet->profit < $request->amount) {
             $mg = "Insufficient Balance in your bonus";
-
             return response()->json($mg, Response::HTTP_BAD_REQUEST);
-
-
         }
+
         if ($request->amount < 0) {
-
-            $mg = "error transaction";
+            $mg = "Error in transaction";
             return response()->json($mg, Response::HTTP_BAD_REQUEST);
-
-
-
         }
 
+        $bonus = (int)$wallet->profit;
+        $balance = (int)$wallet->balance;
 
-        $bonus=(int)$wallet->profit;
-        $wallet=(int)$wallet->balance;
+        $ubonus = $bonus - $request->amount;
+        $new_balance = $balance + $request->amount;
 
-        $ubonus=$bonus-$request->amount;
-        $to=$bonus+$wallet;
-
-        $wallet->balance=$to;
-        $wallet->profit=$ubonus;
+        $wallet->balance = $new_balance;
+        $wallet->profit = $ubonus;
         $wallet->save();
+
         return response()->json([
             'status' => 'success',
             'message' => "Your Bonus has been added to your wallet successfully",
         ]);
-
     }
 
     public  function reproduct($username, $title, $body)
