@@ -215,8 +215,8 @@ public function sub(Request $request)
         }
 
 
-        $bonus=$wallet->profit;
-        $wallet=$wallet->balance;
+        $bonus=(int)$wallet->profit;
+        $wallet=(int)$wallet->balance;
 
         $ubonus=$bonus-$request->amount;
         $to=$bonus+$wallet;
