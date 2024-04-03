@@ -343,7 +343,7 @@
             <script>
                 window.addEventListener('load', function() {
                     window.web2app.confirmlogin.islogin(myCallback);
-                    window.web2app.advert.showinterstitial(myCallback)
+                    // window.web2app.advert.showinterstitial(myCallback)
 
                 });
             </script>
