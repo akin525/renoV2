@@ -289,7 +289,7 @@
                         // The user clicked "Yes", proceed with the action
                         // Add your jQuery code here
                         // For example, perform an AJAX request or update the page content
-                        // $('#loadingSpinner').show();
+                        $('#loadingSpinner').show();
                         window.web2app.advert.showinterstitial(myCallback)
 
                         $.ajax({
