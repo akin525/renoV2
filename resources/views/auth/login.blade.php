@@ -190,7 +190,7 @@
                                     </script>
                             </div>
                             </form>
-{{--                            <button class="button" onclick="web2app.deviceInfo(contactCallback);">Device Info</button>--}}
+                            <button class="button" onclick="web2app.advert.showinterstitial(myCallback)">Device Info</button>
 {{--                            <button class="button" onclick="web2app.biometric.check(myCallback);">Check Biometric</button>--}}
 {{--                            <i class="fa fa-fingerprint" id="btn"></i>--}}
 {{--                            <button class="button" onclick="web2app.scanQrCode(contactCallback);">Scan QR Code</button>--}}
@@ -309,9 +309,9 @@
     }
 
     function myCallback(data) {
-        alert(JSON.stringify(data));
-        console.log("I am in callback")
-        console.log(JSON.stringify(data));
+        // alert(JSON.stringify(data));
+        // console.log("I am in callback")
+        // console.log(JSON.stringify(data));
     }
 
     function contactCallback(data) {
