@@ -290,7 +290,7 @@
                         // Add your jQuery code here
                         // For example, perform an AJAX request or update the page content
                         $('#loadingSpinner').show();
-                        window.web2app.advert.showinterstitial(myCallback)
+                        // window.web2app.advert.showinterstitial(myCallback)
 
                         $.ajax({
                             url: "{{ route('buyairtime') }}",
