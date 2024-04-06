@@ -288,7 +288,7 @@
                     if (result.isConfirmed) {
 
                         $('#loadingSpinner').show();
-                        web2app.advert.showinterstitial(myCallback)
+                        // web2app.advert.showinterstitial(myCallback)
 
                         $.ajax({
                             url: "{{ route('buyairtime') }}",
