@@ -130,6 +130,10 @@
                         <a href="{{ route('dashboard') }}"  ><i class="fa fa-amazon white_color"></i> <span>Back To User Account</span></a>
                     </li>
 
+                    <li class="active">
+                        <a href="{{ route('admin/switchserver') }}"  ><i class="fa fa-product-hunt white_color"></i> <span>MCD Switch</span></a>
+                    </li>
+
                     <li>
                         <a href="#app1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-product-hunt"></i> <span>Control Product</span></a>
                         <ul class="collapse list-unstyled" id="app1">
@@ -143,7 +147,10 @@
                                 <a  class="nav-link" href="{{ route('admin/product1') }}"  ><i class="fa fa-shopping-cart white_color"></i> <span>Honorworld Product</span></a>
                             </li>
                             <li class="active">
-                                <a href="{{ route('admin/product') }}"  ><i class="fa fa-shopping-cart red_color"></i> <span>MCD Product</span></a>
+                                <a href="{{ route('admin/product') }}"  ><i class="fa fa-shopping-cart red_color"></i> <span>MCD Product </span>
+                                    <span class="badge badge-primary"> Old</span</a>
+                                <a href="{{ route('admin/mcdproduct') }}"  ><i class="fa fa-shopping-cart red_color"></i> <span>MCD Product
+                                    </span><span class="badge badge-danger"> New</span></a>
                             </li>
                             <li class="active">
                                 <a href="{{ route('admin/product2') }}"  ><i class="fa fa-shopping-cart "></i> <span>Easeaccess Product</span></a>

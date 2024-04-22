@@ -315,6 +315,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('admin/switchserver', [InsertController::class, 'createserevr'])->name('admin/switchserver');
     Route::get('admin/switchserver1/{id}', [InsertController::class, 'switchserver'])->name('admin/switchserver1');
 
+    Route::get('admin/mcdproduct', [ProductController::class,  'indexmcd'])->name('admin/mcdproduct');
+    Route::get('admin/pdm/{id}', [ProductController::class, 'onmcd'])->name('admin/pdm');
+    Route::post('admin/dom', [ProductController::class, 'editmcd'])->name('admin/dom');
+
+
+
 });
 Route::get('admin/api', [HonorApi::class, 'api'])->name('admin/api');
 
