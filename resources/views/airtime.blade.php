@@ -123,10 +123,10 @@
                            <div class="">
                                <select name="id" class="text-success form-control" required="">
 
-                                   <option value="m">MTN</option>
-                                   <option value="g">GLO</option>
-                                   <option value="a">AIRTEL</option>
-                                   <option value="9">9MOBILE</option>
+                                   <option value="MTN">MTN</option>
+                                   <option value="GLO">GLO</option>
+                                   <option value="AIRTEL">AIRTEL</option>
+                                   <option value="9MOBILE">9MOBILE</option>
 
                                </select>
                            </div>
