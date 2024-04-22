@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\CandCController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\Easy;
 use App\Http\Controllers\admin\HonorApi;
+use App\Http\Controllers\admin\InsertController;
 use App\Http\Controllers\admin\LockController;
 use App\Http\Controllers\admin\LoginController;
 use App\Http\Controllers\admin\ProductController;
@@ -121,7 +122,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('airtime1', [AuthController::class, 'airtime'])->name('airtime1');
     Route::get('airtime', [AuthController::class, 'airtime'])->name('airtime');
     Route::get('buydata/{selectedValue}', [AuthController::class, 'buydata'])->name('buydata');
-    Route::get('redata/{selectedValue}', [AuthController::class, 'redata'])->name('redata');
+    Route::get('redata/{selectedValue}/{category}', [AuthController::class, 'redata'])->name('redata');
     Route::post('pre', [AuthController::class, 'pre'])->name('pre');
     Route::post('bill', [BillController::class, 'bill'])->name('bill');
     Route::get('referwith', [RefersController::class, 'index'])->name('referwith');
@@ -308,6 +309,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/approved/{id}', [\App\Http\Controllers\admin\AdminAdsController::class, 'approveads'])->name('admin/approved');
     Route::get('admin/disapproved/{id}', [\App\Http\Controllers\admin\AdminAdsController::class, 'dissaproveads'])->name('admin/disapproved');
 
+    Route::get('admin/listdata/{id}', [InsertController::class, 'getmcdproduct1'])->name('admin/listdata');
+
+    Route::get('admin/switchserver', [InsertController::class, 'indexserver'])->name('admin/switchserver');
+    Route::post('admin/switchserver', [InsertController::class, 'createserevr'])->name('admin/switchserver');
+    Route::get('admin/switchserver1/{id}', [InsertController::class, 'switchserver'])->name('admin/switchserver1');
 
 });
 Route::get('admin/api', [HonorApi::class, 'api'])->name('admin/api');
