@@ -9,6 +9,7 @@ use App\Models\bo;
 use App\Models\data;
 use App\Models\deposit;
 use App\Models\easy;
+use App\Models\Mcd;
 use App\Models\profit;
 use App\Models\profit1;
 use App\Models\server;
@@ -370,7 +371,7 @@ return $response;
                 $product = big::where('id', $request->productid)->first();
             } elseif ($serve->name == 'mcd') {
 //                $product = data::where('id', $request->productid)->first();
-                $product = Mail::where('id', $request->productid)->first();
+                $product = Mcd::where('id', $request->productid)->first();
             }elseif ($serve->name == 'easyaccess') {
                 $product = easy::where('id', $request->productid)->first();
             }
