@@ -60,18 +60,27 @@ class DataserverController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => $resellerURL.'pay',
+            CURLOPT_URL => 'https://reseller.mcd.5starcompany.com.ng/api/v1/data',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 0,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array('service' => 'data','coded' => $request->cat_id,'phone' => $request->number,  'reseller_price' => $request->tamount),
+            CURLOPT_POSTFIELDS => array('payment' => 'wallet',
+                'coded' => $request->cat_id,
+                'number' => $request->number,
+                'ref' => $request->refid,
+                'country'=>'NG',
+                'promo'=>0
+            ),
 
             CURLOPT_HTTPHEADER => array(
-                'Authorization: mcd_key_75rq4][oyfu545eyuriup1q2yue4poxe3jfd'
+                'Content-Type: application/json',
+                'Authorization: Bearer XXRpRiPRkAsrV4Do9hpWbmDJRUVFHBRUyUFmw5IIVceBjnl8VclzX3BJgMD6ZhVNK6PPSgN5xSz6ubYNntBev5xbjFa2JZTiVRvSUiWr7wA9UzgAbUt4IvG5U71kra0YKaWDUFGEKa6NgRn8kUCgNr'
             )));
 
 

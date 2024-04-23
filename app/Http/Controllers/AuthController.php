@@ -14,6 +14,8 @@ use App\Models\charp;
 use App\Mail\Emailpass;
 use App\Models\easy;
 use App\Models\Giveaway;
+use App\Models\Mcd;
+use App\Models\McdServer;
 use App\Models\Messages;
 use App\Models\refer;
 use App\Models\safe_lock;
@@ -301,15 +303,22 @@ Alert::success('Success', 'New Password has been sent to your email');
 
         }
        }
-    public function redata(Request  $request, $selectedValue)
+    public function redata(Request  $request, $selectedValue, $category)
     {
+//        return response()->json($selectedValue);
 
         $daterserver = new DataserverController();
         $serve = server::where('status', '1')->first();
 //return $request->id;
         if ($serve->name == 'mcd') {
             $user = User::find($request->user()->id);
-            $data = data::where(['status' => 1])->where('network', $selectedValue)->get();
+            $serve=McdServer::where('status', 1)->first();
+//            return response()->json($serve);
+            $data=Mcd::where('server', $serve->code)
+                ->where('status', 1)
+                ->where('network', $category)
+                ->where('category', $selectedValue)->get();
+//            $data = data::where(['status' => 1])->where('network', $selectedValue)->get();
 
             return response()->json($data);
 

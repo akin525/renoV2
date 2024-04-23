@@ -171,7 +171,7 @@ class AirtimeController
                     return $response;
                     $data = json_decode($response, true);
                     $success = $data["success"];
-                    $tran1 = $data["discountAmount"];
+//                    $tran1 = $data["discountAmount"];
                     if ($success == 1) {
 //                    $bo->server_response=$response;
 //                    $bo->status=1;

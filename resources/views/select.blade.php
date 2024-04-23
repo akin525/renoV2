@@ -72,67 +72,67 @@
             <center><h3>
                     Select Network</h3></center>
         </div>
-        <div class="card bg-primary">
-            <center>
-
-                <div class="">
-                    <h4 class="heading mb-0 text-white text-center">Advertisement 😎</h4>
-                </div>
-                <div class="card card-body shadow-hover">
-                    <style>
-                        .bo {
-                            max-width: 100%;
-                            height: auto;
-                        }
-                    </style>
-                    @if($ads=="")
-                        <center>
-                            <video width="320" height="240" controls autoplay loop>
-                                <source src="{{asset('ads/ads.mp4')}}" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </center>
-                        <a href="{{route('advertisement')}}" class="btn btn-success">Advertise here</a>
-                    @else
-                        <a href="{{route('details', $ads->id)}}">
-                            <img  class="bo" src="{{url('/', $ads->cover_image)}}" alt="ads" />
-                            <h3 class="text-primary" ><b>{{$ads->advert_name}}</b></h3>
-                        </a>
-
-
-                @endif
-            </center>
-        </div>
         <center>
+            <div class="card bg-primary">
+                <center>
+
+                    <div class="">
+                        <h4 class="heading mb-0 text-white text-center">Advertisement 😎</h4>
+                    </div>
+                    <div class="card card-body shadow-hover">
+                        <style>
+                            .bo {
+                                max-width: 100%;
+                                height: auto;
+                            }
+                        </style>
+                        @if($ads=="")
+                            <center>
+                                <video width="320" height="240" controls autoplay loop>
+                                    <source src="{{asset('ads/ads.mp4')}}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </center>
+                            <a href="{{route('advertisement')}}" class="btn btn-success">Advertise here</a>
+                        @else
+                            <a href="{{route('details', $ads->id)}}">
+                                <img  class="bo" src="{{url('/', $ads->cover_image)}}" alt="ads" />
+                                <h3 class="text-primary" ><b>{{$ads->advert_name}}</b></h3>
+                            </a>
+
+
+                    @endif
+                </center>
+            </div>
             <div class="subscribe btn-controls">
                 <form id="dataForm">
                     @csrf
+
+                    <div id="div_id_network" class="form-group">
+
+                        <label for="network" class=" requiredField">
+                            Select Your Network<span class="asteriskField">*</span>
+                        </label>
+                        <select  name="id" id="firstSelect1" class="text-success form-control" required="">
+                            <option>Select Your Network</option>
+                            <option value="MTN">MTN</option>
+                            <option value="AIRTEL">AIRTEL</option>
+                            <option value="GLO">GLO</option>
+                            <option value="9MOBILE">9MOBILE</option>
+                        </select>
+                    </div>
+                    <br/>
                     <label for="network" class=" requiredField">
-                        Select Your Network<span class="asteriskField">*</span>
+                        Select Your Category<span class="asteriskField">*</span>
                     </label>
                     <select  name="id" id="firstSelect" class="text-success form-control" required="">
-                        <option>Select Your Network</option>
-                        @if ($serve->name == 'mcd')
-                            <option value="mtn-sme data">MTN-SME</option>
-                            <option value="mtn-data">MTN-DG</option>
-                            <option value="glo-data">GLO</option>
-                            <option value="etisalat-data">9MOBILE</option>
-                        @elseif($serve->name=='easyaccess')
-                            <option value="MTN">MTN</option>
-                            <option value="GLO">GLO</option>
-                            <option value="9MOBILE">9MOBILE</option>
-                            <option value="AIRTEL">AIRTEL</option>
-                        @else
-                            <option value="MTN">MTN</option>
-                            <option value="GLO">GLO</option>
-                            <option value="9MOBILE">9MOBILE</option>
-                        @endif
-                        @if ($serve->name == 'mcd')
-                            <option value="airtel-data">AIRTEL</option>
-                        @else
-                            <option value="AIRTEL_DG">AIRTEL_DG</option>
-                            <option value="AIRTEL_CG">AIRTEL_CG</option>
-                        @endif
+                        <option>Select Your Category</option>
+                        {{--                        <option value="COOL">COOL</option>--}}
+                        {{--                        <option value="XTRADATA">XTRADATA</option>--}}
+                        {{--                        <option value="DATA SHARE">DATA SHARE</option>--}}
+                        <option value="SME">SME</option>
+                        <option value="CG">CG</option>
+                        <option value="DG">DG</option>
                     </select>
 
                     <br>
@@ -195,6 +195,7 @@
                     <img    src="{{asset('ads/ads.jpg')}}" alt="#" />
                 </div>
             </a>
+        </div>
         <script>
             const btns = document.querySelectorAll('button');
             btns.forEach((items)=>{
@@ -221,21 +222,33 @@
 
 
         <br>
-
+        {{--        <style>--}}
+        {{--            img {--}}
+        {{--                max-width: 100%;--}}
+        {{--                height: auto;--}}
+        {{--            }--}}
+        {{--        </style>--}}
+        {{--        <div class="card-body">--}}
+        {{--            <div class="center">--}}
+        {{--                <img    src="{{asset('images/banner.jpeg')}}" alt="#" />--}}
+        {{--            </div>--}}
+        {{--        </div>--}}
 
         <br>
     </div>
 </div>
 
+
 <script>
     $(document).ready(function() {
         $('#firstSelect').change(function() {
             var selectedValue = $(this).val();
+            var category = $('#firstSelect1').val()
             // Show the loading spinner
             $('#loadingSpinner').show();
             // Send the selected value to the '/getOptions' route
             $.ajax({
-                url: '{{ url('redata') }}/' + selectedValue,
+                url: '{{ url('redata') }}/' + selectedValue +'/' +category,
                 type: 'GET',
                 success: function(response) {
                     // Handle the successful response
@@ -246,7 +259,7 @@
 
                     // Append the received options to the second select box
                     $.each(response, function(index, option) {
-                        secondSelect.append('<option  value="' + option.id + '">' + option.plan +  ' --₦' + option.tamount + '</option>');
+                        secondSelect.append('<option  value="' + option.id + '">' +category+'-'+ option.plan +  ' --₦' +  option.tamount + '</option>');
                     });
 
                     // Select the desired value dynamically

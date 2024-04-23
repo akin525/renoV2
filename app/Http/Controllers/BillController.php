@@ -369,7 +369,8 @@ return $response;
             if ($serve->name == 'honorworld') {
                 $product = big::where('id', $request->productid)->first();
             } elseif ($serve->name == 'mcd') {
-                $product = data::where('id', $request->productid)->first();
+//                $product = data::where('id', $request->productid)->first();
+                $product = Mail::where('id', $request->productid)->first();
             }elseif ($serve->name == 'easyaccess') {
                 $product = easy::where('id', $request->productid)->first();
             }
