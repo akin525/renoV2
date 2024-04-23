@@ -350,7 +350,7 @@ class AirtimeController
 
                         curl_close($curl);
                         $data = json_decode($response, true);
-                return response()->json($data, Response::HTTP_BAD_REQUEST);
+                return response()->json($response, Response::HTTP_BAD_REQUEST);
 
 
                         $success = $data["success"];
