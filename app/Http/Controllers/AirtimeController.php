@@ -318,39 +318,38 @@ class AirtimeController
                         $bo['email']=encription::decryptdata(Auth::user()->email);
 
                         $resellerURL = 'https://integration.mcd.5starcompany.com.ng/api/reseller/';
-                        $curl = curl_init();
+                $curl = curl_init();
 
                 curl_setopt_array($curl, array(
-                    CURLOPT_URL =>'https://reseller.mcd.5starcompany.com.ng/api/v1/airtime',
+                    CURLOPT_URL => 'https://reseller.mcd.5starcompany.com.ng/api/v1/airtime',
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => '',
                     CURLOPT_MAXREDIRS => 10,
                     CURLOPT_TIMEOUT => 0,
                     CURLOPT_FOLLOWLOCATION => true,
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                    CURLOPT_SSL_VERIFYHOST => 0,
-                    CURLOPT_SSL_VERIFYPEER => 0,
                     CURLOPT_CUSTOMREQUEST => 'POST',
-                    CURLOPT_POSTFIELDS => array( 'provider' => $request->id,
-                        'number' => $request->number,
-                        'amount' => $request->amount,
-                        'country' => 'NG',
-                        'payment'=>'wallet',
-                        'promo'=>'0',
-                        'ref'=>$request->refid,
-                        'operatorID'=>0
-                    ),
-
+                    CURLOPT_POSTFIELDS =>'{
+    "provider": "'.$request->id.'",
+    "amount": "'.$request->amount.'",
+    "number": "'.$request->number.'",
+    "country" : "NG",
+    "payment" : "wallet",
+    "promo" : "0",
+    "ref":"'.$request->refid.'",
+    "operatorID": 0
+}',
                     CURLOPT_HTTPHEADER => array(
                         'Content-Type: application/json',
                         'Authorization: Bearer XXRpRiPRkAsrV4Do9hpWbmDJRUVFHBRUyUFmw5IIVceBjnl8VclzX3BJgMD6ZhVNK6PPSgN5xSz6ubYNntBev5xbjFa2JZTiVRvSUiWr7wA9UzgAbUt4IvG5U71kra0YKaWDUFGEKa6NgRn8kUCgNr'
-                    )));
+                    ),
+                ));
 
-                        $response = curl_exec($curl);
+                $response = curl_exec($curl);
 
-                        curl_close($curl);
+                curl_close($curl);
                         $data = json_decode($response, true);
-                return response()->json($response, Response::HTTP_BAD_REQUEST);
+//                return response()->json($response, Response::HTTP_BAD_REQUEST);
 
 
                         $success = $data["success"];
