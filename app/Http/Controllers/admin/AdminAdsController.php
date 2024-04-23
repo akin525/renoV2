@@ -25,6 +25,13 @@ class AdminAdsController
         return view('admin.ads.allads', compact('ads'));
 
     }
+
+    function deleteads($id)
+    {
+        $ads=Advert::where('id', $id)->delete();
+        Alert::success('Approved', 'Advert Remove');
+        return back();
+    }
     function approveads($request)
     {
         $ads=Advert::where('id', $request)->first();

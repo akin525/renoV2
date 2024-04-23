@@ -320,6 +320,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('admin/dom', [ProductController::class, 'editmcd'])->name('admin/dom');
 
 
+    Route::get('admin/delete/{id}', [\App\Http\Controllers\admin\AdminAdsController::class, 'deleteads'])->name('admin/delete');
+
+
 
 });
 Route::get('admin/api', [HonorApi::class, 'api'])->name('admin/api');

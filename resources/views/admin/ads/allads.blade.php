@@ -38,7 +38,8 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-success"><i class="fa fa-pencil"></i>Edit</a>
+                                                <a href="#" class="badge badge-primary"><i class="fa fa-pencil"></i>Edit</a>
+                                                <a href="{{route('admin/delete', $re->id)}}" class="badge badge-danger"><i class="fa fa-recycle"></i>Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach
