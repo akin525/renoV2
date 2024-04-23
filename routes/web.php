@@ -122,7 +122,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('airtime1', [AuthController::class, 'airtime'])->name('airtime1');
     Route::get('airtime', [AuthController::class, 'airtime'])->name('airtime');
     Route::get('buydata/{selectedValue}', [AuthController::class, 'buydata'])->name('buydata');
-    Route::get('redata/{selectedValue}', [AuthController::class, 'redata'])->name('redata');
+    Route::get('redata/{selectedValue}/{category}', [AuthController::class, 'redata'])->name('redata');
     Route::post('pre', [AuthController::class, 'pre'])->name('pre');
     Route::post('bill', [BillController::class, 'bill'])->name('bill');
     Route::get('referwith', [RefersController::class, 'index'])->name('referwith');
