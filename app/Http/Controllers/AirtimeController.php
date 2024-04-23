@@ -350,8 +350,11 @@ class AirtimeController
 
                         curl_close($curl);
                         $data = json_decode($response, true);
+                return response()->json($data, Response::HTTP_BAD_REQUEST);
+
+
                         $success = $data["success"];
-                        $tran1 = $data["discountAmount"];
+//                        $tran1 = $data["discountAmount"];
                         if ($success == 1) {
                             $update=bill_payment::where('id', $bo->id)->update([
                                 'server_response'=>$response,
