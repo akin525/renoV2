@@ -57,7 +57,7 @@ class CreateNewUser implements CreatesNewUsers
             CURLOPT_POSTFIELDS => array('account_name' => $input['name'],
                 'business_short_name' => 'RENO','uniqueid' => $username,
                 'email' => $input['email'],'dob' => $input['dob'],
-                'address' => $input['address'],'gender' => $input['gender'], 'provider'=>'providus',
+                'address' => $input['address'],'gender' => $input['gender'], 'provider'=>'safeheaven',
                 'phone' =>'08146328645','webhook_url' => 'https://renomobilemoney.com/api/run1'),
             CURLOPT_HTTPHEADER => array(
                 'Authorization: mcd_key_75rq4][oyfu545eyuriup1q2yue4poxe3jfd'

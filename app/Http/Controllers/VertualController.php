@@ -46,7 +46,7 @@ class VertualController
                     'business_short_name' => 'RENO','uniqueid' => $username,
                     'email' => $email,'dob' => $user->dob,
                     'address' => $user->address,'gender' => $user->gender,
-                    'phone' =>$phone,'webhook_url' => 'https://renomobilemoney.com/api/run1'),
+                    'phone' =>$phone,'webhook_url' => 'https://renomobilemoney.com/api/run1'), 'provider'=>'safeheaven',
                 CURLOPT_HTTPHEADER => array(
                     'Authorization: mcd_key_75rq4][oyfu545eyuriup1q2yue4poxe3jfd'
                 ),
