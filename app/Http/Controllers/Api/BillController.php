@@ -9,6 +9,7 @@ use App\Models\bo;
 use App\Models\data;
 use App\Models\DataComs;
 use App\Models\interest;
+use App\Models\Mcd;
 use App\Models\server;
 use App\Models\wallet;
 use Illuminate\Http\Request;
@@ -70,7 +71,7 @@ class BillController
                 ], 200);
 
             } else {
-                $bt = data::where("plan_id", $request->code)->first();
+                $bt = Mcd::where("cat_id", $request->code)->first();
                 if (!isset($bt)) {
                     return response()->json([
                         'message' => "invalid code, check and try again later",
