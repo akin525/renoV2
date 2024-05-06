@@ -44,7 +44,7 @@ class CreateNewUser implements CreatesNewUsers
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://integration.mcd.5starcompany.com.ng/api/reseller/virtual-account3',
+            CURLOPT_URL => 'https://reseller.mcd.5starcompany.com.ng/api/v1/virtual-account',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -56,11 +56,10 @@ class CreateNewUser implements CreatesNewUsers
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array('account_name' => $input['name'],
                 'business_short_name' => 'RENO','uniqueid' => $username,
-                'email' => $input['email'],'dob' => $input['dob'],
-                'address' => $input['address'],'gender' => $input['gender'], 'provider'=>'safeheaven',
+                'email' => $input['email'],
                 'phone' =>'08146328645','webhook_url' => 'https://renomobilemoney.com/api/run1'),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: mcd_key_75rq4][oyfu545eyuriup1q2yue4poxe3jfd'
+                'Authorization: Bearer XXRpRiPRkAsrV4Do9hpWbmDJRUVFHBRUyUFmw5IIVceBjnl8VclzX3BJgMD6ZhVNK6PPSgN5xSz6ubYNntBev5xbjFa2JZTiVRvSUiWr7wA9UzgAbUt4IvG5U71kra0YKaWDUFGEKa6NgRn8kUCgNr'
             ),
         ));
 
