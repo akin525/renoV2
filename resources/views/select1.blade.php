@@ -301,8 +301,13 @@
                     // The user clicked "Yes", proceed with the action
                     // Add your jQuery code here
                     // For example, perform an AJAX request or update the page content
-                    // $('#loadingSpinner').show();
-                    web2app.advert.showinterstitial(myCallback)
+                    $('#loadingSpinner').show();
+
+                    try {
+                        web2app.advert.showinterstitial(myCallback);
+                    } catch (error) {
+                        console.error("An error occurred while trying to show the interstitial ad:", error);
+                    }
 
                     $.ajax({
                         url: "{{ route('bill') }}",

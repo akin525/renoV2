@@ -287,8 +287,13 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
 
-                        // $('#loadingSpinner').show();
-                        web2app.advert.showinterstitial(myCallback)
+                        $('#loadingSpinner').show();
+                        // web2app.advert.showinterstitial(myCallback)
+                        try {
+                            web2app.advert.showinterstitial(myCallback);
+                        } catch (error) {
+                            console.error("An error occurred while trying to show the interstitial ad:", error);
+                        }
 
                         $.ajax({
                             url: "{{ route('buyairtime') }}",
