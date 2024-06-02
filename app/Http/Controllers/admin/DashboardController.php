@@ -42,22 +42,29 @@ public function dashboard(Request $request)
 
         $resellerURL = 'https://integration.mcd.5starcompany.com.ng/api/reseller/';
 
-        $url1 = 'https://reseller.mcd.5starcompany.com.ng/api/v1/my-balance';
+        $curl = curl_init();
 
-        $headers1 = array(
-            'Content-Type: application/json',
-            'Authorization: Bearer XXRpRiPRkAsrV4Do9hpWbmDJRUVFHBRUyUFmw5IIVceBjnl8VclzX3BJgMD6ZhVNK6PPSgN5xSz6ubYNntBev5xbjFa2JZTiVRvSUiWr7wA9UzgAbUt4IvG5U71kra0YKaWDUFGEKa6NgRn8kUCgNr',
-        );
+        curl_setopt_array($curl, array(
+            CURLOPT_URL =>  'https://reseller.mcd.5starcompany.com.ng/api/v1/my-balance',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json',
+                'Authorization: Bearer U0z27c35Q2ABESJDp3GWO2DbKNBCp8hQTD9zS8TXC2ZSaN8VPHZFTqkntLwbtQVNJRWLabCJpqOUwCq7JVDtcAFHWV3NVNFEDzSaPBUE0YXiG9VdLdqezLmlXOlOgT3nBLEV4OZRDXpXs82Zn5Ofti',
 
-        $options = array(
-            'http' => array(
-                'header' => implode("\r\n", $headers1),
-                'method' => 'GET',
             ),
-        );
+        ));
 
-        $context = stream_context_create($options);
-        $response = file_get_contents($url1, false, $context);
+        $response = curl_exec($curl);
+
+        curl_close($curl);
         $data = json_decode($response, true);
         $tran = $data["data"]["wallet"];
 
