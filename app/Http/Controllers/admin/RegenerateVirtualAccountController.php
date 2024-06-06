@@ -23,7 +23,7 @@ function regenrateaccount1($request)
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://integration.mcd.5starcompany.com.ng/api/reseller/virtual-account3',
+        CURLOPT_URL => 'https://reseller.mcd.5starcompany.com.ng/api/v1/virtual-account3',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -39,7 +39,8 @@ function regenrateaccount1($request)
             'address' => $user['address'],'gender' => $user['gender'],
             'phone' =>$phone,'webhook_url' => 'https://renomobilemoney.com/api/run1'), 'provider'=>'safeheaven',
         CURLOPT_HTTPHEADER => array(
-            'Authorization: mcd_key_75rq4][oyfu545eyuriup1q2yue4poxe3jfd'
+            'Content-Type: application/json',
+            'Authorization: Bearer XXRpRiPRkAsrV4Do9hpWbmDJRUVFHBRUyUFmw5IIVceBjnl8VclzX3BJgMD6ZhVNK6PPSgN5xSz6ubYNntBev5xbjFa2JZTiVRvSUiWr7wA9UzgAbUt4IvG5U71kra0YKaWDUFGEKa6NgRn8kUCgNr'
         ),
     ));
 
@@ -80,7 +81,7 @@ function regenrateaccount($request)
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://integration.mcd.5starcompany.com.ng/api/reseller/virtual-account',
+        CURLOPT_URL => 'https://reseller.mcd.5starcompany.com.ng/api/v1/virtual-account',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -92,7 +93,8 @@ function regenrateaccount($request)
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS => array('account_name' =>  $name, 'business_short_name' => 'RENO', 'uniqueid' => $username, 'email' => $email, 'phone' => $phone, 'webhook_url' => 'https://renomobilemoney.com/api/run',),
         CURLOPT_HTTPHEADER => array(
-            'Authorization: mcd_key_75rq4][oyfu545eyuriup1q2yue4poxe3jfd'
+            'Content-Type: application/json',
+            'Authorization: Bearer XXRpRiPRkAsrV4Do9hpWbmDJRUVFHBRUyUFmw5IIVceBjnl8VclzX3BJgMD6ZhVNK6PPSgN5xSz6ubYNntBev5xbjFa2JZTiVRvSUiWr7wA9UzgAbUt4IvG5U71kra0YKaWDUFGEKa6NgRn8kUCgNr'
         ),
     ));
 
