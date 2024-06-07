@@ -91,7 +91,14 @@ function regenrateaccount($request)
         CURLOPT_SSL_VERIFYHOST => 0,
         CURLOPT_SSL_VERIFYPEER => 0,
         CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => array('account_name' =>  $name, 'business_short_name' => 'RENO', 'uniqueid' => $username, 'email' => $email, 'phone' => $phone, 'webhook_url' => 'https://renomobilemoney.com/api/run',),
+        CURLOPT_POSTFIELDS =>'{
+    "account_name": "'.$name.'",
+    "business_short_name": "RENO",
+    "uniqueid": "'.$username.'",
+    "email" : "'.$email.'",
+    "phone" : "'.$phone.'",
+    "webhook_url" : "https://renomobilemoney.com/api/run"
+}',
         CURLOPT_HTTPHEADER => array(
             'Content-Type: application/json',
             'Authorization: Bearer XXRpRiPRkAsrV4Do9hpWbmDJRUVFHBRUyUFmw5IIVceBjnl8VclzX3BJgMD6ZhVNK6PPSgN5xSz6ubYNntBev5xbjFa2JZTiVRvSUiWr7wA9UzgAbUt4IvG5U71kra0YKaWDUFGEKa6NgRn8kUCgNr'
@@ -101,6 +108,9 @@ function regenrateaccount($request)
     $response = curl_exec($curl);
 
     curl_close($curl);
+
+
+
     $data = json_decode($response, true);
     if ($data['success']==1){
         $account = $data["data"]["account_name"];
