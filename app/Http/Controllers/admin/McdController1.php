@@ -96,11 +96,12 @@ $tran=$data['data'];
         $name=$request->code;
         $resellerURL='https://integration.mcd.5starcompany.com.ng/api/reseller/';
 
+        $refid=uniqid('RENO',true);
 
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => $resellerURL.'me',
+            CURLOPT_URL => 'https://reseller.mcd.5starcompany.com.ng/api/v1/make-withdrawal',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -109,11 +110,18 @@ $tran=$data['data'];
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_SSL_VERIFYHOST => 0,
             CURLOPT_SSL_VERIFYPEER => 0,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array('service' => 'withdraw_commission','amount' => $amount,'account_number' => $number,'bank_code' => $name,'bank' => $bank,'wallet' => 'wallet'),
-            CURLOPT_HTTPHEADER => array(
-                'Authorization: mcd_key_75rq4][oyfu545eyuriup1q2yue4poxe3jfd'
+            CURLOPT_CUSTOMREQUEST => 'POST',CURLOPT_POSTFIELDS =>'{
+    "amount": "'.$amount.'",
+    "account_number": "'.$number.'",
+    "bank_code": "'.$name.'",
+    "bank": "'.$bank.'",
+    "wallet": "Wallet",
+    "ref":"'.$refid.'"
+}',
 
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Bearer AAAA0VPmumc:APA91bFO0BZ1BL5bGsBIFW2JGE3SZzC60y-Hrqg2UgVlgeYfj7_kIawa7W1Vz0LMTVhhyC1uy4dsSGAU2oe87HzR27PInPhLlDlWKOS5buvaejdQl2O2lWe9Ewts09GiRcmJEi3LnkzB',
+                'Content-Type: application/json'
             ),
         ));
 
