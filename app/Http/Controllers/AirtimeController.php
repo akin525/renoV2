@@ -234,6 +234,189 @@ class AirtimeController
     {
         $request->validate([
             'id' => 'required',
+            'amount' => [
+                'required',
+                'regex:/^[0-9]+$/', // Ensures the amount contains only digits (no special characters)
+            ],
+        ], [
+            'amount.regex' => 'Amount must not contain special characters.',
+        ]);
+
+
+        $user = User::find($request->user()->id);
+            $wallet = wallet::where('username', $user->username)->first();
+
+//        if (Auth::user()->bvn==NULL){
+//            Alert::warning('Update', 'Please Kindly Update your profile including your bvn for account two & to continue');
+//            return redirect()->intended('myaccount')
+//                ->with('info', 'Please Kindly Update your profile including your bvn for account two');
+//        }
+            if ($wallet->balance < $request->amount) {
+                $mg = "You Cant Make Purchase Above" . "NGN" . $request->amount . " from your wallet. Your wallet balance is NGN $wallet->balance. Please Fund Wallet And Retry or Pay Online Using Our Alternative Payment Methods.";
+
+                return response()->json($mg, Response::HTTP_BAD_REQUEST);
+
+            }
+            if ($request->amount < 100) {
+
+                $mg = "enter a valid amount";
+                return response()->json($mg, Response::HTTP_BAD_REQUEST);
+
+
+            }
+            if ($request->amount < 0) {
+
+                $mg = "error transaction";
+                return response()->json($mg, Response::HTTP_BAD_REQUEST);
+
+
+            }
+            if ($request->amount > 2000) {
+
+                $mg = "You can purchase above 500 airtime once";
+                return response()->json($mg, Response::HTTP_BAD_REQUEST);
+
+
+            }
+        $validAmounts = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1500, 2000];
+
+        if (!in_array($request->amount, $validAmounts)) {
+            $mg = "Please enter a standard figure e.g., 100, 200, 300, 400, 500";
+            return response()->json($mg, Response::HTTP_BAD_REQUEST);
+        }
+            $bo = bill_payment::where('transactionid', $request->refid)->first();
+            if (isset($bo)) {
+                $mg = "duplicate transaction kindly reload this page";
+                return response()->json( $mg, Response::HTTP_CONFLICT);
+
+            } else {
+
+                $user = User::find($request->user()->id);
+                $bt = data::where("cat_id", $request->id)->first();
+                $wallet = wallet::where('username', $user->username)->first();
+                $per=2/100;
+                $comission=$per*$request->amount;
+                $fbalance=$wallet->balance;
+
+
+                $gt = $wallet->balance - $request->amount;
+
+                $wallet->balance = $gt;
+                $wallet->save();
+
+                        $bo = bill_payment::create([
+                            'username' => $user->username,
+                            'product' => $request->id.'Airtime',
+                            'amount' => $request->amount,
+                            'server_response' => 0,
+                            'status' => 0,
+                            'number' => $request->number,
+                            'paymentmethod'=>'wallet',
+                            'transactionid' => $request->refid,
+                            'discountamount' => 0,
+                            'fbalance'=>$fbalance,
+                            'balance'=>$gt,
+                        ]);
+                        $comiS=Comission::create([
+                            'username'=>Auth::user()->username,
+                            'amount'=>$comission,
+                        ]);
+                        $bo['name']=encription::decryptdata($user->name);
+                        $bo['email']=encription::decryptdata(Auth::user()->email);
+
+                        $resellerURL = 'https://integration.mcd.5starcompany.com.ng/api/reseller/';
+                $curl = curl_init();
+
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://reseller.mcd.5starcompany.com.ng/api/v1/airtime',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS =>'{
+    "provider": "'.$request->id.'",
+    "amount": "'.$request->amount.'",
+    "number": "'.$request->number.'",
+    "country" : "NG",
+    "payment" : "wallet",
+    "promo" : "0",
+    "ref":"'.$request->refid.'",
+    "operatorID": 0
+}',
+                    CURLOPT_HTTPHEADER => array(
+                        'Content-Type: application/json',
+                        'Authorization: Bearer XXRpRiPRkAsrV4Do9hpWbmDJRUVFHBRUyUFmw5IIVceBjnl8VclzX3BJgMD6ZhVNK6PPSgN5xSz6ubYNntBev5xbjFa2JZTiVRvSUiWr7wA9UzgAbUt4IvG5U71kra0YKaWDUFGEKa6NgRn8kUCgNr'
+                    ),
+                ));
+
+                $response = curl_exec($curl);
+
+                curl_close($curl);
+                        $data = json_decode($response, true);
+//                return response()->json($response, Response::HTTP_BAD_REQUEST);
+
+
+                        $success = $data["success"];
+//                        $tran1 = $data["discountAmount"];
+                        if ($success == 1) {
+                            $update=bill_payment::where('id', $bo->id)->update([
+                                'server_response'=>$response,
+                                'status'=>1,
+                            ]);
+                            $am = "NGN $request->amount  Airtime Purchase Was Successful To";
+                            $ph = $request->number;
+
+                            $receiver = encription::decryptdata($user->email);
+                            $admin = 'info@renomobilemoney.com';
+
+
+                            Mail::to($receiver)->send(new Emailtrans($bo));
+                            Mail::to($admin)->send(new Emailtrans($bo));
+                            $username=encription::decryptdata($user->username);
+                            $name="Airtime";
+                            $body=$username.' purchase '.$name;
+                            $this->reproduct($username, "User AirtimePurchase", $body);
+                            $this->reproduct1($username, "User AirtimePurchase", $body);
+                            $this->reproduct2($username, "User AirtimePurchase", $body);
+
+                            $com=$wallet->balance+$comission;
+                            $wallet->balance=$com;
+                            $wallet->save();
+
+                            $parise=$comission."₦ Commission Is added to your wallet balance";
+
+                            return response()->json([
+                                'status' => 'success',
+                                'message' => $am.' ' .$ph.' & '.$parise,
+//                            'data' => $responseData // If you want to include additional data
+                            ]);
+                        } elseif ($success == 0) {
+//
+                            $am = "NGN $request->amount Was Refunded To Your Wallet";
+                            $ph = ", Transaction fail";
+
+                            return response()->json([
+                                'status' => 'fail',
+                                'message' => $response,
+//                            'message' => $am.' ' .$ph,
+//                            'data' => $responseData // If you want to include additional data
+                            ]);
+                        }
+                    }
+    }
+    public function airtimepin(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'amount' => [
+                'required',
+                'regex:/^[0-9]+$/', // Ensures the amount contains only digits (no special characters)
+            ],
+        ], [
+            'amount.regex' => 'Amount must not contain special characters.',
         ]);
 
             $user = User::find($request->user()->id);
@@ -635,5 +818,6 @@ $success=0;
 //        dd($response);
 //        echo $response;
     }
+
 
 }

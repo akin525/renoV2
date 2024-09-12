@@ -154,7 +154,7 @@
 
                             </b></b></div><b><b>
 
-
+                            <p style="margin:10px; background-image:linear-gradient(45deg,#1686bd,#465abdd9);background-color:#ff0000;border-radius:10px;color:white;padding:7px;font-size:14px;"><span style="color:orange"><b>**NEW**</b></span>&nbsp; contact our customer care support by dropping a ticket <a class="w3-btn  w3-border w3-round-large" href="#" style="background-color:white;color:blue;">Click Here</a></p>
                         </b></b>
                 </div>
 
@@ -179,6 +179,19 @@
                 </a>
             </div>
             <div class="col-4 col-sm-3 col-lg-3">
+                <a href="{{route('datapin')}}">
+                    <div class="card">
+                        <div class="card-body p-3 text-center">
+                             <span style="font-size: 30px;">
+                                 <img width="50" src="https://play-lh.googleusercontent.com/Vse_HvYw4_KZsvVf0NXXWBNnwEq0GVsihLw5z9yzc14MY8vuBet4Vl_shjP0EGg0WuU">
+                             </span>
+                            {{--                            <div class="h6  text-dark">Data</div>--}}
+                            <small>Data-Pin</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-4 col-sm-3 col-lg-3">
                 <a href="{{route('airtime')}}">
                     <div class="card">
                         <div class="card-body p-3 text-center">
@@ -187,6 +200,19 @@
                              </span>
                         <small>Airtime</small>
 {{--                            <div class="h6  text-dark">Airtime</div>--}}
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-4 col-sm-3 col-lg-3">
+                <a href="{{route('airtimepin')}}">
+                    <div class="card">
+                        <div class="card-body p-3 text-center">
+                             <span style="font-size: 30px;">
+                                 <img width="50" src="https://cloud.bekonta.com/public/user_dashboard/icons/airtime.svg">
+                             </span>
+                            <small>Airtime-Pin</small>
+                            {{--                            <div class="h6  text-dark">Airtime</div>--}}
                         </div>
                     </div>
                 </a>

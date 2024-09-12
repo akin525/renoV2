@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Api\BillController;
 use App\Models\bo;
 use App\Models\data;
+use App\Models\Mcd;
 use App\Models\Messages;
 use App\Models\refer;
 use App\Models\User;
@@ -18,7 +19,7 @@ class AlltvController
     public function listtv()
     {
 
-        $tv = data::where('plan','tv')->get();
+        $tv = Mcd::where('plan','tv')->get();
 
         return response()->json([
             'message' => "tv fetch successfuly", 'data' => $tv

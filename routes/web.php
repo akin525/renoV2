@@ -93,6 +93,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('datap', [BillController::class, 'billpin'])->name('datap');
     Route::get('neco', [EducationController::class, 'indexn'])->name('neco');
     Route::post('pick', [AlltvController::class, 'tv'])->name('pick');
+    Route::get('verifytv/{value1}/{value2}', [AlltvController::class, 'verifytv'])->name('verifytv');
+    Route::get('getOptions/{selectedValue}', [AlltvController::class, 'netwplanrequest'])->name('getOptions');
+
     Route::get('addlock/{id}', [SafelockController::class, 'add'])->name('addlock');
     Route::post('adlock', [SafelockController::class, 'adlock'])->name('adlock');
     Route::post('safe', [SafelockController::class, 'safe'])->name('safe');
@@ -102,7 +105,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('select1', [AuthController::class, 'select1'])->name('select1');
     Route::post('tvp', [AlltvController::class, 'paytv'])->name('tvp');
     Route::get('paytv', [AlltvController::class, 'paytv'])->name('paytv');
-    Route::post('verifytv', [AlltvController::class, 'verifytv'])->name('verifytv');
+//    Route::post('verifytv', [AlltvController::class, 'verifytv'])->name('verifytv');
     Route::get('listdata', [listdata::class, 'list'])->name('listdata');
     Route::get('listtv', [AlltvController::class, 'listtv'])->name('listv');
     Route::get('listelect', [EkectController::class, 'listelect'])->name('listelect');
@@ -121,6 +124,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('buyairtime1', [AirtimeController::class, 'honor'])->name('buyairtime1');
     Route::get('airtime1', [AuthController::class, 'airtime'])->name('airtime1');
     Route::get('airtime', [AuthController::class, 'airtime'])->name('airtime');
+    Route::get('airtimepin', [AuthController::class, 'airtimepin'])->name('airtimepin');
     Route::get('buydata/{selectedValue}', [AuthController::class, 'buydata'])->name('buydata');
     Route::get('redata/{selectedValue}/{category}', [AuthController::class, 'redata'])->name('redata');
     Route::post('pre', [AuthController::class, 'pre'])->name('pre');

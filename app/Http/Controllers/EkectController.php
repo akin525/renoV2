@@ -115,6 +115,16 @@ class EkectController
     }
     public function payelect(Request $request)
     {
+        $request->validate([
+            'id' => 'required',
+            'amount' => [
+                'required',
+                'regex:/^[0-9]+$/', // Ensures the amount contains only digits (no special characters)
+            ],
+        ], [
+            'amount.regex' => 'Amount must not contain special characters.',
+        ]);
+
         if (Auth::check()) {
             $user = User::find($request->user()->id);
             $tv = data::where('id', $request->id)->first();

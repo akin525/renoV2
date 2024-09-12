@@ -119,15 +119,15 @@
                             <p><span class="online_animation"></span> Online</p>
                         </div>
                     </div>
-{{--                    <form method="post" action="{{route('pic')}}" enctype="multipart/form-data">--}}
-{{--                        @csrf--}}
-{{--                        <input type="file" name="pic" required><button type="submit" class="badge badge-success">Upload</button>--}}
-{{--                    </form>--}}
-{{--                    <form method="POST" action="{{ route('logout') }}" x-data>--}}
-{{--                        @csrf--}}
-{{--                        <br>--}}
-{{--                        <a href="{{ route('logout') }}"><button type="submit" class="btn btn-success">logout</button></a>--}}
-{{--                    </form>--}}
+                    <form method="post" action="{{route('pic')}}" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="pic" required><button type="submit" class="badge badge-success">Upload</button>
+                    </form>
+                    <form method="POST" action="{{ route('logout') }}" x-data>
+                        @csrf
+                        <br>
+                        <a href="{{ route('logout') }}"><button type="submit" class="btn btn-success">logout</button></a>
+                    </form>
                 </div>
 
             </div>
@@ -163,6 +163,9 @@
                         </li>
                         <li class="active">
                         <a href="{{ route('datapin') }}"  ><i class="fa fa-mobile white_color"></i> <span>Buy Data-Pin</span></a>
+                    </li>
+                        <li class="active">
+                        <a href="{{ route('airtimepin') }}"  ><i class="fa fa-mobile white_color"></i> <span>Buy Airtime-Pin</span></a>
                     </li>
                         <li>
                             <a href="{{route('invoice')}}"><i class="fa fa-sticky-note "></i> <span>Bills Invoice</span></a>
@@ -538,19 +541,28 @@
                     visibility: hidden
                 }
             </style>
-            <!--Start of Tawk.to Script-->
-            <script type="text/javascript">
-                var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-                (function(){
-                    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-                    s1.async=true;
-                    s1.src='https://embed.tawk.to/619093ea6885f60a50bbb339/default';
-                    s1.charset='UTF-8';
-                    s1.setAttribute('crossorigin','*');
-                    s0.parentNode.insertBefore(s1,s0);
-                })();
+{{--            <!--Start of Tawk.to Script-->--}}
+{{--            <script type="text/javascript">--}}
+{{--                var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();--}}
+{{--                (function(){--}}
+{{--                    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];--}}
+{{--                    s1.async=true;--}}
+{{--                    s1.src='https://embed.tawk.to/619093ea6885f60a50bbb339/default';--}}
+{{--                    s1.charset='UTF-8';--}}
+{{--                    s1.setAttribute('crossorigin','*');--}}
+{{--                    s0.parentNode.insertBefore(s1,s0);--}}
+{{--                })();--}}
+{{--            </script>--}}
+{{--            <!--End of Tawk.to Script-->--}}
+            <script>
+                (function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = 'https://support.renomobilemoney.com/app-assets/chat_js';
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'best-support-system-chat'));
             </script>
-            <!--End of Tawk.to Script-->
             <!-- jQuery -->
             <script src="{{asset('js/jquery.min.js')}}"></script>
             <script src="{{asset('assets/sweet-alert2/sweetalert2.min.js')}}"></script>

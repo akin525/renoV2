@@ -100,19 +100,26 @@ $request->validate([
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://easyaccess.com.ng/api/waec_v2.php",
+            CURLOPT_URL => "https://reseller.mcd.5starcompany.com.ng/api/v1/resultchecker",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 0,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS =>'{
+    "coded": "WAEC",
+    "quantity": "1",
+    "ref": "'.$request->id.'",
+    "number": "0",
+    "payment": "wallet",
+    "promo":"0"
+}',
             CURLOPT_HTTPHEADER => array(
-                "AuthorizationToken: 5ac0a75517a095c4cdb52fd82b8ee037", //replace this with your authorization_token
-                "cache-control: no-cache"
-            ),
-        ));
+                'Content-Type: application/json',
+                'Authorization: Bearer XXRpRiPRkAsrV4Do9hpWbmDJRUVFHBRUyUFmw5IIVceBjnl8VclzX3BJgMD6ZhVNK6PPSgN5xSz6ubYNntBev5xbjFa2JZTiVRvSUiWr7wA9UzgAbUt4IvG5U71kra0YKaWDUFGEKa6NgRn8kUCgNr'
+            )));
         $response = curl_exec($curl);
         curl_close($curl);
 //                return $response;
@@ -220,14 +227,18 @@ public function neco(Request $request)
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => array(
-                'no_of_pins' =>5,
-            ),
+            CURLOPT_POSTFIELDS =>'{
+    "coded": "NECO",
+    "quantity": "1",
+    "ref": "'.$request->id.'",
+    "number": "0",
+    "payment": "wallet",
+    "promo":"0"
+}',
             CURLOPT_HTTPHEADER => array(
-                "AuthorizationToken: 5ac0a75517a095c4cdb52fd82b8ee037", //replace this with your authorization_token
-                "cache-control: no-cache"
-            ),
-        ));
+                'Content-Type: application/json',
+                'Authorization: Bearer XXRpRiPRkAsrV4Do9hpWbmDJRUVFHBRUyUFmw5IIVceBjnl8VclzX3BJgMD6ZhVNK6PPSgN5xSz6ubYNntBev5xbjFa2JZTiVRvSUiWr7wA9UzgAbUt4IvG5U71kra0YKaWDUFGEKa6NgRn8kUCgNr'
+            )));
         $response = curl_exec($curl);
         curl_close($curl);
 //        echo $response;

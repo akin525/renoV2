@@ -375,6 +375,18 @@ Alert::success('Success', 'New Password has been sent to your email');
             return redirect('dashboard');
         }
     }
+    public function airtimepin(Request  $request)
+    {
+
+
+            $user = User::find($request->user()->id);
+            $data = data::where('plan_id', "airtime")->get();
+//            $wallet = wallet::where('username', $user->username)->first();
+            $ads=Advert::where('status', 1)->inRandomOrder()->orderBy('id', 'desc')->first();
+
+            return view('airtimepin', compact('user', 'data', 'ads'));
+
+    }
 
     public function invoice(Request  $request)
     {

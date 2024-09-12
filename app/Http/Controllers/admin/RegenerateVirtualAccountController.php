@@ -37,7 +37,7 @@ function regenrateaccount1($request)
             'business_short_name' => 'RENO','uniqueid' => $username,
             'email' => $email,'dob' => $user['dob'],
             'address' => $user['address'],'gender' => $user['gender'],
-            'phone' =>$phone,'webhook_url' => 'https://renomobilemoney.com/api/run1'), 'provider'=>'safeheaven',
+            'phone' =>$phone,'webhook_url' => 'https://renomobilemoney.com/api/run1'), 'provider'=>'netbank',
         CURLOPT_HTTPHEADER => array(
             'Content-Type: application/json',
             'Authorization: Bearer XXRpRiPRkAsrV4Do9hpWbmDJRUVFHBRUyUFmw5IIVceBjnl8VclzX3BJgMD6ZhVNK6PPSgN5xSz6ubYNntBev5xbjFa2JZTiVRvSUiWr7wA9UzgAbUt4IvG5U71kra0YKaWDUFGEKa6NgRn8kUCgNr'
