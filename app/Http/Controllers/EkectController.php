@@ -10,6 +10,7 @@ use App\Models\data;
 use App\Models\User;
 use App\Models\wallet;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -72,17 +73,15 @@ class EkectController
         return redirect("login")->withSuccess('You are not allowed to access');
 
     }
-    public function verifyelect(Request $request)
+    public function verifyelect($value1, $value2)
     {
-        if (Auth::check()) {
-            $user = User::find($request->user()->id);
-            $tv = data::where('id', $request->id)->first();
+            $tv = data::where('plan', $value2)->first();
 
 
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://integration.mcd.5starcompany.com.ng/api/reseller/validate',
+                CURLOPT_URL => 'https://reseller.mcd.5starcompany.com.ng/api/v1/validate',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -90,10 +89,16 @@ class EkectController
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => array('service' => 'electricity', 'coded' => $tv->cat_id, 'phone' => $request->number),
+                CURLOPT_POSTFIELDS =>'{
+    "service": "electricity",
+    "provider": "'.$tv->plan_id.'",
+    "number": "'.$value1.'"
+}',
                 CURLOPT_HTTPHEADER => array(
-                    'Authorization: MCDKEY_903sfjfi0ad833mk8537dhc03kbs120r0h9a'
-                ),
+                    'Content-Type: application/json',
+                    'Authorization: Bearer XXRpRiPRkAsrV4Do9hpWbmDJRUVFHBRUyUFmw5IIVceBjnl8VclzX3BJgMD6ZhVNK6PPSgN5xSz6ubYNntBev5xbjFa2JZTiVRvSUiWr7wA9UzgAbUt4IvG5U71kra0YKaWDUFGEKa6NgRn8kUCgNr'
+
+                )
             ));
 
             $response = curl_exec($curl);
@@ -108,10 +113,8 @@ class EkectController
             }else{
                 $log= "Unable to Identify meter Number";
             }
-            return view('payelect', compact('log', 'request', 'name'));
+            return response()->json($log);
 
-
-        }
     }
     public function payelect(Request $request)
     {
@@ -127,7 +130,7 @@ class EkectController
 
         if (Auth::check()) {
             $user = User::find($request->user()->id);
-            $tv = data::where('id', $request->id)->first();
+            $tv = data::where('plan', $request->id)->first();
 
             $wallet = wallet::where('username', $user->username)->first();
 
@@ -135,19 +138,22 @@ class EkectController
             if ($wallet->balance < $request->amount) {
                 $mg = "You Cant Make Purchase Above" . "NGN" . $request->amount . " from your wallet. Your wallet balance is NGN $wallet->balance. Please Fund Wallet And Retry or Pay Online Using Our Alternative Payment Methods.";
 
-                return view('bill', compact('user', 'mg'));
+                return response()->json($mg, Response::HTTP_BAD_REQUEST );
+
 
             }
             if ($request->amount < 0) {
 
                 $mg = "error transaction";
-                return view('bill', compact('user', 'mg'));
+                return response()->json($mg, Response::HTTP_BAD_REQUEST );
+
 
             }
             $bo = bo::where('refid', $request->refid)->first();
             if (isset($bo)) {
                 $mg = "duplicate transaction";
-                return view('bill', compact('user', 'mg'));
+                return response()->json($mg, Response::HTTP_BAD_REQUEST );
+
 
             } else {
                 $gt = $wallet->balance - $request->amount;
@@ -155,13 +161,13 @@ class EkectController
 
                 $wallet->balance = $gt;
                 $wallet->save();
-                $resellerURL = 'https://integration.mcd.5starcompany.com.ng/api/reseller/';
+                $resellerURL = 'https://reseller.mcd.5starcompany.com.ng/api/v1/';
 
 
                 $curl = curl_init();
 
                 curl_setopt_array($curl, array(
-                    CURLOPT_URL => $resellerURL.'pay',
+                    CURLOPT_URL => $resellerURL.'electricity',
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => '',
                     CURLOPT_MAXREDIRS => 10,
@@ -169,10 +175,19 @@ class EkectController
                     CURLOPT_FOLLOWLOCATION => true,
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => 'POST',
-                    CURLOPT_POSTFIELDS => array('service' => 'electricity', 'coded' => $tv->cat_id, 'phone' => $request->number, 'amount' => $request->amount),
+                    CURLOPT_POSTFIELDS =>'{
+    "provider": "'.$tv->plan.'",
+    "number": "'.$request->number.'",
+    "amount": "'.$request->amount.'",
+    "payment" : "wallet",
+    "promo" : "0",
+    "ref":"'.$request->refid.'"
+}',
                     CURLOPT_HTTPHEADER => array(
-                        'Authorization: mcd_key_75rq4][oyfu545eyuriup1q2yue4poxe3jfd'
-                    ),
+                        'Content-Type: application/json',
+                        'Authorization: Bearer XXRpRiPRkAsrV4Do9hpWbmDJRUVFHBRUyUFmw5IIVceBjnl8VclzX3BJgMD6ZhVNK6PPSgN5xSz6ubYNntBev5xbjFa2JZTiVRvSUiWr7wA9UzgAbUt4IvG5U71kra0YKaWDUFGEKa6NgRn8kUCgNr'
+
+                    )
                 ));
 
                 $response = curl_exec($curl);
@@ -212,9 +227,11 @@ class EkectController
                     Mail::to($receiver)->send(new Emailtrans($bo));
                     Mail::to($admin)->send(new Emailtrans($bo));
 
-                    return view('bill', compact('user', 'name', 'am', 'ph', 'success'));
-
-
+                    return response()->json([
+                        'status' => 'success',
+                        'message' => $am.' ' .$ph,
+//                            'data' => $responseData // If you want to include additional data
+                    ]);
                 }elseif ($success==0){
                     $zo=$user->balance+$tv->tamount;
                     $user->balance = $zo;
@@ -224,8 +241,11 @@ class EkectController
                     $am= "NGN $request->amount Was Refunded To Your Wallet";
                     $ph=", Transaction fail";
 
-                    return view('bill', compact('user', 'name', 'am', 'ph', 'success'));
-
+                    return response()->json([
+                        'status' => 'fail',
+                        'message' => $am.' ' .$ph,
+//                            'data' => $responseData // If you want to include additional data
+                    ]);
                 }
             }
         }

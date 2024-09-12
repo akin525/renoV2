@@ -110,7 +110,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('listtv', [AlltvController::class, 'listtv'])->name('listv');
     Route::get('listelect', [EkectController::class, 'listelect'])->name('listelect');
     Route::get('elect', [EkectController::class, 'electric'])->name('elect');
-    Route::post('velect', [EkectController::class, 'verifyelect'])->name('velect');
+    Route::get('velect/{value1}/{value2}', [EkectController::class, 'verifyelect'])->name('velect');
     Route::post('payelect', [EkectController::class, 'payelect'])->name('payelect');
     Route::get('invoice', [AuthController::class, 'invoice'])->name('invoice');
     Route::get('charges', [AuthController::class, 'charges'])->name('charges');

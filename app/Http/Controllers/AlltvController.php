@@ -260,7 +260,11 @@ class AlltvController
                         Mail::to($receiver)->send(new Emailtrans($bo));
                         Mail::to($admin)->send(new Emailtrans($bo));
 
-                        return redirect()->route('viewpdf', $bo->id);
+                        return response()->json([
+                            'status' => 'success',
+                            'message' => $am.' ' .$ph,
+//                            'data' => $responseData // If you want to include additional data
+                        ]);
 
 
                     }elseif ($success==0){
@@ -272,8 +276,11 @@ class AlltvController
                         $am= "NGN $request->amount Was Refunded To Your Wallet";
                         $ph=", Transaction fail";
 
-                        return view('bill', compact('user', 'name', 'am', 'ph', 'success'));
-
+                        return response()->json([
+                            'status' => 'success',
+                            'message' => $am.' ' .$ph,
+//                            'data' => $responseData // If you want to include additional data
+                        ]);
                     }
                 }
             }
