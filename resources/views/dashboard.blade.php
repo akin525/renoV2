@@ -154,7 +154,7 @@
 
                             </b></b></div><b><b>
 
-                            <p style="margin:10px; background-image:linear-gradient(45deg,#1686bd,#465abdd9);background-color:#ff0000;border-radius:10px;color:white;padding:7px;font-size:14px;"><span style="color:orange"><b>**NEW**</b></span>&nbsp; contact our customer care support by dropping a ticket <a class="w3-btn  w3-border w3-round-large" href="#" style="background-color:white;color:blue;">Click Here</a></p>
+                            <p style="margin:10px; background-image:linear-gradient(45deg,#1686bd,#465abdd9);background-color:#ff0000;border-radius:10px;color:white;padding:7px;font-size:14px;"><span style="color:orange"><b>**NEW**</b></span>&nbsp; contact our customer care support by dropping a ticket <a class="w3-btn  w3-border w3-round-large" href="https://support.renomobilemoney.com/ticket/open.html" style="background-color:white;color:blue;">Click Here</a></p>
                         </b></b>
                 </div>
 
@@ -163,24 +163,24 @@
 
 
         <br/>
-        <div class="">
-            <div class="">
-                <div class="col-md-12">
+{{--        <div class="">--}}
+{{--            <div class="">--}}
+{{--                <div class="col-md-12">--}}
 
-                    <div class="card full-height">
-                        <div class="">
+{{--                    <div class="card full-height">--}}
+{{--                        <div class="">--}}
 {{--                            <div class="card-title"><span id="greet"><b>{{$greet}} {{\App\Console\encription::decryptdata(Auth::user()->username)}}</b></span> </div> <hr>--}}
-                            <p style="margin:10px; background-image:linear-gradient(45deg,#1686bd,#465abdd9);background-color:#ff0000;border-radius:10px;color:white;padding:7px;font-size:14px;"><span style="color:orange"><b>**NEW**</b></span>&nbsp; contact our customer care support by dropping a ticket <a class="w3-btn  w3-border w3-round-large" href="#" style="background-color:white;color:blue;">Click Here</a></p>
+{{--                            <p style="margin:10px; background-image:linear-gradient(45deg,#1686bd,#465abdd9);background-color:#ff0000;border-radius:10px;color:white;padding:7px;font-size:14px;"><span style="color:orange"><b>**NEW**</b></span>&nbsp; contact our customer care support by dropping a ticket <a class="w3-btn  w3-border w3-round-large" href="#" style="background-color:white;color:blue;">Click Here</a></p>--}}
 
-                        </div><b><b>
-                            </b></b></div><b><b>
+{{--                        </div><b><b>--}}
+{{--                            </b></b></div><b><b>--}}
 
 
-                        </b></b>
-                </div>
+{{--                        </b></b>--}}
+{{--                </div>--}}
 
-            </div>
-        </div>
+{{--            </div>--}}
+{{--        </div>--}}
 
 
         <div class="card-body ">
