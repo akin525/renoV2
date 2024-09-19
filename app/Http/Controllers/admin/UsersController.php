@@ -26,7 +26,7 @@ $u=User::get();
 //        $users =DB::table('users')
 //            ->join('wallets','users.username','=','users.username')
 //            ->paginate(30);
-        $users=User::with('parentData')->paginate(50);
+        $users=User::with('parentData')->orderBy('id', 'desc')->paginate(200);
         $wallet = DB::table('wallets')->orderBy('id', 'desc')->get();
 $reseller=DB::table('users')->where("apikey", "!=", "")->count();
         $t_users = DB::table('users')->count();
