@@ -20,7 +20,12 @@ public function safe(Request $request)
 {
 $request->validate([
     'username'=>'required',
-    'amount'=>'required',
+    'amount' => [
+        'required',
+        'regex:/^[0-9]+$/', // Ensures the amount contains only digits (no special characters)
+    ],[
+        'amount.regex' => 'Amount must not contain special characters.',
+    ],
     'date'=>'required',
     'tittle'=>'required',
     'name'=>'required',
