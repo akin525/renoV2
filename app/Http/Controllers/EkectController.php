@@ -12,6 +12,7 @@ use App\Models\wallet;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class EkectController
@@ -122,7 +123,7 @@ class EkectController
             'id' => 'required',
             'amount' => [
                 'required',
-                'regex:/^[0-9]+$/', // Ensures the amount contains only digits (no special characters)
+                'regex:/^[0-9]+$/',
             ],
         ], [
             'amount.regex' => 'Amount must not contain special characters.',
@@ -197,42 +198,65 @@ class EkectController
 
                 $data = json_decode($response, true);
                 $success = $data["success"];
-                $tran1 = $data["discountAmount"];
                 $tran2 = $data["token"];
 
 //                        return $response;
                 if ($success == 1) {
-
-                    $bo =bill_payment::create([
-                        'username' => $user->username,
-                        'product' => $tv->plan,
-                        'amount' => $request->amount,
-                        'server_response' => $response,
-                        'status' => $success,
-                        'number' => $request->number,
-                        'transactionid' => $request->refid,
-                        'discountamount' => $tran1,
-                        'token'=>$tran2,
-                        'paymentmethod'=>'wallet',
-                    ]);
+                    try {
+                        if (!$user || !$tv) {
+                            return response()->json([
+                                'status' => 'error',
+                                'message' => 'User or Electricity plan not found.',
+                            ], 404);
+                        }
 
 
-                    $name = $tv->plan;
-                    $am = $tv->network."was Successful to";
-                    $ph = $request->number."| Token:".$tran2;
+                        $bo = bill_payment::create([
+                            'username' => $user->username,
+                            'product' => $tv->plan,
+                            'amount' => $request->amount,
+                            'server_response' => $response,
+                            'status' => $success,
+                            'number' => $request->number,
+                            'transactionid' => $request->refid,
+                            'token' => $tran2,
+                            'paymentmethod' => 'wallet',
+                        ]);
 
-                    $receiver = encription::decryptdata($user->email);
-                    $admin = 'info@renomobilemoney.com';
+                        // Prepare email data
+                        $name = $tv->plan;
+                        $am = $tv->network . " was successful to";
+                        $ph = $request->number . " | Token: " . $tran2;
 
-                    Mail::to($receiver)->send(new Emailtrans($bo));
-                    Mail::to($admin)->send(new Emailtrans($bo));
+                        // Ensure email can be decrypted and exists
+                        $receiver = encription::decryptdata($user->email);
+                        if (!$receiver) {
+                            return response()->json([
+                                'status' => 'error',
+                                'message' => 'Unable to decrypt user email.',
+                            ], 500);
+                        }
+                        $admin = 'info@renomobilemoney.com';
 
-                    return response()->json([
-                        'status' => 'success',
-                        'message' => $am.' ' .$ph,
-//                            'data' => $responseData // If you want to include additional data
-                    ]);
-                }elseif ($success==0){
+                        // Send emails
+                        Mail::to($receiver)->send(new Emailtrans($bo));
+                        Mail::to($admin)->send(new Emailtrans($bo));
+
+                        return response()->json([
+                            'status' => 'success',
+                            'message' => $am . ' ' . $ph,
+                        ]);
+
+                    } catch (\Exception $e) {
+                        // Log the error for debugging
+                        Log::error('Error in bill payment process: ' . $e->getMessage());
+
+                        return response()->json([
+                            'status' => 'error',
+                            'message' => 'An error occurred during the transaction process.',
+                        ], 500);
+                    }
+                } elseif ($success==0){
                     $zo=$user->balance+$tv->tamount;
                     $user->balance = $zo;
                     $user->save();
