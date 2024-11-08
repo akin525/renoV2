@@ -26,8 +26,8 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input): User
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:500', 'not_regex:/([A-Z]{2,}|[a-z]{2,}|[0-9]{2,})/', 'unique:users'],
-            'username' => ['required', 'string',  'min:6','not_regex:/([A-Z]{2,}|[a-z]{2,}|[0-9]{2,})/', 'unique:users'],
+            'name' => ['required', 'string', 'max:500', 'unique:users'],
+            'username' => ['required', 'string',  'min:6', 'unique:users'],
             'phone' => ['required', 'numeric',  'min:11'],
             'address' => ['required', 'string',  'min:11'],
             'gender' => ['required', 'string'],
@@ -41,73 +41,88 @@ class CreateNewUser implements CreatesNewUsers
 
         $username=$input['username'].rand(111, 999);
 //
-//        $curl = curl_init();
-//
-//        curl_setopt_array($curl, array(
-//            CURLOPT_URL => 'https://reseller.mcd.5starcompany.com.ng/api/v1/virtual-account',
-//            CURLOPT_RETURNTRANSFER => true,
-//            CURLOPT_ENCODING => '',
-//            CURLOPT_MAXREDIRS => 10,
-//            CURLOPT_TIMEOUT => 0,
-//            CURLOPT_FOLLOWLOCATION => true,
-//            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-//            CURLOPT_SSL_VERIFYHOST => 0,
-//            CURLOPT_SSL_VERIFYPEER => 0,
-//            CURLOPT_CUSTOMREQUEST => 'POST',
-//            CURLOPT_POSTFIELDS =>'{
-//    "account_name": "'.$input['name'].'",
-//    "business_short_name": "RENO",
-//    "uniqueid": "'.$username.'",
-//    "email" : "'.$input['email'].'",
-//    "phone" : "'.$input['phone'].'",
-//    "webhook_url" : "https://renomobilemoney.com/api/run"
-//}',
-//            CURLOPT_HTTPHEADER => array(
-//                'Content-Type: application/json',
-//                'Authorization: Bearer XXRpRiPRkAsrV4Do9hpWbmDJRUVFHBRUyUFmw5IIVceBjnl8VclzX3BJgMD6ZhVNK6PPSgN5xSz6ubYNntBev5xbjFa2JZTiVRvSUiWr7wA9UzgAbUt4IvG5U71kra0YKaWDUFGEKa6NgRn8kUCgNr'
-//            ),
-//        ));
-//
-//        $response = curl_exec($curl);
-//
-//        curl_close($curl);
-//
-//        $data = json_decode($response, true);
-//        if ($data['success']==1){
-//            $account = $data["data"]["account_name"];
-//            $number = $data["data"]["account_number"];
-//            $bank = $data["data"]["bank_name"];
-//            $wallet= wallet::create([
-//                'username' => encription::encryptdata($input['username']),
-//                'balance' => 0,
-//                'account_number'=>$number,
-//                'account_name'=>$account,
-//                'bank'=>$bank,
-//            ]);
-//
-//
-//        }elseif ($data['success']==0){
-//            $wallet= wallet::create([
-//                'username' => encription::encryptdata($input['username']),
-//                'balance' => 0,
-//            ]);
-//
-//        }
-//
-//        $receiver=$input ['email'];
-//        $admin= 'info@renomobilemoney.com';
-//        Mail::to($receiver)->send(new Emailotp($input));
-//        Mail::to($admin)->send(new Emailotp($input));
-//
-//        return User::create([
-//            'name' => encription::encryptdata($input['name']),
-//            'email' => encription::encryptdata($input['email']),
-//            'password' => $input['password'],
-//            'address' => $input['address'],
-//            'dob' => $input['dob'],
-//            'gender' => $input['gender'],
-//            'phone'=>encription::encryptdata($input['phone']),
-//            'username'=>encription::encryptdata($input['username']),
-//        ]);
+        try {
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://reseller.mcd.5starcompany.com.ng/api/v1/virtual-account',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS =>'{
+    "account_name": "'.$input['name'].'",
+    "business_short_name": "RENO",
+    "uniqueid": "'.$username.'",
+    "email" : "'.$input['email'].'",
+    "phone" : "'.$input['phone'].'",
+    "webhook_url" : "https://renomobilemoney.com/api/run"
+}',
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json',
+                'Authorization: Bearer XXRpRiPRkAsrV4Do9hpWbmDJRUVFHBRUyUFmw5IIVceBjnl8VclzX3BJgMD6ZhVNK6PPSgN5xSz6ubYNntBev5xbjFa2JZTiVRvSUiWr7wA9UzgAbUt4IvG5U71kra0YKaWDUFGEKa6NgRn8kUCgNr'
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+            if ($response === false) {
+                Log::error('cURL error: ' . curl_error($curl));
+                return response()->json(['error' => 'Unable to create virtual account'], 500);
+            }
+            curl_close($curl);
+
+        $data = json_decode($response, true);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                Log::error('JSON decode error: ' . json_last_error_msg());
+                return response()->json(['error' => 'Invalid response from server'], 500);
+            }
+        if ($data['success']==1){
+            $account = $data["data"]["account_name"];
+            $number = $data["data"]["account_number"];
+            $bank = $data["data"]["bank_name"];
+            $wallet= wallet::create([
+                'username' => encription::encryptdata($input['username']),
+                'balance' => 0,
+                'account_number'=>$number,
+                'account_name'=>$account,
+                'bank'=>$bank,
+            ]);
+
+
+        }elseif ($data['success']==0){
+            $wallet= wallet::create([
+                'username' => encription::encryptdata($input['username']),
+                'balance' => 0,
+            ]);
+
+        }
+
+        $receiver=$input ['email'];
+        $admin= 'info@renomobilemoney.com';
+        Mail::to($receiver)->send(new Emailotp($input));
+        Mail::to($admin)->send(new Emailotp($input));
+
+        return User::create([
+            'name' => encription::encryptdata($input['name']),
+            'email' => encription::encryptdata($input['email']),
+            'password' => $input['password'],
+            'address' => $input['address'],
+            'dob' => $input['dob'],
+            'gender' => $input['gender'],
+            'phone'=>encription::encryptdata($input['phone']),
+            'username'=>encription::encryptdata($input['username']),
+        ]);
+
+        } catch (\Exception $e) {
+            // Log and return error message if any exception occurs
+            Log::error('Error in user creation: ' . $e->getMessage());
+            return response()->json(['error' => 'An error occurred during user creation'], 500);
+        }
     }
 }
