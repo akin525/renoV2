@@ -200,6 +200,8 @@ class EkectController
                 $success = $data["success"];
                 $tran2 = $data["token"];
 
+                return response()->json($response, Response::HTTP_BAD_REQUEST );
+
 //                        return $response;
                 if ($success == 1) {
                     try {
