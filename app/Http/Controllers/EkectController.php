@@ -195,7 +195,7 @@ class EkectController
 
                 curl_close($curl);
 //                echo $response;
-//                return response()->json($response, Response::HTTP_BAD_REQUEST );
+                return response()->json($response, Response::HTTP_BAD_REQUEST );
 
                 $data = json_decode($response, true);
                 $success = $data["success"];
