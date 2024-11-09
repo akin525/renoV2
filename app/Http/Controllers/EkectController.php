@@ -177,7 +177,7 @@ class EkectController
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_POSTFIELDS =>'{
-    "provider": "'.$tv->plan.'",
+    "provider": "'.$request->id.'",
     "number": "'.$request->number.'",
     "amount": "'.$request->amount.'",
     "payment" : "wallet",
@@ -195,13 +195,12 @@ class EkectController
 
                 curl_close($curl);
 //                echo $response;
-                return response()->json($response, Response::HTTP_BAD_REQUEST );
+//                return response()->json($response, Response::HTTP_BAD_REQUEST );
 
                 $data = json_decode($response, true);
                 $success = $data["success"];
                 $tran2 = $data["token"];
 
-                return response()->json($response, Response::HTTP_BAD_REQUEST );
 
 //                        return $response;
                 if ($success == 1) {
@@ -226,9 +225,7 @@ class EkectController
                             'paymentmethod' => 'wallet',
                         ]);
 
-                        // Prepare email data
-                        $name = $tv->plan;
-                        $am = $tv->network . " was successful to";
+                        $am = $request->id . " was successful to";
                         $ph = $request->number . " | Token: " . $tran2;
 
                         // Ensure email can be decrypted and exists
