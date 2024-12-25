@@ -70,6 +70,9 @@ Route::prefix('google')->name('google.')->group( function(){
     Route::any('callback', [GoogleController::class, 'callbackFromGoogle'])->name('callback');
 });
 
+Route::get('2fa', [App\Http\Controllers\TwoFactorController::class, 'show'])->name('2fa');
+Route::post('2fa', [App\Http\Controllers\TwoFactorController::class, 'verify']);
+
 Route::get('admin', function () {
 
     return view('admin.login');
@@ -79,7 +82,7 @@ Route::get('admin', function () {
 Route::post('cuslog', [LoginController::class, 'login'])->name('cuslog');
 
 
-Route::middleware(['auth'])->group(function () {
+Route::group(['middleware' => ['auth', 'two.factor']], function () {
     Route::view('picktv', 'picktv');
     Route::view('fund1', 'fund1');
     Route::view('safelock', 'safelock');
