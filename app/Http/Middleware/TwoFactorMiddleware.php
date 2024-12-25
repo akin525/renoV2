@@ -22,13 +22,13 @@ class TwoFactorMiddleware
         if (!$user->is_two_factor_verified) {
             if (!$request->session()->has('2fa_code')) {
                 // Generate a 6-digit random code
-                $code = random_int(100000, 999999);
-
+                $code['code'] = random_int(100000, 999999);
+                $code['email']=encription::decryptdata($user->email);
                 // Save code in session (temporary storage)
                 $request->session()->put('2fa_code', $code);
 
                 // Optionally use cache for expiration
-                Cache::put('2fa_code_' . $user->id, $code, now()->addMinutes(10));
+                Cache::put('2fa_code_' . $user->id, $code['code'], now()->addMinutes(10));
 
                 // Send the code via email
                 Mail::to(encription::decryptdata($user->email))->send(new \App\Mail\TwoFactorCode($code));

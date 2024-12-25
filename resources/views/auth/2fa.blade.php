@@ -156,7 +156,7 @@
 
                                     <div>
                                         <label class="label-text">Enter Verification Code</label>
-                                        <input class="form_input" type="text" name="code" id="code" placeholder="Username" required>
+                                        <input class="form_input" type="text" name="code" id="code" placeholder="Code" required>
                                     </div>
 
                                     <!-- step 1 next button -->
