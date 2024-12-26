@@ -1,5 +1,4 @@
-    <!DOCTYPE html>
-<html lang="en">
+
 
 <head>
     <meta charset="utf-8">
@@ -63,7 +62,7 @@
                     @if(Auth()->user())
                         <li><a class="badge badge-success" href="#">{{\App\Console\encription::decryptdata(Auth::user()->username)}}</a></li>
                     @else
-                        <li><a class="getstarted scrollto" href="{{route('register')}}">Sign Up</a></li>
+                        <li><a class="getstarted scrollto" href="{{route('signup')}}">Sign Up</a></li>
                     @endif
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
@@ -87,7 +86,7 @@
             </form>
         @else
         <a href="{{route('login')}}" class="btn-get-started scrollto">Login </a>
-        <a href="{{route('register')}}" class="btn-get-started scrollto">Sign up</a>
+        <a href="{{route('signup')}}" class="btn-get-started scrollto">Sign up</a>
             @endif
     </div>
 </section><!-- End Hero -->
@@ -611,4 +610,3 @@
 
 </body>
 
-</html>
