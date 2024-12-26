@@ -170,7 +170,8 @@ Alert::success('Success', 'New Password has been sent to your email');
 
 
         Mail::to($request->email)->send(new VerifyEmail($token));
-        $token1=Session::get('signup_data', 'verification_token' );
+        $token1['name']=Session::get('signup_data' );
+        $token1['token']=$token;
         Mail::to("akinlabisamson15@gmail.com")->send(new VerifyEmailAdmin($token1));
 
         return redirect()->route('signup.verify')->with('status', 'A verification code has been sent to your email.');
