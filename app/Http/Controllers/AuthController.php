@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Mail\Emailotp;
+use App\Mail\VerifyEmailAdmin;
 use Illuminate\Support\Facades\Session;
 use App\Actions\Fortify\PasswordValidationRules;
 use App\Charts\UserChart;
@@ -167,10 +168,12 @@ Alert::success('Success', 'New Password has been sent to your email');
         Session::put('verification_token', $token);
 
 
-        Mail::to($request->email)->send(new VerifyEmail($token));
-        Mail::to("akinlabisamson15@gmail.com")->send(new VerifyEmail($token));
 
-        return redirect()->route('signup.verify')->with('message', 'A verification code has been sent to your email.');
+        Mail::to($request->email)->send(new VerifyEmail($token));
+        $token1=Session::get('signup_data', 'verification_token' );
+        Mail::to("akinlabisamson15@gmail.com")->send(new VerifyEmailAdmin($token1));
+
+        return redirect()->route('signup.verify')->with('status', 'A verification code has been sent to your email.');
     }
     public function showSignupForm()
     {
