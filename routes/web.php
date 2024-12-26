@@ -58,6 +58,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('createemail', [AlltvController::class, 'createemail'])->name('createemail');
 Route::post('log', [AuthController::class, 'customLogin'])->name('log');
 Route::get('/', [AuthController::class, 'landing'])->name('home');
@@ -75,7 +76,7 @@ Route::post('2fa', [App\Http\Controllers\TwoFactorController::class, 'verify']);
 
 
 Route::get('signup', [AuthController::class, 'showSignupForm'])->name('signup');
-Route::post('signup', [AuthController::class, 'register']);
+Route::post('signup', [AuthController::class, 'register'])->middleware('prevent.bot.registration');
 
 Route::get('signup/verify', [AuthController::class, 'showVerificationForm'])->name('signup.verify');
 Route::post('signup/verify', [AuthController::class, 'verifyEmail']);

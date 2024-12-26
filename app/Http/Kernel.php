@@ -71,6 +71,7 @@ class Kernel extends HttpKernel
         'choose.plan' => \App\Http\Middleware\ChoosePlanMiddleware::class,
         'two.factor' => \App\Http\Middleware\TwoFactorMiddleware::class,
         'email.verified' => \App\Http\Middleware\EnsureEmailVerified::class,
+        'prevent.bot.registration' => \App\Http\Middleware\PreventBotRegistration::class,
 
 
     ];
