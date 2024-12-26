@@ -137,7 +137,7 @@
                             <div class="tab-pane fade show active" id="car-tab" role="tabpanel" aria-labelledby="car-insurance-tab" tabindex="0">
 
                                 <!-- 1st tab form -->
-                                <form class="entrance_animation" method="post" action="{{ route('register') }}">
+                                <form class="entrance_animation" method="post" action="{{ route('signup') }}">
                                     @csrf
 
                                     <!-- 1st tab heading -->

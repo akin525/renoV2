@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Mail\Emailotp;
+use Illuminate\Support\Facades\Session;
+use App\Actions\Fortify\PasswordValidationRules;
 use App\Charts\UserChart;
 use App\Console\encription;
 use App\Mail\login;
+use App\Mail\VerifyEmail;
 use App\Models\Advert;
 use App\Models\airtimecon;
 use App\Models\big;
@@ -30,13 +33,17 @@ use App\Models\data;
 use App\Models\deposit;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Laravel\Jetstream\Jetstream;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use mysql_xdevapi\Exception;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 
 class AuthController
 {
+    use PasswordValidationRules;
+
     public function landing()
     {
         $mtn=data::where('network', 'mtn-data')->limit(7)->get();
@@ -79,6 +86,32 @@ Alert::success('Success', 'New Password has been sent to your email');
     }
 }
 
+    public function resend(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        // Retrieve user by email
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors(['email' => 'No user found with this email.']);
+        }
+
+        // Generate a new OTP code
+        $code = random_int(100000, 999999);
+
+        // Save the code in the session or cache
+        Session::put('2fa_code', $code);
+        Cache::put('2fa_code_' . $user->id, $code, now()->addMinutes(10));
+
+        // Send the new OTP code via email
+        Mail::to($user->email)->send(new TwoFactorCode($code));
+
+        return back()->with('message', 'A new verification code has been sent to your email.');
+    }
+
     public function cus(Request $request)
     {
         if (Auth()->user()) {
@@ -88,6 +121,171 @@ Alert::success('Success', 'New Password has been sent to your email');
         }else{
             return redirect(route('log'));
         }
+    }
+
+    public function register(Request $request)
+
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:500', 'unique:users'],
+            'username' => ['required', 'string',  'min:6', 'unique:users'],
+            'phone' => ['required', 'numeric',  'min:11'],
+            'address' => ['required', 'string',  'min:11'],
+            'gender' => ['required', 'string'],
+            'dob' => ['required', 'string'],
+            'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
+            'password' => $this->passwordRules(),
+            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+        ]);
+
+        $find=User::where('username', encription::encryptdata($request->username))->first();
+        if ($find){
+            return back()->withErrors(['token' => 'username Already taken']);
+        }
+
+        $find=User::where('email', encription::encryptdata($request->email))->first();
+        if ($find){
+            return back()->withErrors(['token' => 'email Already taken']);
+        }
+        $find=User::where('name', encription::encryptdata($request->name))->first();
+        if ($find){
+            return back()->withErrors(['token' => 'name Already in use']);
+        }
+
+        $token = random_int(100000, 999999);
+
+        Session::put('signup_data', [
+            'name' => $request->name,
+            'email' => $request->email,
+            'username' => $request->username,
+            'phone' => $request->phone,
+            'gender' => $request->gender,
+            'dob' => $request->dob,
+            'address' => $request->address,
+            'password' => $request->password,
+        ]);
+        Session::put('verification_token', $token);
+
+
+        Mail::to($request->email)->send(new VerifyEmail($token));
+
+        return redirect()->route('signup.verify')->with('message', 'A verification code has been sent to your email.');
+    }
+    public function showSignupForm()
+    {
+        return view('auth.register');
+    }
+    public function showVerificationForm()
+    {
+        return view('auth.verify');
+    }
+
+    public function verifyEmail(Request $request)
+    {
+        $request->validate([
+            'token' => 'required|numeric',
+        ]);
+
+        // Check if the token matches
+        if ($request->token != Session::get('verification_token')) {
+            return back()->withErrors(['token' => 'The verification code is incorrect.']);
+        }
+
+        $signupData = Session::get('signup_data');
+
+        $username=$signupData['username'].rand(111, 999);
+        try {
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://reseller.mcd.5starcompany.com.ng/api/v1/virtual-account',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_SSL_VERIFYHOST => 0,
+                CURLOPT_SSL_VERIFYPEER => 0,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => '{
+    "account_name": "' . $signupData['name'] . '",
+    "business_short_name": "RENO",
+    "uniqueid": "' . $username . '",
+    "email" : "' . $signupData['email'] . '",
+    "phone" : "' . $signupData['phone'] . '",
+    "webhook_url" : "https://renomobilemoney.com/api/run"
+}',
+                CURLOPT_HTTPHEADER => array(
+                    'Content-Type: application/json',
+                    'Authorization: Bearer XXRpRiPRkAsrV4Do9hpWbmDJRUVFHBRUyUFmw5IIVceBjnl8VclzX3BJgMD6ZhVNK6PPSgN5xSz6ubYNntBev5xbjFa2JZTiVRvSUiWr7wA9UzgAbUt4IvG5U71kra0YKaWDUFGEKa6NgRn8kUCgNr'
+                ),
+            ));
+
+            $response = curl_exec($curl);
+
+            if ($response === false) {
+                Log::error('cURL error: ' . curl_error($curl));
+                return response()->json(['error' => 'Unable to create virtual account'], 500);
+            }
+            curl_close($curl);
+
+            $data = json_decode($response, true);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                Log::error('JSON decode error: ' . json_last_error_msg());
+                return response()->json(['error' => 'Invalid response from server'], 500);
+            }
+            if ($data['success'] == 1) {
+                $account = $data["data"]["account_name"];
+                $number = $data["data"]["account_number"];
+                $bank = $data["data"]["bank_name"];
+                $wallet = wallet::create([
+                    'username' => encription::encryptdata($signupData['username']),
+                    'balance' => 0,
+                    'account_number' => $number,
+                    'account_name' => $account,
+                    'bank' => $bank,
+                ]);
+
+
+            } elseif ($data['success'] == 0) {
+                $wallet = wallet::create([
+                    'username' => encription::encryptdata($signupData['username']),
+                    'balance' => 0,
+                ]);
+
+            }
+
+            $user = User::create([
+                'name' => encription::encryptdata($signupData['name']),
+                'email' => encription::encryptdata($signupData['email']),
+                'password' => $signupData['password'],
+                'address' => $signupData['address'],
+                'dob' => $signupData['dob'],
+                'gender' => $signupData['gender'],
+                'phone' => encription::encryptdata($signupData['phone']),
+                'username' => encription::encryptdata($signupData['username']),
+                'is_two_factor_verified' => true,
+            ]);
+
+            $receiver = $signupData ['email'];
+            $admin = 'info@renomobilemoney.com';
+            $input = $signupData;
+            Mail::to($receiver)->send(new Emailotp($input));
+            Mail::to($admin)->send(new Emailotp($input));
+            Session::forget(['signup_data', 'verification_token']);
+            session()->put('email_verified', true);
+
+        }catch (\Exception $e) {
+            // Log and return error message if any exception occurs
+            Log::error('Error in user creation: ' . $e->getMessage());
+            return response()->json(['error' => 'An error occurred during user creation'], 500);
+        }
+        $user2 = User::where('username', $user->username)
+            ->first();
+        Auth::login($user2);
+
+        return redirect()->route('dashboard')->with('message', 'Signup complete! Welcome, ' . $user->name);
     }
     public function customLogin(Request $request)
     {

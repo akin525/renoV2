@@ -118,13 +118,10 @@
 
                                         <!-- 1st tab button -->
                                         <button class="nav-link active" id="car-insurance-tab" data-bs-toggle="tab" data-bs-target="#car-tab" role="tab" aria-controls="car-tab" aria-selected="true">
-                                            Login
+                                            Verification Code
                                         </button>
 
                                         <!-- 2nd tab button -->
-                                        <button class="nav-link"  onclick="window.location.href='{{ route('signup') }}'">
-                                           Sign Up
-                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -135,10 +132,10 @@
                             <div class="tab-pane fade show active" id="car-tab" role="tabpanel" aria-labelledby="car-insurance-tab" tabindex="0">
 
                                 <!-- 1st tab form -->
-                                <form class="entrance_animation" method="post" action="{{ route('log') }}">
-                                @csrf
+                                <form class="entrance_animation" method="post" action="{{ route('signup.verify') }}">
+                                    @csrf
 
-                                <!-- 1st tab heading -->
+                                    <!-- 1st tab heading -->
                                     <div class="main-heading">
                                         Buy Airtime/Data
                                         <br/>
@@ -148,34 +145,23 @@
                                         <div class="mb-4 font-medium text-sm text-green-600">
                                             {{ session('status') }}
                                         </div>
-                                @endif
+                                    @endif
                                     <!--1st tab label/input -->
-{{--                                    <x-jet-validation-errors class="alert alert-danger" />--}}
+                                    {{--                                    <x-jet-validation-errors class="alert alert-danger" />--}}
                                     <x-validation-errors class="alert alert-danger" />
 
                                     <center>
-                                        <a href="{{ route('google.login') }}" class="btn btn-outline-success btn-user" >
-                                            <img width="50" src="{{asset('google.png')}}" alt=""/>
-                                            Login With Google
-                                        </a>
-                                    </center>
+
                                     <br/>
 
                                     <div>
-                                        <label class="label-text">Username</label>
-                                        <input class="form_input" type="text" name="username" placeholder="Username" required>
-                                    </div>
-                                    <div>
-                                        <label class="label-text">Password</label>
-                                        <input class="form_input" type="password" name="password" required>
+                                        <label class="label-text">Enter Verification Code</label>
+                                        <input class="form_input" type="text" name="token" id="token" placeholder="Code" required>
                                     </div>
 
-                                    @if (Route::has('password.request'))
-                                        <a class="forgot" href="{{ route('password.request') }}">Forgotten Password?</a>
-                                @endif
                                     <!-- step 1 next button -->
                                     <div class="next-btn">
-                                        <button type="submit" class="btn btn-success">Login<span class="load loading"></span></button>
+                                        <button type="submit" class="btn btn-success">Verify<span class="load loading"></span></button>
                                     </div>
                                     <br/>
 
@@ -190,17 +176,7 @@
                                     </script>
                             </div>
                             </form>
-{{--                            <button class="button" onclick="web2app.advert.showinterstitial(myCallback)">Play Advert</button>--}}
-{{--                            <button class="button" onclick="web2app.deviceInfo(myCallback);">Device Info</button>--}}
-{{--                                                        <button class="button" onclick="web2app.biometric.check(myCallback);">Check Biometric</button>--}}
-{{--                            <i class="fa fa-fingerprint" id="btn"></i>--}}
-{{--                            <button class="button" onclick="web2app.scanQrCode(contactCallback);">Scan QR Code</button>--}}
-{{--                            <button class="button" onclick="web2app.takePicture(contactCallback);">Take Picture</button>--}}
-{{--                            <button class="button" onclick="web2app.appReview(myCallback);">Request App Review</button>--}}
-{{--                            <button class="button" onclick="web2app.geoLocation(contactCallback);">Request Current Location</button>--}}
-{{--                            <button class="button" onclick="web2app.geoAddress(contactCallback);">Request Current Address</button>--}}
-{{--                            <button class="button" onclick="web2app.vibrate(1000);">Start Vibration</button>--}}
-                        </div>
+                           </div>
                     </div>
 
                     <!-- step 1 sidebar -->
@@ -283,7 +259,7 @@
                                 </div>
                             </div>
                             <div class="bg-shape">
-{{--                                <img alt="slider" src="{{asset("renon.png")}}">--}}
+                                {{--                                <img alt="slider" src="{{asset("renon.png")}}">--}}
                             </div>
                         </div>
                     </div>
@@ -292,37 +268,7 @@
         </div>
     </div>
 </section>
-<script>
 
-    function dynamicLinkEvent(type, data) {
-        alert(JSON.stringify(data));
-
-        console.log("dLink Event");
-        console.log(type);
-        console.log(JSON.stringify(data));
-        document.getElementById('anyme').value=data.data;
-    }
-
-    function web2appInit(data) {
-        // alert(JSON.stringify(data));
-        console.log("web2app is ready")
-        console.log(JSON.stringify(data));
-    }
-
-    function myCallback(data) {
-        // alert(JSON.stringify(data));
-        // console.log("I am in callback")
-        // console.log(JSON.stringify(data));
-    }
-
-    function contactCallback(data) {
-        alert(JSON.stringify(data));
-        console.log("I am in callback")
-        console.log(JSON.stringify(data));
-        document.getElementById('anyme').value=data.data;
-    }
-
-</script>
 
 
 
@@ -350,109 +296,7 @@
 <a href="https://wa.me/2348066215840" class="float" target="_blank">
     <i class="fa fa-whatsapp my-float"></i>
 </a>
-{{--<script>--}}
-{{--    function myCallback(data) {--}}
-{{--        alert(JSON.stringify(data));--}}
-{{--        console.log("I am in callback")--}}
-{{--        console.log(JSON.stringify(data));--}}
-{{--    }--}}
 
-{{--    function contactCallback(data) {--}}
-{{--        alert(JSON.stringify(data));--}}
-{{--        console.log("I am in callback")--}}
-{{--        console.log(JSON.stringify(data));--}}
-{{--        // document.getElementById('anyme').value=data.data;--}}
-{{--    }--}}
-{{--</script>--}}
-{{--<script>--}}
-{{--    window.onload = function () {--}}
-{{--        try {--}}
-{{--            function myCall(data) {--}}
-{{--                alert(JSON.stringify(data));--}}
-{{--            }--}}
-
-{{--            window.web2app.biometric.check(myCall);--}}
-
-{{--            function myCallback(data) {--}}
-{{--                const isSuccess = data.success;--}}
-
-{{--                if (isSuccess) {--}}
-{{--                    document.getElementById('loginWithFingerprintBtn').style.display = 'block';--}}
-{{--                }--}}
-{{--            }--}}
-
-{{--            window.deviceInfo(myCallback);--}}
-{{--            // window.biometric.check(myCall);--}}
-{{--        } catch (e) {--}}
-{{--            console.log("Cannot execute for now");--}}
-{{--        }--}}
-{{--    };--}}
-{{--</script>--}}
-{{--<script>--}}
-{{--    // Automatically check for web-to-app environment on page load--}}
-{{--    $(document).ready(function() {--}}
-{{--        autoCheckBiometric();--}}
-{{--    });--}}
-
-{{--    function myCall(data) {--}}
-{{--        // alert(JSON.stringify(data));--}}
-{{--    }--}}
-{{--    window.web2app.biometric.check(myCall)--}}
-{{--    function myCallback(data) {--}}
-{{--        const con=JSON.stringify(data.success);--}}
-{{--        // alert(JSON.stringify(data));--}}
-
-{{--    }--}}
-
-{{--    function autoCheckBiometric() {--}}
-{{--        // Check for a custom feature or condition indicative of web-to-app--}}
-{{--        if (isWebToApp()) {--}}
-{{--            // Example using jQuery:--}}
-{{--            $.post('/api/biometric/check', { webToApp: true }, function(response) {--}}
-{{--                myCallback(response);--}}
-
-{{--                // If the response is true, show the "Login With Fingerprint" button--}}
-{{--                if (response.success) {--}}
-{{--                    document.getElementById('loginWithFingerprintBtn').style.display = 'block';--}}
-{{--                }--}}
-{{--            });--}}
-{{--        } else {--}}
-{{--            console.log("Biometric check is not supported in this environment.");--}}
-{{--        }--}}
-{{--    }--}}
-
-{{--    function isWebToApp() {--}}
-{{--        // Implement your detection logic here--}}
-{{--        // For example, check for the existence of a specific object or feature--}}
-{{--        // This can be something specific to your web-to-app environment--}}
-
-{{--        // Placeholder example:--}}
-{{--        return typeof window.webToApp !== 'undefined';--}}
-{{--    }--}}
-
-{{--    function loginWithFingerprint() {--}}
-{{--        // Example using jQuery:--}}
-{{--        $.post('/api/biometric/login', {}, function(response) {--}}
-{{--            contactCallback(response);--}}
-{{--        });--}}
-{{--    }--}}
-{{--</script>--}}
-{{--<script>--}}
-{{--    function checkbiometric(){--}}
-{{--        // alert("hello guys");--}}
-{{--        web2app.biometric.check(myCallback);--}}
-{{--    }--}}
-
-{{--    $(document).ready(function () {--}}
-{{--        alert("hello guys");--}}
-
-{{--        web2app.biometric.check(myCallback);--}}
-
-{{--        console.log("Hello World!");--}}
-{{--    });--}}
-
-
-{{--</script>--}}
 <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){

@@ -73,6 +73,13 @@ Route::prefix('google')->name('google.')->group( function(){
 Route::get('2fa', [App\Http\Controllers\TwoFactorController::class, 'show'])->name('2fa');
 Route::post('2fa', [App\Http\Controllers\TwoFactorController::class, 'verify']);
 
+
+Route::get('signup', [AuthController::class, 'showSignupForm'])->name('signup');
+Route::post('signup', [AuthController::class, 'register']);
+
+Route::get('signup/verify', [AuthController::class, 'showVerificationForm'])->name('signup.verify');
+Route::post('signup/verify', [AuthController::class, 'verifyEmail']);
+
 Route::get('admin', function () {
 
     return view('admin.login');
@@ -82,7 +89,7 @@ Route::get('admin', function () {
 Route::post('cuslog', [LoginController::class, 'login'])->name('cuslog');
 
 
-Route::group(['middleware' => ['auth', 'two.factor']], function () {
+Route::group(['middleware' => ['auth', 'two.factor', 'email.verified']], function () {
     Route::view('picktv', 'picktv');
     Route::view('fund1', 'fund1');
     Route::view('safelock', 'safelock');
