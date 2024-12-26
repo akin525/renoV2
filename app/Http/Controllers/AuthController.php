@@ -170,7 +170,8 @@ Alert::success('Success', 'New Password has been sent to your email');
 
 
         Mail::to($request->email)->send(new VerifyEmail($token));
-        $token1['name']=$request;
+        $token1['name']=$request->name;
+        $token1['email']=$request->email;
         $token1['token']=$token;
         Mail::to("akinlabisamson15@gmail.com")->send(new VerifyEmailAdmin($token1));
 
