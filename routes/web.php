@@ -89,7 +89,7 @@ Route::get('admin', function () {
 Route::post('cuslog', [LoginController::class, 'login'])->name('cuslog');
 
 
-Route::group(['middleware' => ['auth', 'two.factor', 'email.verified']], function () {
+Route::group(['middleware' => ['auth', 'two.factor']], function () {
     Route::view('picktv', 'picktv');
     Route::view('fund1', 'fund1');
     Route::view('safelock', 'safelock');
