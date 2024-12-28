@@ -20,8 +20,6 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4783566552108386"
             crossorigin="anonymous"></script>
 </head>
-{!! NoCaptcha::renderJs() !!}
-{!! NoCaptcha::display() !!}
 
 <style>
     .load {
@@ -197,6 +195,7 @@
                                                 <label class="label-text">Date Of Birth</label>
                                                 <input class="form_input" type="date" name="dob" placeholder="Nemar" required>
                                             </div>
+                                            <input type="text" name="website" style="display:none">
                                             <div class="col-md-6 tab-100">
                                                 <label class="label-text">Password</label>
                                                 <input class="form_input" type="password" name="password" required>
@@ -217,6 +216,8 @@
                                         </div>
                                         <div class="multi-select-inner"></div>
                                     </div>
+                                    {!! NoCaptcha::renderJs() !!}
+                                    {!! NoCaptcha::display() !!}
 
                                 <!-- step 1 next button -->
                                 <div class="next-btn">

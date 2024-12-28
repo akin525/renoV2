@@ -128,6 +128,7 @@ Alert::success('Success', 'New Password has been sent to your email');
 
     {
         $request->validate([
+            'g-recaptcha-response' => 'required|captcha',
             'name' => ['required', 'string', 'max:500', 'unique:users'],
             'username' => ['required', 'string',  'min:6', 'unique:users'],
             'phone' => ['required', 'numeric',  'min:11'],
@@ -143,7 +144,9 @@ Alert::success('Success', 'New Password has been sent to your email');
         if ($find){
             return back()->withErrors(['token' => 'username Already taken']);
         }
-
+        if ($request->filled('website')) {
+            return back()->withErrors(['error' => 'Bot detected!']);
+        }
         $find=User::where('email', encription::encryptdata($request->email))->first();
         if ($find){
             return back()->withErrors(['token' => 'email Already taken']);
