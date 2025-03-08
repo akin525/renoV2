@@ -33,6 +33,7 @@
                             <th>Selling Amount</th>
                             <th>Reseller Amount</th>
                             <th>Api Amount</th>
+                            <th>Server</th>
                             <th>Status</th>
                             <th>Switch</th>
                             <th>Edit</th>
@@ -52,6 +53,7 @@
                                 <td> {{$seller->tamount}}</td>
                                 <td> {{$seller->ramount}}</td>
                                 <td> {{$seller->api_amount}}</td>
+                                <td> {{$seller->server}}</td>
                                 {{--                                <td><a href="{{route('editpayment', $pay->id)}}"--}}
                                 {{--                                       {{$pay->value}}class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>--}}
                                 {{--                                </td>--}}
